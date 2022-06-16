@@ -1,7 +1,9 @@
+mod aws;
 mod iam;
 mod policy;
 
-use iam::{ARN, PrincipalKind, Principal, Action};
+use aws::ARN;
+use iam::{PrincipalKind, Principal, Action};
 use policy::sample_policy;
 
 fn main() {
@@ -29,7 +31,7 @@ fn main() {
     }
 
     match sample_policy() {
-        Ok(policy) => println!("Everything is okay: {:?}", &policy),
+        Ok(policy) => println!("{:?}", &policy),
         Err(err) => println!("Policy parse error: {:?}", err),
     }
 }
