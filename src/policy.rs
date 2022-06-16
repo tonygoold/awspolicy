@@ -40,10 +40,38 @@ pub enum ActionConstraint {
     Pattern(Action),
 }
 
+impl TryFrom<&json::JsonValue> for ActionConstraint {
+    type Error = json::Error;
+
+    fn try_from(value: &json::JsonValue) -> Result<Self, Self::Error> {
+        let value = value.as_str()
+            .ok_or_else(|| json::Error::wrong_type("expected Action to be a string"))?;
+        if value == "*" {
+            return Ok(ActionConstraint::Any);
+        }
+        Action::try_from(value).map(ActionConstraint::Pattern)
+            .map_err(|_| json::Error::wrong_type("expected Action to be an action pattern"))
+    }
+}
+
 #[derive(Debug, Clone)]
 pub enum ResourceConstraint {
     Any,
     Pattern(ARN),
+}
+
+impl TryFrom<&json::JsonValue> for ResourceConstraint {
+    type Error = json::Error;
+
+    fn try_from(value: &json::JsonValue) -> Result<Self, Self::Error> {
+        let value = value.as_str()
+            .ok_or_else(|| json::Error::wrong_type("expected Resource to be a string"))?;
+        if value == "*" {
+            return Ok(ResourceConstraint::Any);
+        }
+        ARN::try_from(value).map(ResourceConstraint::Pattern)
+            .map_err(|_| json::Error::wrong_type("expected Resource to be an ARN pattern"))
+    }
 }
 
 #[derive(Debug, Clone)]
@@ -55,41 +83,19 @@ pub struct Statement {
 }
 
 impl Statement {
-    // TODO: This should be TryFrom<&json::JsonValue> for ActionConstraint
-    fn parse_action(value: &json::JsonValue) -> json::Result<ActionConstraint> {
-        let value = value.as_str()
-            .ok_or_else(|| json::Error::wrong_type("expected Action to be a string"))?;
-        if value == "*" {
-            return Ok(ActionConstraint::Any);
-        }
-        Action::try_from(value).map(ActionConstraint::Pattern)
-            .map_err(|_| json::Error::wrong_type("expected Action to be an action pattern"))
-    }
-
     fn parse_actions(value: &json::JsonValue) -> json::Result<Vec<ActionConstraint>> {
         if value.is_string() {
-            Self::parse_action(value).map(|action| vec![action])
+            ActionConstraint::try_from(value).map(|action| vec![action])
         } else {
-            value.members().map(Self::parse_action).collect::<Result<Vec<_>,_>>()
+            value.members().map(ActionConstraint::try_from).collect::<Result<Vec<_>,_>>()
         }
-    }
-
-    // TODO: This should be TryFrom<&json::JsonValue> for ResourceConstraint
-    fn parse_resource(value: &json::JsonValue) -> json::Result<ResourceConstraint> {
-        let value = value.as_str()
-            .ok_or_else(|| json::Error::wrong_type("expected Resource to be a string"))?;
-        if value == "*" {
-            return Ok(ResourceConstraint::Any);
-        }
-        ARN::try_from(value).map(ResourceConstraint::Pattern)
-            .map_err(|_| json::Error::wrong_type("expected Resource to be an ARN pattern"))
     }
 
     fn parse_resources(value: &json::JsonValue) -> json::Result<Vec<ResourceConstraint>> {
         if value.is_string() {
-            Self::parse_resource(value).map(|resource| vec![resource])
+            ResourceConstraint::try_from(value).map(|resource| vec![resource])
         } else {
-            value.members().map(Self::parse_resource).collect::<Result<Vec<_>,_>>()
+            value.members().map(ResourceConstraint::try_from).collect::<Result<Vec<_>,_>>()
         }
     }
 }
