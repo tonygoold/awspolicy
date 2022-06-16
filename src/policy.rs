@@ -133,11 +133,13 @@ impl TryFrom<&json::JsonValue> for Policy {
             .ok_or_else(|| json::Error::wrong_type("expected Version to be a string"))?
             .to_string();
         let statements = &value["Statement"];
-        // TODO: Statement or [Statement]
-        if !statements.is_array() {
-            return Err(json::Error::wrong_type("expected Statements to be an array"));
-        }
-        let statements = statements.members().map(Statement::try_from).collect::<Result<Vec<_>,_>>()?;
+        let statements = if statements.is_object() {
+            Statement::try_from(statements).map(|statement| vec![statement])?
+        } else if statements.is_array() {
+            statements.members().map(Statement::try_from).collect::<Result<Vec<_>,_>>()?
+        } else {
+            return Err(json::Error::wrong_type("expected Statements to be an object or array"));
+        };
         Ok(Policy{version, statements})
     }
 }
