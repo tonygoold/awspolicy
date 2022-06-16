@@ -1,5 +1,3 @@
-use std::fmt::Display;
-
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum PrincipalKind {
     User,
@@ -17,7 +15,7 @@ pub enum ActionParseError {
     InvalidFormat,
 }
 
-#[derive(Debug, Clone)]
+#[derive(Clone)]
 pub struct ARN {
     value: String,
     separators: Vec<usize>,
@@ -38,6 +36,12 @@ impl ARN {
 
     pub fn resource(&self) -> &str {
         &self.value[self.separators[4] + 1 ..]
+    }
+}
+
+impl std::fmt::Debug for ARN {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.write_str(&self.value)
     }
 }
 
@@ -75,13 +79,13 @@ pub struct Principal {
     pub kind: PrincipalKind,
 }
 
-impl Display for Principal {
+impl std::fmt::Display for Principal {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         f.write_fmt(format_args!("{} ({:?})", &self.arn, self.kind))
     }
 }
 
-#[derive(Debug, Clone)]
+#[derive(Clone)]
 pub struct Action {
     value: String,
     separator: usize,
@@ -97,17 +101,23 @@ impl Action {
     }
 }
 
+impl std::fmt::Debug for Action {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.write_str(&self.value)
+    }
+}
+
+impl std::fmt::Display for Action {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.write_str(&self.value)
+    }
+}
+
 impl TryFrom<&str> for Action {
     type Error = ActionParseError;
 
     fn try_from(value: &str) -> Result<Self, Self::Error> {
         let separator = value.find(':').ok_or(ActionParseError::InvalidFormat)?;
         Ok(Action{value: value.into(), separator})
-    }
-}
-
-impl Display for Action {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        f.write_str(&self.value)
     }
 }
