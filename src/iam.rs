@@ -30,6 +30,16 @@ pub struct Action {
 }
 
 impl Action {
+    pub fn new(service: &str, action: &str) -> Self {
+        let mut value = String::new();
+        let separator = service.len();
+        value.reserve(separator + action.len() + 1);
+        value.push_str(service);
+        value.push(':');
+        value.push_str(action);
+        Action{value, separator}
+    }
+
     pub fn service(&self) -> &str {
         &self.value[..self.separator]
     }

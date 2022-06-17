@@ -1,8 +1,29 @@
 mod constraint;
 mod statement;
 
-use statement::Statement;
+use crate::aws::ARN;
+use crate::iam::Action;
+use statement::{CheckResult, Statement};
 use json;
+
+// This was an earlier version of the policy language. You might see this
+// version on older existing policies. Do not use this version for any new
+// policies or when you update any existing policies. Newer features, such as
+// policy variables, will not work with your policy. For example, variables
+// such as ${aws:username} aren't recognized as variables and are instead
+// treated as literal strings in the policy.
+pub const VERSION_2008_10_17: &str = "2008-10-17";
+
+// This is the current version of the policy language, and you should always
+// include a Version element and set it to 2012-10-17. Otherwise, you cannot
+// use features such as policy variables that were introduced with this
+// version.
+pub const VERSION_2012_10_17: &str = "2012-10-17";
+
+/*
+See https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements.html
+for a full description of the IAM policy JSON schema.
+ */
 
 const POLICY: &str = r#"{
     "Version": "2012-10-17",
@@ -34,7 +55,20 @@ const POLICY: &str = r#"{
 #[derive(Debug, Clone)]
 pub struct Policy {
     pub version: String,
+    pub id: Option<String>,
     pub statements: Vec<Statement>,
+}
+
+impl Policy {
+    pub fn check(&self, action: &Action, resource: &ARN) -> CheckResult {
+        self.statements.iter().fold(CheckResult::Unspecified, |result, stmt| {
+            if result == CheckResult::Unspecified {
+                stmt.check(action, resource)
+            } else {
+                result
+            }
+        })
+    }
 }
 
 impl TryFrom<&json::JsonValue> for Policy {
@@ -44,6 +78,7 @@ impl TryFrom<&json::JsonValue> for Policy {
         let version = value["Version"].as_str()
             .ok_or_else(|| json::Error::wrong_type("expected Version to be a string"))?
             .to_string();
+        let id = value["Id"].as_str().map(|s| s.to_string());
         let statements = &value["Statement"];
         let statements = if statements.is_object() {
             Statement::try_from(statements).map(|statement| vec![statement])?
@@ -52,7 +87,7 @@ impl TryFrom<&json::JsonValue> for Policy {
         } else {
             return Err(json::Error::wrong_type("expected Statements to be an object or array"));
         };
-        Ok(Policy{version, statements})
+        Ok(Policy{version, id, statements})
     }
 }
 
