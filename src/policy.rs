@@ -1,3 +1,4 @@
+mod condition;
 mod constraint;
 mod statement;
 
@@ -21,8 +22,9 @@ pub const VERSION_2008_10_17: &str = "2008-10-17";
 pub const VERSION_2012_10_17: &str = "2012-10-17";
 
 /*
-See https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements.html
-for a full description of the IAM policy JSON schema.
+See https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_grammar.html
+for the JSON policy grammar and https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements.html
+for a description of each element.
  */
 
 const POLICY: &str = r#"{
@@ -54,7 +56,7 @@ const POLICY: &str = r#"{
 
 #[derive(Debug, Clone)]
 pub struct Policy {
-    pub version: String,
+    pub version: Option<String>,
     pub id: Option<String>,
     pub statements: Vec<Statement>,
 }
@@ -75,9 +77,18 @@ impl TryFrom<&json::JsonValue> for Policy {
     type Error = json::Error;
 
     fn try_from(value: &json::JsonValue) -> Result<Self, Self::Error> {
-        let version = value["Version"].as_str()
-            .ok_or_else(|| json::Error::wrong_type("expected Version to be a string"))?
-            .to_string();
+        let version = &value["Version"];
+        let version = if let Some(v) = version.as_str() {
+            // TODO: Introduce proper error type (or use a crate like anyhow)
+            match v {
+                VERSION_2008_10_17 | VERSION_2012_10_17 => Some(v.to_string()),
+                _ => return Err(json::Error::wrong_type("unsupported Version")),
+            }
+        } else if version.is_null() {
+            None
+        } else {
+            return Err(json::Error::wrong_type("expected Version to be a string"));
+        };
         let id = value["Id"].as_str().map(|s| s.to_string());
         let statements = &value["Statement"];
         let statements = if statements.is_object() {
