@@ -16,6 +16,14 @@ pub struct Condition {
     keyvals: HashMap<String, Vec<String>>,
 }
 
+impl Condition {
+    pub fn matches(&self) -> bool {
+        self.keyvals.iter().all(|(_key, values)| {
+            values.iter().any(|_value| true)
+        })
+    }
+}
+
 impl TryFrom<&json::JsonValue> for Condition {
     type Error = json::Error;
 
@@ -37,6 +45,14 @@ impl TryFrom<&json::JsonValue> for Condition {
 #[derive(Debug, Clone)]
 pub struct ConditionMap {
     operators: HashMap<String, Condition>,
+}
+
+impl ConditionMap {
+    pub fn matches(&self) -> bool {
+        self.operators.iter().all(|(_op, condition)| {
+            condition.matches()
+        })
+    }
 }
 
 impl TryFrom<&json::JsonValue> for ConditionMap {

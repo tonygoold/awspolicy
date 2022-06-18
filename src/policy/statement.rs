@@ -1,6 +1,6 @@
 use crate::aws::ARN;
 use crate::iam::Action;
-use super::condition::{Condition, ConditionMap};
+use super::condition::ConditionMap;
 use super::constraint::{ActionConstraint, PrincipalConstraint, ResourceConstraint};
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
@@ -36,6 +36,9 @@ impl Statement {
         if !matches_resource {
             return CheckResult::Unspecified;
         }
+        if !self.conditions.as_ref().map_or(true, |conditions| conditions.matches()) {
+            return CheckResult::Unspecified;
+        }
         match self.effect {
             Effect::Allow => CheckResult::Allow,
             Effect::Deny => CheckResult::Deny,
@@ -59,7 +62,7 @@ impl Statement {
         }
     }
 
-    fn parse_principals(value: &json::JsonValue) -> json::Result<Vec<PrincipalConstraint>> {
+    fn parse_principals(_value: &json::JsonValue) -> json::Result<Vec<PrincipalConstraint>> {
         // TODO: Implement this
         Ok(vec![])
     }
