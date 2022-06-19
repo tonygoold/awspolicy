@@ -1,5 +1,5 @@
 use crate::aws::ARN;
-use crate::iam::Action;
+use crate::iam::{Action, Principal};
 use regex::{escape, Regex};
 
 fn pattern_matches(pattern: &str, target: &str) -> bool {
@@ -48,11 +48,19 @@ impl TryFrom<&json::JsonValue> for ActionConstraint {
         let value = value.as_str()
             .ok_or_else(|| json::Error::wrong_type("expected Action to be a string"))?;
         if value == "*" {
-            return Ok(ActionConstraint::Any);
+            return Ok(Self::Any);
         }
-        Action::try_from(value).map(ActionConstraint::Pattern)
+        Action::try_from(value).map(Self::Pattern)
             .map_err(|_| json::Error::wrong_type("expected Action to be an action pattern"))
     }
+}
+
+// TODO: You can specify multiple principals, including of different types.
+#[derive(Debug, Clone)]
+pub enum PrincipalConstraint {
+    Any,
+    AWSAny,
+    Pattern(Principal),
 }
 
 #[derive(Debug, Clone)]
@@ -77,9 +85,9 @@ impl TryFrom<&json::JsonValue> for ResourceConstraint {
         let value = value.as_str()
             .ok_or_else(|| json::Error::wrong_type("expected Resource to be a string"))?;
         if value == "*" {
-            return Ok(ResourceConstraint::Any);
+            return Ok(Self::Any);
         }
-        ARN::try_from(value).map(ResourceConstraint::Pattern)
+        ARN::try_from(value).map(Self::Pattern)
             .map_err(|_| json::Error::wrong_type("expected Resource to be an ARN pattern"))
     }
 }
@@ -123,22 +131,3 @@ access in the Condition element. This is especially true for IAM role trust
 policies, because they allow other principals to become a principal in your
 account.
  */
-#[derive(Debug, Clone)]
-pub enum PrincipalConstraint {
-    Any,
-    Pattern(ARN),
-}
-
-impl TryFrom<&json::JsonValue> for PrincipalConstraint {
-    type Error = json::Error;
-
-    fn try_from(value: &json::JsonValue) -> Result<Self, Self::Error> {
-        let value = value.as_str()
-            .ok_or_else(|| json::Error::wrong_type("expected Principal to be a string"))?;
-        if value == "*" {
-            return Ok(PrincipalConstraint::Any);
-        }
-        ARN::try_from(value).map(PrincipalConstraint::Pattern)
-            .map_err(|_| json::Error::wrong_type("expected Principal to be an ARN pattern"))
-    }
-}

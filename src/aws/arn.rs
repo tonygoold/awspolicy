@@ -51,6 +51,14 @@ impl ARN {
     }
 }
 
+impl PartialEq for ARN {
+    fn eq(&self, other: &Self) -> bool {
+        self.value == other.value
+    }
+}
+
+impl Eq for ARN {}
+
 impl std::fmt::Debug for ARN {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         f.write_str(&self.value)

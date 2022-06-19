@@ -1,0 +1,25 @@
+{
+    "Version": "2012-10-17",
+    "Statement": {
+    "Sid": "FirstStatement",
+    "Effect": "Allow",
+    "Principal": {
+        "AWS": [
+            "*",
+            "123456789012",
+            "arn:aws:iam::123456789012:user/Username"
+        ],
+        "Federated": [
+            "arn:aws:iam::AWS-account-ID:saml-provider/provider-name",
+            "accounts.google.com"
+        ],
+        "Service": [
+            "ecs.amazonaws.com",
+            "elasticloadbalancing.amazonaws.com"
+        ],
+        "CanonicalUser": "79a59df900b949e55d96a1e698fbacedfd6e09d98eacf8f8d5218e7cd47ef2be"
+    },
+    "Action": "iam:ChangePassword",
+    "Resource": "*"
+    }
+  }

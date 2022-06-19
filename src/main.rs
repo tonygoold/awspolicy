@@ -12,7 +12,7 @@ struct Args {
     policy: Option<String>,
 
     #[clap(long)]
-    principal: Option<String>,
+    principal_aws: Option<String>,
 
     #[clap(long)]
     action: Option<String>,

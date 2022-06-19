@@ -1,0 +1,14 @@
+{
+  "_source": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html",
+  "Version": "2012-10-17",
+  "Statement": [{
+    "Sid": "1",
+    "Effect": "Allow",
+    "Principal": {"AWS": ["arn:aws:iam::123456789012:root"]},
+    "Action": "s3:*",
+    "Resource": [
+      "arn:aws:s3:::mybucket",
+      "arn:aws:s3:::mybucket/*"
+    ]
+  }]
+}

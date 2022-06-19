@@ -1,9 +1,13 @@
 use crate::aws::ARN;
 
-#[derive(Debug, Clone, Copy, PartialEq, Eq)]
-pub enum PrincipalKind {
-    User,
-    Role,
+// Do these distinctions matter for evaluating policies?
+// Would simple string matching be sufficient?
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub enum Principal {
+    AWS(ARN),
+    Federated(String),
+    Service(String),
+    CanonicalUser(String),
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
@@ -11,15 +15,14 @@ pub enum ActionParseError {
     InvalidFormat,
 }
 
-#[derive(Debug, Clone)]
-pub struct Principal {
-    pub arn: ARN,
-    pub kind: PrincipalKind,
-}
-
 impl std::fmt::Display for Principal {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        f.write_fmt(format_args!("{} ({:?})", &self.arn, self.kind))
+        match self {
+            Principal::AWS(arn) => f.write_fmt(format_args!("AWS: {}", arn)),
+            Principal::Federated(id) => f.write_fmt(format_args!("Federated: {}", id)),
+            Principal::Service(id) => f.write_fmt(format_args!("Service: {}", id)),
+            Principal::CanonicalUser(id) => f.write_fmt(format_args!("CanonicalUser: {}", id)),
+        }
     }
 }
 
