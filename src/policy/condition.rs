@@ -32,10 +32,14 @@ impl TryFrom<&json::JsonValue> for Condition {
             return Err(json::Error::wrong_type("expected condition to be key-values"));
         }
         let keyvals = value.entries().map(|(k, v)| {
-            match v.as_str() {
-                // TODO: Handle multiple values
-                Some(s) => Ok((k.to_string(), vec![s.to_string()])),
-                None => Err(json::Error::wrong_type("expected value to be a string")),
+            if let Some(s) = v.as_str() {
+                Ok((k.to_string(), vec![s.to_string()]))
+            } else if !v.is_array() {
+                Err(json::Error::wrong_type("expected value to be a string or an array of strings"))
+            } else {
+                v.members().map(|s| s.as_str().map(|s| s.to_string())
+                    .ok_or_else(|| json::Error::wrong_type("expected value to be an array of strings"))
+                ).collect::<json::Result<Vec<_>>>().map(|vs| (k.to_string(), vs))
             }
         }).collect::<Result<HashMap<_,_>,_>>()?;
         Ok(Condition{keyvals})

@@ -3,7 +3,7 @@ mod constraint;
 mod statement;
 
 use crate::aws::ARN;
-use crate::iam::Action;
+use crate::iam::{Action, Principal};
 use statement::{CheckResult, Statement};
 use json;
 
@@ -62,10 +62,20 @@ pub struct Policy {
 }
 
 impl Policy {
-    pub fn check(&self, action: &Action, resource: &ARN) -> CheckResult {
+    pub fn check_action(&self, action: &Action, resource: &ARN) -> CheckResult {
         self.statements.iter().fold(CheckResult::Unspecified, |result, stmt| {
             if result == CheckResult::Unspecified {
-                stmt.check(action, resource)
+                stmt.check_action(action, resource)
+            } else {
+                result
+            }
+        })
+    }
+
+    pub fn check(&self, principal: &Principal, action: &Action, resource: &ARN) -> CheckResult {
+        self.statements.iter().fold(CheckResult::Unspecified, |result, stmt| {
+            if result == CheckResult::Unspecified {
+                stmt.check(principal, action, resource)
             } else {
                 result
             }

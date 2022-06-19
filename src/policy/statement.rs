@@ -27,7 +27,7 @@ pub struct Statement {
 }
 
 impl Statement {
-    pub fn check(&self, action: &Action, resource: &ARN) -> CheckResult {
+    pub fn check_action(&self, action: &Action, resource: &ARN) -> CheckResult {
         let matches_action = self.actions.iter().any(|constraint| constraint.matches(action));
         if !matches_action {
             return CheckResult::Unspecified;
@@ -43,6 +43,14 @@ impl Statement {
             Effect::Allow => CheckResult::Allow,
             Effect::Deny => CheckResult::Deny,
         }
+    }
+
+    pub fn check(&self, principal: &Principal, action: &Action, resource: &ARN) -> CheckResult {
+        let matches_principal = self.principals.iter().any(|constraint| constraint.matches(principal));
+        if !matches_principal {
+            return CheckResult::Unspecified;
+        }
+        self.check_action(action, resource)
     }
 
     fn parse_effect(value: &json::JsonValue) -> json::Result<Effect> {
@@ -129,13 +137,14 @@ impl Statement {
     }
 
     fn parse_principals(value: &json::JsonValue) -> json::Result<Vec<PrincipalConstraint>> {
-        if let Some(s) = value.as_str() {
+        if value.is_null() {
+            return Ok(vec![]);
+        } else if let Some(s) = value.as_str() {
             match s {
                 "*" => return Ok(vec![PrincipalConstraint::Any]),
                 _ => return Err(json::Error::wrong_type("expected Principal to be non-string value except '*'")),
             }
-        }
-        if !value.is_object() {
+        } else if !value.is_object() {
             return Err(json::Error::wrong_type("expected Principal to be an object when it is not '*'"));
         }
 

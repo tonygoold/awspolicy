@@ -63,6 +63,56 @@ pub enum PrincipalConstraint {
     Pattern(Principal),
 }
 
+impl PrincipalConstraint {
+    fn matches_aws(arn: &ARN, other: &Principal) -> bool {
+        if let Principal::AWS(other) = other {
+            pattern_matches(arn.raw(), other.raw())
+        } else {
+            false
+        }
+    }
+
+    fn matches_federated(s: &str, other: &Principal) -> bool {
+        if let Principal::Federated(other) = other {
+            pattern_matches(s, other)
+        } else {
+            false
+        }
+    }
+
+    fn matches_service(s: &str, other: &Principal) -> bool {
+        if let Principal::Service(other) = other {
+            pattern_matches(s, other)
+        } else {
+            false
+        }
+    }
+
+    fn matches_canonicaluser(s: &str, other: &Principal) -> bool {
+        if let Principal::CanonicalUser(other) = other {
+            pattern_matches(s, other)
+        } else {
+            false
+        }
+    }
+
+    pub fn matches(&self, other: &Principal) -> bool {
+        match self {
+            Self::Any => true,
+            Self::AWSAny => match other {
+                Principal::AWS(_) => true,
+                _ => false,
+            }
+            Self::Pattern(principal) => match principal {
+                Principal::AWS(arn) => Self::matches_aws(arn, other),
+                Principal::Federated(s) => Self::matches_federated(s, other),
+                Principal::Service(s) => Self::matches_service(s, other),
+                Principal::CanonicalUser(s) => Self::matches_canonicaluser(s, other),
+            }
+        }
+    }
+}
+
 #[derive(Debug, Clone)]
 pub enum ResourceConstraint {
     Any,
@@ -91,43 +141,3 @@ impl TryFrom<&json::JsonValue> for ResourceConstraint {
             .map_err(|_| json::Error::wrong_type("expected Resource to be an ARN pattern"))
     }
 }
-
-/*
-Examples of Principal constraints:
-{ "AWS": "arn:aws:iam::123456789012:root" }
-{ "AWS": "arn:aws:iam::123456789012:user/user-name" }
-{ "AWS": "arn:aws:iam::123456789012:role/role-name" }
-{ "AWS": "123456789012" }
-{ "AWS": "arn:aws:sts::123456789012:assumed-role/role-name/role-session-name" }
-{ "AWS": "arn:aws:sts::123456789012:federated-user/user-name" }
-{ "CanonicalUser": "79a59df900b949e55d96a1e698fbacedfd6e09d98eacf8f8d5218e7cd47ef2be" }
-{
-  "AWS": [
-    "arn:aws:iam::123456789012:root",
-    "999999999999"
-  ],
-  "CanonicalUser": "79a59df900b949e55d96a1e698fbacedfd6e09d98eacf8f8d5218e7cd47ef2be"
-}
-{ "Federated": "cognito-identity.amazonaws.com" }
-{ "Federated": "www.amazon.com" }
-{ "Federated": "graph.facebook.com" }
-{ "Federated": "accounts.google.com" }
-{ "Federated": "arn:aws:iam::AWS-account-ID:saml-provider/provider-name" }
-{
-    "Service": [
-        "ecs.amazonaws.com",
-        "elasticloadbalancing.amazonaws.com"
-   ]
-}
-
-When you specify users in a Principal element, you cannot use a wildcard (*)
-to mean "all users". Principals must always name specific users.
-
-We strongly recommend that you do not use a wildcard (*) in the Principal
-element of a resource-based policy with an Allow effect unless you intend to
-grant public or anonymous access. Otherwise, specify intended principals,
-services, or AWS accounts in the Principal element and then further restrict
-access in the Condition element. This is especially true for IAM role trust
-policies, because they allow other principals to become a principal in your
-account.
- */
