@@ -4,8 +4,10 @@ mod statement;
 
 use crate::aws::ARN;
 use crate::iam::{Action, Principal};
-use statement::{CheckResult, Statement};
+use statement::Statement;
 use json;
+
+pub use statement::CheckResult;
 
 // This was an earlier version of the policy language. You might see this
 // version on older existing policies. Do not use this version for any new
@@ -26,33 +28,6 @@ See https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_grammar.
 for the JSON policy grammar and https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements.html
 for a description of each element.
  */
-
-const POLICY: &str = r#"{
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Sid": "VisualEditor0",
-            "Effect": "Allow",
-            "Action": "route53:ChangeResourceRecordSets",
-            "Resource": "arn:aws:route53:::hostedzone/*"
-        },
-        {
-            "Sid": "VisualEditor1",
-            "Effect": "Allow",
-            "Action": [
-                "route53:ListHostedZones",
-                "route53:ListHostedZonesByName"
-            ],
-            "Resource": "*"
-        },
-        {
-            "Sid": "VisualEditor2",
-            "Effect": "Allow",
-            "Action": "route53:GetChange",
-            "Resource": "arn:aws:route53:::change/*"
-        }
-    ]
-}"#;
 
 #[derive(Debug, Clone)]
 pub struct Policy {
@@ -119,8 +94,4 @@ impl TryFrom<&str> for Policy {
         let value = json::parse(value)?;
         Policy::try_from(&value)
     }
-}
-
-pub fn sample_policy() -> Result<Policy, json::Error> {
-    Policy::try_from(POLICY)
 }

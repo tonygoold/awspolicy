@@ -1,15 +1,41 @@
 use awspolicy::iam::{Action, Principal};
-use awspolicy::policy::{sample_policy, Policy};
+use awspolicy::policy::{CheckResult, Policy};
 use awspolicy::aws::ARN;
 
 use clap::Parser;
 use json;
 
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+enum ArgsError {
+    NoActionSpecified,
+    NoResourceSpecified,
+    MultiplePrincipalsSpecified,
+    InvalidPrincipal,
+    InvalidAction,
+    InvalidResource,
+}
+
+enum RunConfig {
+    None,
+    Identity(Action, ARN),
+    Resource(Principal, Action, ARN),
+}
+
+impl RunConfig {
+    fn check(&self, policy: &Policy) -> CheckResult {
+        match self {
+            Self::None => CheckResult::Unspecified,
+            Self::Identity(action, resource) => policy.check_action(action, resource),
+            Self::Resource(principal, action, resource) => policy.check(principal, action, resource),
+        }
+    }
+}
+
 #[derive(Parser, Debug)]
 #[clap(about, version)]
 struct Args {
     #[clap(long)]
-    policy: Option<String>,
+    policy: String,
 
     #[clap(long)]
     principal_aws: Option<String>,
@@ -30,83 +56,68 @@ struct Args {
     resource: Option<String>,
 }
 
-fn load_policy(path: Option<String>) -> json::Result<Policy> {
-    let path = if let Some(p) = path { p } else { return sample_policy(); };
-    let data = std::fs::read_to_string(&path).map_err(|_| json::Error::wrong_type("unable to read policy file"))?;
+impl TryFrom<&Args> for RunConfig {
+    type Error = ArgsError;
+
+    fn try_from(args: &Args) -> Result<Self, Self::Error> {
+        if args.action.is_none() && args.resource.is_none() && args.principal_aws.is_none() && args.principal_federated.is_none() && args.principal_service.is_none() && args.principal_canonical_user.is_none() {
+            return Ok(RunConfig::None);
+        }
+
+        let action = args.action.as_ref().ok_or(ArgsError::NoActionSpecified).and_then(
+            |action| Action::try_from(action.as_str()).map_err(|_| ArgsError::InvalidAction)
+        )?;
+        let resource = args.resource.as_ref().ok_or(ArgsError::NoResourceSpecified).and_then(
+            |resource| ARN::try_from(resource.as_str()).map_err(|_| ArgsError::InvalidResource)
+        )?;
+
+        match (&args.principal_aws, &args.principal_service, &args.principal_federated, &args.principal_canonical_user) {
+            (Some(aws), None, None, None) => if let Ok(arn) = ARN::try_from(aws.as_str()) {
+                Ok(RunConfig::Resource(Principal::AWS(arn), action, resource))
+            } else {
+                Err(ArgsError::InvalidPrincipal)
+            }
+            (None, Some(service), None, None) => Ok(RunConfig::Resource(Principal::Service(service.clone()), action, resource)),
+            (None, None, Some(federated), None) => Ok(RunConfig::Resource(Principal::Federated(federated.clone()), action, resource)),
+            (None, None, None, Some(canonical)) => Ok(RunConfig::Resource(Principal::CanonicalUser(canonical.clone()), action, resource)),
+            (None, None, None, None) => Ok(RunConfig::Identity(action, resource)),
+            _ => Err(ArgsError::MultiplePrincipalsSpecified),
+        }
+    }
+
+}
+
+fn load_policy(path: &str) -> json::Result<Policy> {
+    let data = std::fs::read_to_string(path).map_err(|_| json::Error::wrong_type("unable to read policy file"))?;
     Policy::try_from(data.as_str())
-}
-
-fn check_action(policy: &Policy, action: &str, resource: &str) {
-    let action = match Action::try_from(action) {
-        Ok(action) => action,
-        Err(err) => {
-            println!("Invalid action: {:?}", err);
-            return;
-        }
-    };
-    let resource = match ARN::try_from(resource) {
-        Ok(resource) => resource,
-        Err(err) => {
-            println!("Invalid resource: {:?}", err);
-            return;
-        }
-    };
-    let result = policy.check_action(&action, &resource);
-    println!("Checked {:?} on {:?}: {:?}", &action, &resource, result);
-}
-
-fn check_policy(policy: &Policy, principal: &Principal, action: &str, resource: &str) {
-    let action = match Action::try_from(action) {
-        Ok(action) => action,
-        Err(err) => {
-            println!("Invalid action: {:?}", err);
-            return;
-        }
-    };
-    let resource = match ARN::try_from(resource) {
-        Ok(resource) => resource,
-        Err(err) => {
-            println!("Invalid resource: {:?}", err);
-            return;
-        }
-    };
-    let result = policy.check(principal, &action, &resource);
-    println!("Checked {:?} by {:?} on {:?}: {:?}", &action, &principal, &resource, result);
 }
 
 fn main() {
     let args = Args::parse();
-    let policy = match load_policy(args.policy) {
+    let policy = match load_policy(args.policy.as_str()) {
         Ok(policy) => policy,
         Err(err) => {
             println!("Policy parse error: {:?}", err);
             return;
         }
     };
-    let principal = match (args.principal_aws, args.principal_service, args.principal_federated, args.principal_canonical_user) {
-        (Some(aws), None, None, None) => if let Ok(arn) = ARN::try_from(aws.as_str()) {
-            Some(Principal::AWS(arn))
-        } else {
-            println!("Invalid AWS principal");
-            return;
-        }
-        (None, Some(service), None, None) => Some(Principal::Service(service)),
-        (None, None, Some(federated), None) => Some(Principal::Federated(federated)),
-        (None, None, None, Some(canonical)) => Some(Principal::CanonicalUser(canonical)),
-        (None, None, None, None) => None,
-        _ => {
-            println!("You can only specify one type of principal");
+    let config = match RunConfig::try_from(&args) {
+        Ok(config) => config,
+        Err(err) => {
+            println!("Argument error: {:?}", &err);
             return;
         }
     };
-    match (args.action, args.resource) {
-        (Some(action), Some(resource)) => if let Some(principal) = principal {
-            check_policy(&policy, &principal, &action, &resource)
-        } else {
-            check_action(&policy, &action, &resource)
+
+    match &config {
+        RunConfig::None => println!("Policy successfully parsed"),
+        RunConfig::Identity(action, resource) => {
+            let result = config.check(&policy);
+            println!("Checked {:?} on {:?}: {:?}", action, resource, &result);
         }
-        (Some(_), None) => println!("You must specify a resource for the action"),
-        (None, Some(_)) => println!("You must specify an action for the resource"),
-        _ => println!("Policy parsed"),
-    }
+        RunConfig::Resource(principal, action, resource) => {
+            let result = config.check(&policy);
+            println!("Checked {:?} doing {:?} on {:?}: {:?}", principal, action, resource, &result);
+        }
+    };
 }
