@@ -9,6 +9,8 @@ use json;
 
 pub use statement::CheckResult;
 
+use self::statement::Effect;
+
 // This was an earlier version of the policy language. You might see this
 // version on older existing policies. Do not use this version for any new
 // policies or when you update any existing policies. Newer features, such as
@@ -39,20 +41,34 @@ pub struct Policy {
 impl Policy {
     pub fn check_action(&self, action: &Action, resource: &ARN) -> CheckResult {
         self.statements.iter().fold(CheckResult::Unspecified, |result, stmt| {
-            if result == CheckResult::Unspecified {
-                stmt.check_action(action, resource)
-            } else {
-                result
+            match result {
+                CheckResult::Deny => result,
+                CheckResult::Unspecified => stmt.check_action(action, resource),
+                CheckResult::Allow => if stmt.effect == Effect::Deny {
+                    match stmt.check_action(action, resource) {
+                        CheckResult::Deny => CheckResult::Deny,
+                        _ => CheckResult::Allow,
+                    }
+                } else {
+                    result
+                }
             }
         })
     }
 
     pub fn check(&self, principal: &Principal, action: &Action, resource: &ARN) -> CheckResult {
         self.statements.iter().fold(CheckResult::Unspecified, |result, stmt| {
-            if result == CheckResult::Unspecified {
-                stmt.check(principal, action, resource)
-            } else {
-                result
+            match result {
+                CheckResult::Deny => result,
+                CheckResult::Unspecified => stmt.check(principal, action, resource),
+                CheckResult::Allow => if stmt.effect == Effect::Deny {
+                    match stmt.check(principal, action, resource) {
+                        CheckResult::Deny => CheckResult::Deny,
+                        _ => CheckResult::Allow,
+                    }
+                } else {
+                    result
+                }
             }
         })
     }
