@@ -1,0 +1,41 @@
+{
+  "_source": "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_examples_cfn_sns_resource_account.html",
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "DenyAllAwsResourcesOutsideAccountExceptSNS",
+      "Effect": "Deny",
+      "NotAction": [
+        "sns:*"
+      ],
+      "Resource": "*",
+      "Condition": {
+        "StringNotEquals": {
+          "aws:ResourceAccount": [
+            "111122223333"
+          ]
+        }
+      }
+    },
+    {
+      "Sid": "DenyAllSNSResourcesOutsideAccountExceptCloudFormation",
+      "Effect": "Deny",
+      "Action": [
+        "sns:*"
+      ],
+      "Resource": "*",
+      "Condition": {
+        "StringNotEquals": {
+          "aws:ResourceAccount": [
+            "111122223333"
+          ]
+        },
+        "ForAllValues:StringNotEquals": {
+          "aws:CalledVia": [
+            "cloudformation.amazonaws.com"
+          ]
+        }
+      }
+    }
+  ]
+}

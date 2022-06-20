@@ -1,0 +1,28 @@
+{
+    "_source": "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_examples_aws-enable-disable-regions.html",
+    "_description": "AWS: Allows enabling and disabling AWS Regions",
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "EnableDisableHongKong",
+            "Effect": "Allow",
+            "Action": [
+                "account:EnableRegion",
+                "account:DisableRegion"
+            ],
+            "Resource": "*",
+            "Condition": {
+                "StringEquals": {"account:TargetRegion": "ap-east-1"}
+            }
+        },
+        {
+            "Sid": "ViewConsole",
+            "Effect": "Allow",
+            "Action": [
+                "aws-portal:ViewAccount",
+                "account:ListRegions"
+            ],
+            "Resource": "*"
+        }
+    ]
+}
