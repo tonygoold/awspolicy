@@ -17,25 +17,52 @@ pub enum CheckResult {
 }
 
 #[derive(Debug, Clone)]
+pub enum PrincipalClause {
+    None,
+    Principal(Vec<PrincipalConstraint>),
+    NotPrincipal(Vec<PrincipalConstraint>),
+}
+
+#[derive(Debug, Clone)]
+pub enum ActionClause {
+    Action(Vec<ActionConstraint>),
+    NotAction(Vec<ActionConstraint>),
+}
+
+#[derive(Debug, Clone)]
+pub enum ResourceClause {
+    Resource(Vec<ResourceConstraint>),
+    NotResource(Vec<ResourceConstraint>),
+}
+
+#[derive(Debug, Clone)]
 pub struct Statement {
     pub sid: Option<String>,
     pub effect: Effect,
-    pub principals: Vec<PrincipalConstraint>,
-    pub actions: Vec<ActionConstraint>,
-    pub resources: Vec<ResourceConstraint>,
+    pub principals: PrincipalClause,
+    pub actions: ActionClause,
+    pub resources: ResourceClause,
     pub conditions: Option<ConditionMap>,
 }
 
 impl Statement {
     pub fn check_action(&self, action: &Action, resource: &ARN) -> CheckResult {
-        let matches_action = self.actions.iter().any(|constraint| constraint.matches(action));
+        let matches_action = match &self.actions {
+            ActionClause::Action(actions) => actions.iter().any(|constraint| constraint.matches(action)),
+            ActionClause::NotAction(actions) => !actions.iter().any(|constraint| constraint.matches(action)),
+        };
         if !matches_action {
             return CheckResult::Unspecified;
         }
-        let matches_resource = self.resources.iter().any(|constraint| constraint.matches(resource));
+
+        let matches_resource = match &self.resources {
+            ResourceClause::Resource(resources) => resources.iter().any(|constraint| constraint.matches(resource)),
+            ResourceClause::NotResource(resources) => !resources.iter().any(|constraint| constraint.matches(resource)),
+        };
         if !matches_resource {
             return CheckResult::Unspecified;
         }
+
         if !self.conditions.as_ref().map_or(true, |conditions| conditions.matches()) {
             return CheckResult::Unspecified;
         }
@@ -46,11 +73,16 @@ impl Statement {
     }
 
     pub fn check(&self, principal: &Principal, action: &Action, resource: &ARN) -> CheckResult {
-        let matches_principal = self.principals.iter().any(|constraint| constraint.matches(principal));
-        if !matches_principal {
-            return CheckResult::Unspecified;
+        let matches_principals = match &self.principals {
+            PrincipalClause::None => true,
+            PrincipalClause::Principal(principals) => principals.iter().any(|constraint| constraint.matches(principal)),
+            PrincipalClause::NotPrincipal(principals) => !principals.iter().any(|constraint| constraint.matches(principal)),
+        };
+        if matches_principals {
+            self.check_action(action, resource)
+        } else {
+            CheckResult::Unspecified
         }
-        self.check_action(action, resource)
     }
 
     fn parse_effect(value: &json::JsonValue) -> json::Result<Effect> {
@@ -200,10 +232,41 @@ impl TryFrom<&json::JsonValue> for Statement {
             return Err(json::Error::wrong_type("expected Sid to be a string"));
         };
         let effect = Self::parse_effect(&value["Effect"])?;
-        let actions = Self::parse_actions(&value["Action"])?;
-        let principals = Self::parse_principals(&value["Principal"])?;
-        let resources = Self::parse_resources(&value["Resource"])?;
+        // According to https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-error-unsupported-element-combination
+        // Principal/NotPrincipal, Action/NotAction, and Resource/NotResource
+        // are mutually exclusive, and it is an error to include both.
+        let action = &value["Action"];
+        let not_action = &value["NotAction"];
+        let actions = match(action.is_null(), not_action.is_null()) {
+            (true, true) => return Err(json::Error::wrong_type("missing Action or NotAction")),
+            (false, true) => ActionClause::Action(Self::parse_actions(action)?),
+            (true, false) => ActionClause::NotAction(Self::parse_actions(action)?),
+            (false, false) => return Err(json::Error::wrong_type("cannot have both Action and NotAction in same statement")),
+        };
+        let principal = &value["Principal"];
+        let not_principal = &value["NotPrincipal"];
+        let principals = match (principal.is_null(), not_principal.is_null()) {
+            (true, true) => PrincipalClause::None,
+            (false, true) => PrincipalClause::Principal(Self::parse_principals(principal)?),
+            (true, false) => PrincipalClause::NotPrincipal(Self::parse_principals(not_principal)?),
+            (false, false) => return Err(json::Error::wrong_type("cannot have both Principal and NotPrincipal in same statement")),
+        };
+        let resource = &value["Resource"];
+        let not_resource = &value["NotResource"];
+        let resources = match(resource.is_null(), not_resource.is_null()) {
+            (true, true) => return Err(json::Error::wrong_type("missing Resource or NotResource")),
+            (false, true) => ResourceClause::Resource(Self::parse_resources(resource)?),
+            (true, false) => ResourceClause::NotResource(Self::parse_resources(not_resource)?),
+            (false, false) => return Err(json::Error::wrong_type("cannot have both Resource and NotResource in same statement")),
+        };
         let conditions = Self::parse_conditions(&value["Condition"])?;
-        Ok(Statement{sid, effect, actions, principals, resources, conditions})
+        Ok(Statement{
+            sid,
+            effect,
+            actions,
+            principals,
+            resources,
+            conditions
+        })
     }
 }
