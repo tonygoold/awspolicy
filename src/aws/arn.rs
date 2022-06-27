@@ -59,6 +59,12 @@ impl PartialEq for ARN {
 
 impl Eq for ARN {}
 
+impl std::hash::Hash for ARN {
+    fn hash<H: std::hash::Hasher>(&self, state: &mut H) {
+        self.value.hash(state)
+    }
+}
+
 impl std::fmt::Debug for ARN {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         f.write_str(&self.value)

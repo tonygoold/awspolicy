@@ -25,7 +25,6 @@ If you do not provide any principal argument, the policy is assumed to be an ide
 
 An incomplete list of remaining work for the first version.
 
-* Parse and implement NotPrincipal, NotAction, and NotResource elements.
 * Implement Condition operators.
 * Add a mechanism for providing evaluation context, for use with Condition operators.
 * Simulate request context values (e.g., `aws:CurrentTime`).

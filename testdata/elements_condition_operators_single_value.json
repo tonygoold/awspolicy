@@ -1,0 +1,10 @@
+{
+  "_source": "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_condition_operators.html",
+  "Version": "2012-10-17",
+  "Statement": {
+    "Effect": "Allow",
+    "Action": "iam:*AccessKey*",
+    "Resource": "arn:aws:iam::123456789012:user/*",
+    "Condition": {"StringEquals": {"aws:PrincipalTag/job-category": "iamuser-admin"}}
+  }
+}

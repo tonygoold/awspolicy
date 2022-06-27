@@ -1,7 +1,8 @@
 use crate::aws::ARN;
 use crate::iam::{Action, Principal};
-use super::condition::ConditionMap;
+use super::condition::ConditionSet;
 use super::constraint::{ActionConstraint, PrincipalConstraint, ResourceConstraint};
+use super::context::Context;
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum Effect {
@@ -42,11 +43,23 @@ pub struct Statement {
     pub principals: PrincipalClause,
     pub actions: ActionClause,
     pub resources: ResourceClause,
-    pub conditions: Option<ConditionMap>,
+    pub conditions: Option<ConditionSet>,
 }
 
 impl Statement {
-    pub fn check_action(&self, action: &Action, resource: &ARN) -> CheckResult {
+    fn matches_conditions(&self, resource: &ARN, context: &Context) -> bool {
+        let conditions = match &self.conditions {
+            Some(conditions) => conditions,
+            None => return true,
+        };
+        let mut key_values = context.globals().clone();
+        if let Some(rsrc_values) = context.resource(resource) {
+            key_values.extend(rsrc_values.clone().into_iter());
+        }
+        conditions.matches(&key_values)
+    }
+
+    pub fn check_action(&self, action: &Action, resource: &ARN, context: &Context) -> CheckResult {
         let matches_action = match &self.actions {
             ActionClause::Action(actions) => actions.iter().any(|constraint| constraint.matches(action)),
             ActionClause::NotAction(actions) => !actions.iter().any(|constraint| constraint.matches(action)),
@@ -63,23 +76,24 @@ impl Statement {
             return CheckResult::Unspecified;
         }
 
-        if !self.conditions.as_ref().map_or(true, |conditions| conditions.matches()) {
+        if !self.matches_conditions(resource, context) {
             return CheckResult::Unspecified;
         }
+
         match self.effect {
             Effect::Allow => CheckResult::Allow,
             Effect::Deny => CheckResult::Deny,
         }
     }
 
-    pub fn check(&self, principal: &Principal, action: &Action, resource: &ARN) -> CheckResult {
+    pub fn check(&self, principal: &Principal, action: &Action, resource: &ARN, context: &Context) -> CheckResult {
         let matches_principals = match &self.principals {
             PrincipalClause::None => true,
             PrincipalClause::Principal(principals) => principals.iter().any(|constraint| constraint.matches(principal)),
             PrincipalClause::NotPrincipal(principals) => !principals.iter().any(|constraint| constraint.matches(principal)),
         };
         if matches_principals {
-            self.check_action(action, resource)
+            self.check_action(action, resource, context)
         } else {
             CheckResult::Unspecified
         }
@@ -208,11 +222,11 @@ impl Statement {
         }
     }
 
-    fn parse_conditions(value: &json::JsonValue) -> json::Result<Option<ConditionMap>> {
+    fn parse_conditions(value: &json::JsonValue) -> json::Result<Option<ConditionSet>> {
         if value.is_null() {
             Ok(None)
         } else if value.is_object() {
-            ConditionMap::try_from(value).map(Some)
+            ConditionSet::try_from(value).map(Some)
         } else {
             Err(json::Error::wrong_type("expected Condition to be an object"))
         }

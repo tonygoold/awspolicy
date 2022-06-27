@@ -1,6 +1,7 @@
-use awspolicy::iam::{Action, Principal};
-use awspolicy::policy::{CheckResult, Policy};
 use awspolicy::aws::ARN;
+use awspolicy::iam::{Action, Principal};
+use awspolicy::policy::context::Context;
+use awspolicy::policy::{CheckResult, Policy};
 
 use clap::Parser;
 use json;
@@ -13,20 +14,21 @@ enum ArgsError {
     InvalidPrincipal,
     InvalidAction,
     InvalidResource,
+    InvalidContext,
 }
 
 enum RunConfig {
     None,
-    Identity(Action, ARN),
-    Resource(Principal, Action, ARN),
+    Identity(Action, ARN, Context),
+    Resource(Principal, Action, ARN, Context),
 }
 
 impl RunConfig {
     fn check(&self, policy: &Policy) -> CheckResult {
         match self {
             Self::None => CheckResult::Unspecified,
-            Self::Identity(action, resource) => policy.check_action(action, resource),
-            Self::Resource(principal, action, resource) => policy.check(principal, action, resource),
+            Self::Identity(action, resource, context) => policy.check_action(action, resource, context),
+            Self::Resource(principal, action, resource, context) => policy.check(principal, action, resource, context),
         }
     }
 }
@@ -36,6 +38,9 @@ impl RunConfig {
 struct Args {
     #[clap(long)]
     policy: String,
+
+    #[clap(long)]
+    context: Option<String>,
 
     #[clap(long)]
     principal_aws: Option<String>,
@@ -70,17 +75,21 @@ impl TryFrom<&Args> for RunConfig {
         let resource = args.resource.as_ref().ok_or(ArgsError::NoResourceSpecified).and_then(
             |resource| ARN::try_from(resource.as_str()).map_err(|_| ArgsError::InvalidResource)
         )?;
+        let context = args.context.as_ref()
+            .map(|path| load_context(path.as_str()))
+            .unwrap_or_else(|| Ok(Context::default()))
+            .map_err(|_| ArgsError::InvalidContext)?;
 
         match (&args.principal_aws, &args.principal_service, &args.principal_federated, &args.principal_canonical_user) {
             (Some(aws), None, None, None) => if let Ok(arn) = ARN::try_from(aws.as_str()) {
-                Ok(RunConfig::Resource(Principal::AWS(arn), action, resource))
+                Ok(RunConfig::Resource(Principal::AWS(arn), action, resource, context))
             } else {
                 Err(ArgsError::InvalidPrincipal)
             }
-            (None, Some(service), None, None) => Ok(RunConfig::Resource(Principal::Service(service.clone()), action, resource)),
-            (None, None, Some(federated), None) => Ok(RunConfig::Resource(Principal::Federated(federated.clone()), action, resource)),
-            (None, None, None, Some(canonical)) => Ok(RunConfig::Resource(Principal::CanonicalUser(canonical.clone()), action, resource)),
-            (None, None, None, None) => Ok(RunConfig::Identity(action, resource)),
+            (None, Some(service), None, None) => Ok(RunConfig::Resource(Principal::Service(service.clone()), action, resource, context)),
+            (None, None, Some(federated), None) => Ok(RunConfig::Resource(Principal::Federated(federated.clone()), action, resource, context)),
+            (None, None, None, Some(canonical)) => Ok(RunConfig::Resource(Principal::CanonicalUser(canonical.clone()), action, resource, context)),
+            (None, None, None, None) => Ok(RunConfig::Identity(action, resource, context)),
             _ => Err(ArgsError::MultiplePrincipalsSpecified),
         }
     }
@@ -90,6 +99,11 @@ impl TryFrom<&Args> for RunConfig {
 fn load_policy(path: &str) -> json::Result<Policy> {
     let data = std::fs::read_to_string(path).map_err(|_| json::Error::wrong_type("unable to read policy file"))?;
     Policy::try_from(data.as_str())
+}
+
+fn load_context(path: &str) -> json::Result<Context> {
+    let data = std::fs::read_to_string(path).map_err(|_| json::Error::wrong_type("unable to read context file"))?;
+    Context::try_from(data.as_str())
 }
 
 fn main() {
@@ -111,11 +125,11 @@ fn main() {
 
     match &config {
         RunConfig::None => println!("Policy successfully parsed"),
-        RunConfig::Identity(action, resource) => {
+        RunConfig::Identity(action, resource, _context) => {
             let result = config.check(&policy);
             println!("Checked {:?} on {:?}: {:?}", action, resource, &result);
         }
-        RunConfig::Resource(principal, action, resource) => {
+        RunConfig::Resource(principal, action, resource, _context) => {
             let result = config.check(&policy);
             println!("Checked {:?} doing {:?} on {:?}: {:?}", principal, action, resource, &result);
         }

@@ -1,15 +1,15 @@
-mod condition;
-mod constraint;
-mod statement;
+pub mod condition;
+pub mod constraint;
+pub mod context;
+pub mod statement;
 
 use crate::aws::ARN;
 use crate::iam::{Action, Principal};
-use statement::Statement;
+use context::Context;
+use statement::{Effect, Statement};
 use json;
 
 pub use statement::CheckResult;
-
-use self::statement::Effect;
 
 // This was an earlier version of the policy language. You might see this
 // version on older existing policies. Do not use this version for any new
@@ -39,13 +39,13 @@ pub struct Policy {
 }
 
 impl Policy {
-    pub fn check_action(&self, action: &Action, resource: &ARN) -> CheckResult {
+    pub fn check_action(&self, action: &Action, resource: &ARN, context: &Context) -> CheckResult {
         self.statements.iter().fold(CheckResult::Unspecified, |result, stmt| {
             match result {
                 CheckResult::Deny => result,
-                CheckResult::Unspecified => stmt.check_action(action, resource),
+                CheckResult::Unspecified => stmt.check_action(action, resource, context),
                 CheckResult::Allow => if stmt.effect == Effect::Deny {
-                    match stmt.check_action(action, resource) {
+                    match stmt.check_action(action, resource, context) {
                         CheckResult::Deny => CheckResult::Deny,
                         _ => CheckResult::Allow,
                     }
@@ -56,13 +56,13 @@ impl Policy {
         })
     }
 
-    pub fn check(&self, principal: &Principal, action: &Action, resource: &ARN) -> CheckResult {
+    pub fn check(&self, principal: &Principal, action: &Action, resource: &ARN, context: &Context) -> CheckResult {
         self.statements.iter().fold(CheckResult::Unspecified, |result, stmt| {
             match result {
                 CheckResult::Deny => result,
-                CheckResult::Unspecified => stmt.check(principal, action, resource),
+                CheckResult::Unspecified => stmt.check(principal, action, resource, context),
                 CheckResult::Allow => if stmt.effect == Effect::Deny {
-                    match stmt.check(principal, action, resource) {
+                    match stmt.check(principal, action, resource, context) {
                         CheckResult::Deny => CheckResult::Deny,
                         _ => CheckResult::Allow,
                     }
@@ -108,6 +108,6 @@ impl TryFrom<&str> for Policy {
 
     fn try_from(value: &str) -> Result<Self, Self::Error> {
         let value = json::parse(value)?;
-        Policy::try_from(&value)
+        Self::try_from(&value)
     }
 }

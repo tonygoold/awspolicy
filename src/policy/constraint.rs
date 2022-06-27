@@ -1,30 +1,5 @@
-use crate::aws::ARN;
+use crate::aws::{glob_matches, ARN};
 use crate::iam::{Action, Principal};
-use regex::{escape, Regex};
-
-fn pattern_matches(pattern: &str, target: &str) -> bool {
-    if !pattern.contains('*') {
-        return pattern == target;
-    }
-    let mut i = pattern.split('*');
-    let mut p = String::from('^');
-    if let Some(s) = i.next() {
-        p.push_str(&escape(s));
-    } else {
-        return false;
-    };
-    i.for_each(|s| {
-        p.push_str(".*");
-        p.push_str(&escape(s));
-    });
-    p.push('$');
-    if let Ok(r) = Regex::new(&p) {
-        r.is_match(target)
-    } else {
-        // TODO: Report error or crash
-        false
-    }
-}
 
 #[derive(Debug, Clone)]
 pub enum ActionConstraint {
@@ -36,7 +11,7 @@ impl ActionConstraint {
     pub fn matches(&self, action: &Action) -> bool {
         match self {
             Self::Any => true,
-            Self::Pattern(pattern) => pattern_matches(pattern.service(), action.service()) && pattern_matches(pattern.action(), action.action()),
+            Self::Pattern(pattern) => glob_matches(pattern.service(), action.service()) && glob_matches(pattern.action(), action.action()),
         }
     }
 }
@@ -66,7 +41,7 @@ pub enum PrincipalConstraint {
 impl PrincipalConstraint {
     fn matches_aws(arn: &ARN, other: &Principal) -> bool {
         if let Principal::AWS(other) = other {
-            pattern_matches(arn.raw(), other.raw())
+            glob_matches(arn.raw(), other.raw())
         } else {
             false
         }
@@ -74,7 +49,7 @@ impl PrincipalConstraint {
 
     fn matches_federated(s: &str, other: &Principal) -> bool {
         if let Principal::Federated(other) = other {
-            pattern_matches(s, other)
+            glob_matches(s, other)
         } else {
             false
         }
@@ -82,7 +57,7 @@ impl PrincipalConstraint {
 
     fn matches_service(s: &str, other: &Principal) -> bool {
         if let Principal::Service(other) = other {
-            pattern_matches(s, other)
+            glob_matches(s, other)
         } else {
             false
         }
@@ -90,7 +65,7 @@ impl PrincipalConstraint {
 
     fn matches_canonicaluser(s: &str, other: &Principal) -> bool {
         if let Principal::CanonicalUser(other) = other {
-            pattern_matches(s, other)
+            glob_matches(s, other)
         } else {
             false
         }
@@ -123,7 +98,7 @@ impl ResourceConstraint {
     pub fn matches(&self, resource: &ARN) -> bool {
         match self {
             Self::Any => true,
-            Self::Pattern(pattern) => pattern_matches(pattern.raw(), resource.raw()),
+            Self::Pattern(pattern) => glob_matches(pattern.raw(), resource.raw()),
         }
     }
 }

@@ -1,0 +1,11 @@
+{
+    "global": {
+        "aws:PrincipalTag/job-category": "iamuser-admin",
+        "aws:MultiFactorAuthPresent": "true"
+    },
+    "resources": {
+        "arn:aws:iam::123456789012:user/User1": {
+            "test:ResourceTag/sometag": "somevalue"
+        }
+    }
+}
