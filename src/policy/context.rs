@@ -10,6 +10,13 @@ pub struct Context {
 }
 
 impl Context {
+    pub fn new() -> Self {
+        Context{
+            global: HashMap::new(),
+            resources: HashMap::new(),
+        }
+    }
+
     pub fn globals(&self) -> &ResourceContext {
         &self.global
     }
@@ -34,7 +41,7 @@ impl Context {
 
     fn try_resources_from(value: &json::JsonValue) -> json::Result<HashMap<ARN, ResourceContext>> {
         if value.is_null() {
-            return Ok(HashMap::default());
+            return Ok(HashMap::new());
         } else if !value.is_object() {
             return Err(json::Error::wrong_type("expected resources to be an object"));
         }
@@ -45,15 +52,6 @@ impl Context {
             let context = Self::try_context_from(value)?;
             Ok((arn, context))
         }).collect::<json::Result<HashMap<_, _>>>()
-    }
-}
-
-impl Default for Context {
-    fn default() -> Self {
-        Context{
-            global: HashMap::new(),
-            resources: HashMap::new(),
-        }
     }
 }
 

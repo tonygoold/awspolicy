@@ -141,6 +141,15 @@ pub struct ConditionSet {
 }
 
 impl ConditionSet {
+    pub fn new() -> Self {
+        ConditionSet{ conditions: HashMap::new() }
+    }
+
+    pub fn insert(&mut self, entry: (ConditionOperator, ConditionValues)) -> Option<ConditionValues> {
+        let (op, values) = entry;
+        self.conditions.insert(op, values)
+    }
+
     // TODO: Genericize value_map parameter
     pub fn matches(&self, value_map: &HashMap<String, Vec<String>>) -> bool {
         self.conditions.iter().all(|(op, target_map)| {
@@ -195,5 +204,74 @@ impl TryFrom<&json::JsonValue> for ConditionSet {
             Ok((operator, values))
         }).collect::<Result<HashMap<_, _>, _>>()
             .map(|conditions| ConditionSet { conditions })
+    }
+}
+
+#[cfg(test)]
+mod test {
+    use std::collections::HashMap;
+
+    use super::{ConditionOperator, ConditionSet, ConditionValues};
+
+    fn single_value(key: &str, value: &str) -> ConditionValues {
+        ConditionValues::from([(key.to_string(), vec![value.to_string()])])
+    }
+
+    #[test]
+    fn op_string_equals() {
+        let cases = [
+            (ConditionOperator::StringEquals, true),
+            (ConditionOperator::StringNotEquals, false),
+        ];
+        for (op, expected) in cases {
+            assert_eq!(expected, op.matches("test", "test"));
+            assert_eq!(expected, op.matches("test?", "test?"));
+            assert_eq!(expected, op.matches("test*", "test*"));
+            assert_eq!(expected, !op.matches("test", "TEST"));
+            assert_eq!(expected, !op.matches("test?", "testa"));
+            assert_eq!(expected, !op.matches("test*", "testa"));
+        }
+    }
+
+    #[test]
+    fn op_string_equals_ignore_case() {
+        let cases = [
+            (ConditionOperator::StringEqualsIgnoreCase, true),
+            (ConditionOperator::StringNotEqualsIgnoreCase, false),
+        ];
+        for (op, expected) in cases {
+            assert_eq!(expected, op.matches("test", "test"));
+            assert_eq!(expected, op.matches("test", "TEST"));
+        }
+    }
+
+    #[test]
+    fn op_string_like() {
+        let cases = [
+            (ConditionOperator::StringLike, true),
+            (ConditionOperator::StringNotLike, false),
+        ];
+        for (op, expected) in cases {
+            assert_eq!(expected, !op.matches("t?st", "tst"));
+            assert_eq!(expected, op.matches("t?st", "test"));
+            assert_eq!(expected, !op.matches("t?st", "teest"));
+            assert_eq!(expected, op.matches("t*st", "tst"));
+            assert_eq!(expected, op.matches("t*st", "test"));
+            assert_eq!(expected, op.matches("t*st", "teest"));
+        }
+    }
+
+    #[test]
+    fn condition_set_string_equals() {
+        let mut set = ConditionSet::new();
+        set.insert((ConditionOperator::StringEquals, single_value("test:Property", "foo")));
+        let values = single_value("test:Property", "foo");
+        assert!(set.matches(&values));
+
+        let values = single_value("test:Property", "bar");
+        assert!(!set.matches(&values));
+
+        let values = HashMap::new();
+        assert!(!set.matches(&values));
     }
 }

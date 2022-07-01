@@ -77,7 +77,7 @@ impl TryFrom<&Args> for RunConfig {
         )?;
         let context = args.context.as_ref()
             .map(|path| load_context(path.as_str()))
-            .unwrap_or_else(|| Ok(Context::default()))
+            .unwrap_or_else(|| Ok(Context::new()))
             .map_err(|_| ArgsError::InvalidContext)?;
 
         match (&args.principal_aws, &args.principal_service, &args.principal_federated, &args.principal_canonical_user) {
