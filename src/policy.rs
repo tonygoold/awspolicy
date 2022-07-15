@@ -39,36 +39,53 @@ pub struct Policy {
 }
 
 impl Policy {
-    pub fn check_action(&self, action: &Action, resource: &ARN, context: &Context) -> CheckResult {
-        self.statements.iter().fold(CheckResult::Unspecified, |result, stmt| {
+    /*
+    See https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_evaluation-logic.html#policy-eval-denyallow
+    */
+    pub fn check_action(&self, action: &Action, resource: &ARN, context: &Context) -> anyhow::Result<CheckResult> {
+        self.statements.iter().fold(Ok(CheckResult::Unspecified), |result, stmt| {
             match result {
-                CheckResult::Deny => result,
-                CheckResult::Unspecified => stmt.check_action(action, resource, context),
-                CheckResult::Allow => if stmt.effect == Effect::Deny {
+                // An explicit deny in any policy overrides any allows
+                Ok(CheckResult::Deny) => result,
+                Ok(CheckResult::Unspecified) => stmt.check_action(action, resource, context),
+                // If there is an explict allow, we only need to evaluate policies that would
+                // override this with an explicit deny
+                Ok(CheckResult::Allow) => if stmt.effect == Effect::Deny {
                     match stmt.check_action(action, resource, context) {
-                        CheckResult::Deny => CheckResult::Deny,
-                        _ => CheckResult::Allow,
+                        // An explicit deny overrides any other result
+                        Ok(CheckResult::Deny) => Ok(CheckResult::Deny),
+                        // The previous explicit allow takes precedence
+                        Ok(_) => Ok(CheckResult::Allow),
+                        Err(err) => Err(err),
                     }
                 } else {
                     result
                 }
+                Err(_) => result,
             }
         })
     }
 
-    pub fn check(&self, principal: &Principal, action: &Action, resource: &ARN, context: &Context) -> CheckResult {
-        self.statements.iter().fold(CheckResult::Unspecified, |result, stmt| {
+    pub fn check(&self, principal: &Principal, action: &Action, resource: &ARN, context: &Context) -> anyhow::Result<CheckResult> {
+        self.statements.iter().fold(Ok(CheckResult::Unspecified), |result, stmt| {
             match result {
-                CheckResult::Deny => result,
-                CheckResult::Unspecified => stmt.check(principal, action, resource, context),
-                CheckResult::Allow => if stmt.effect == Effect::Deny {
+                // An explicit deny in any policy overrides any allows
+                Ok(CheckResult::Deny) => result,
+                Ok(CheckResult::Unspecified) => stmt.check(principal, action, resource, context),
+                // If there is an explict allow, we only need to evaluate policies that would
+                // override this with an explicit deny
+                Ok(CheckResult::Allow) => if stmt.effect == Effect::Deny {
                     match stmt.check(principal, action, resource, context) {
-                        CheckResult::Deny => CheckResult::Deny,
-                        _ => CheckResult::Allow,
+                        // An explicit deny overrides any other result
+                        Ok(CheckResult::Deny) => Ok(CheckResult::Deny),
+                        // The previous explicit allow takes precedence
+                        Ok(_) => Ok(CheckResult::Allow),
+                        Err(err) => Err(err),
                     }
                 } else {
                     result
                 }
+                Err(_) => result,
             }
         })
     }

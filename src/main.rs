@@ -24,9 +24,9 @@ enum RunConfig {
 }
 
 impl RunConfig {
-    fn check(&self, policy: &Policy) -> CheckResult {
+    fn check(&self, policy: &Policy) -> anyhow::Result<CheckResult> {
         match self {
-            Self::None => CheckResult::Unspecified,
+            Self::None => Ok(CheckResult::Unspecified),
             Self::Identity(action, resource, context) => policy.check_action(action, resource, context),
             Self::Resource(principal, action, resource, context) => policy.check(principal, action, resource, context),
         }
@@ -126,12 +126,16 @@ fn main() {
     match &config {
         RunConfig::None => println!("Policy successfully parsed"),
         RunConfig::Identity(action, resource, _context) => {
-            let result = config.check(&policy);
-            println!("Checked {:?} on {:?}: {:?}", action, resource, &result);
+            match config.check(&policy) {
+                Ok(result) => println!("Checked {:?} on {:?}: {:?}", action, resource, &result),
+                Err(err) => println!("Error checking {:?} on {:?}: {:?}", action, resource, &err),
+            };
         }
         RunConfig::Resource(principal, action, resource, _context) => {
-            let result = config.check(&policy);
-            println!("Checked {:?} doing {:?} on {:?}: {:?}", principal, action, resource, &result);
+            match config.check(&policy) {
+                Ok(result) => println!("Checked {:?} doing {:?} on {:?}: {:?}", principal, action, resource, &result),
+                Err(err) => println!("Error checking {:?} doing {:?} on {:?}: {:?}", principal, action, resource, &err),
+            };
         }
     };
 }

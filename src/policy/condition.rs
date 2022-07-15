@@ -1,16 +1,32 @@
 use crate::aws::glob_matches;
+
+use std::cmp::Ordering;
 use std::collections::HashMap;
+use std::str::FromStr;
 use json;
 
-// "Condition" : { "{condition-operator}" : { "{condition-key}" : "{condition-value}" }}
-/*
-"Condition": {
-    "StringEquals": {
-        "foo": "bar",
-        "baz": ["alpha", "beta", "gamma"]
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub enum ConditionError {
+    TypeMismatch,
+    TooManyValues,
+    NotImplemented
+}
+
+fn cmp_numbers(lhs: &str, rhs: &str) -> anyhow::Result<Ordering> {
+    let lhs = f64::from_str(lhs).map_err(|_| ConditionError::TypeMismatch)?;
+    let rhs = f64::from_str(rhs).map_err(|_| ConditionError::TypeMismatch)?;
+    let result = lhs.partial_cmp(&rhs).ok_or(ConditionError::TypeMismatch)?;
+    println!("cmp_numbers({}, {}) -> {:?}", &lhs, &rhs, &result);
+    Ok(result)
+}
+
+impl std::fmt::Display for ConditionError {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        std::fmt::Debug::fmt(self, f)
     }
 }
- */
+
+impl std::error::Error for ConditionError {}
 
 pub type ConditionValues = HashMap<String, Vec<String>>;
 
@@ -56,44 +72,44 @@ pub enum ConditionOperator {
 }
 
 impl ConditionOperator {
-    pub fn matches(&self, target: &str, value: &str) -> bool {
+    pub fn matches(&self, value: &str, target: &str) -> anyhow::Result<bool> {
         match *self {
-            Self::StringEquals => target == value,
-            Self::StringNotEquals => target != value,
-            Self::StringEqualsIgnoreCase => target.to_lowercase() == value.to_lowercase(),
-            Self::StringNotEqualsIgnoreCase => target.to_lowercase() != value.to_lowercase(),
-            Self::StringLike => glob_matches(target, value),
-            Self::StringNotLike => !glob_matches(target, value),
+            Self::StringEquals => Ok(target == value),
+            Self::StringNotEquals => Ok(target != value),
+            Self::StringEqualsIgnoreCase => Ok(target.to_lowercase() == value.to_lowercase()),
+            Self::StringNotEqualsIgnoreCase => Ok(target.to_lowercase() != value.to_lowercase()),
+            Self::StringLike => Ok(glob_matches(target, value)),
+            Self::StringNotLike => Ok(!glob_matches(target, value)),
 
-            Self::NumericEquals => false,
-            Self::NumericNotEquals => false,
-            Self::NumericLessThan => false,
-            Self::NumericLessThanEquals => false,
-            Self::NumericGreaterThan => false,
-            Self::NumericGreaterThanEquals => false,
+            Self::NumericEquals => Ok(cmp_numbers(value, target)? == Ordering::Equal),
+            Self::NumericNotEquals => Ok(cmp_numbers(value, target)? != Ordering::Equal),
+            Self::NumericLessThan => Ok(cmp_numbers(value, target)? == Ordering::Less),
+            Self::NumericLessThanEquals => Ok(cmp_numbers(value, target)? != Ordering::Greater),
+            Self::NumericGreaterThan => Ok(cmp_numbers(value, target)? == Ordering::Greater),
+            Self::NumericGreaterThanEquals => Ok(cmp_numbers(value, target)? != Ordering::Less),
 
-            Self::DateEquals => false,
-            Self::DateNotEquals => false,
-            Self::DateLessThan => false,
-            Self::DateLessThanEquals => false,
-            Self::DateGreaterThan => false,
-            Self::DateGreaterThanEquals => false,
+            Self::DateEquals => Err(ConditionError::NotImplemented),
+            Self::DateNotEquals => Err(ConditionError::NotImplemented),
+            Self::DateLessThan => Err(ConditionError::NotImplemented),
+            Self::DateLessThanEquals => Err(ConditionError::NotImplemented),
+            Self::DateGreaterThan => Err(ConditionError::NotImplemented),
+            Self::DateGreaterThanEquals => Err(ConditionError::NotImplemented),
 
-            Self::Bool => false,
+            Self::Bool => Err(ConditionError::NotImplemented),
 
-            Self::BinaryEquals => false,
+            Self::BinaryEquals => Err(ConditionError::NotImplemented),
 
-            Self::IpAddress => false,
-            Self::NotIpAddress => false,
+            Self::IpAddress => Err(ConditionError::NotImplemented),
+            Self::NotIpAddress => Err(ConditionError::NotImplemented),
 
-            Self::ArnEquals => false,
-            Self::ArnLike => false,
-            Self::ArnNotEquals => false,
-            Self::ArnNotLike => false,
+            Self::ArnEquals => Err(ConditionError::NotImplemented),
+            Self::ArnLike => Err(ConditionError::NotImplemented),
+            Self::ArnNotEquals => Err(ConditionError::NotImplemented),
+            Self::ArnNotLike => Err(ConditionError::NotImplemented),
 
             // Condition value must be "true" or "false"
-            Self::Null => false,
-        }
+            Self::Null => Err(ConditionError::NotImplemented),
+        }.map_err(anyhow::Error::from)
     }
 }
 
@@ -151,29 +167,43 @@ impl ConditionSet {
     }
 
     // TODO: Genericize value_map parameter
-    pub fn matches(&self, value_map: &HashMap<String, Vec<String>>) -> bool {
-        self.conditions.iter().all(|(op, target_map)| {
-            target_map.iter().all(|(key, targets)| {
+    pub fn matches(&self, value_map: &HashMap<String, Vec<String>>) -> anyhow::Result<bool> {
+        self.conditions.iter().fold(Ok(true), |result, (op, target_map)| {
+            // Use !result.contains(true) when stable
+            match result {
+                Err(_) | Ok(false) => return result,
+                _ => (),
+            };
+            target_map.iter().fold(Ok(true), |result, (key, targets)| {
+                // Use !result.contains(true) when stable
+                match result {
+                    Err(_) | Ok(false) => return result,
+                    _ => (),
+                };
                 let values = match value_map.get(key) {
                     Some(values) => if *op == ConditionOperator::Null {
-                        return &targets[0] == "false";
+                        return Ok(&targets[0] == "false");
                     } else {
                         values
                     }
                     None => if *op == ConditionOperator::Null {
-                        return &targets[0] == "true";
+                        return Ok(&targets[0] == "true");
                     } else {
                         // TODO: Handle ...IfExists suffix
-                        return false;
+                        return Err(ConditionError::NotImplemented).map_err(anyhow::Error::from);
                     }
                 };
                 // TODO: Handle ForAllValues:/ForAnyValues: prefixes
                 if values.len() != 1 {
-                    return false;
+                    return Err(ConditionError::TooManyValues).map_err(anyhow::Error::from);
                 }
                 let value = &values[0];
-                targets.iter().any(|target| {
-                    op.matches(target, value)
+                targets.iter().fold(Ok(false), |result, target| {
+                    if let Ok(false) = result {
+                        op.matches(value, target)
+                    } else {
+                        result
+                    }
                 })
             })
         })
@@ -224,12 +254,13 @@ mod test {
             (ConditionOperator::StringNotEquals, false),
         ];
         for (op, expected) in cases {
-            assert_eq!(expected, op.matches("test", "test"));
-            assert_eq!(expected, op.matches("test?", "test?"));
-            assert_eq!(expected, op.matches("test*", "test*"));
-            assert_eq!(expected, !op.matches("test", "TEST"));
-            assert_eq!(expected, !op.matches("test?", "testa"));
-            assert_eq!(expected, !op.matches("test*", "testa"));
+            assert_eq!(expected, op.matches("test", "test").unwrap());
+            assert_eq!(expected, op.matches("test?", "test?").unwrap());
+            assert_eq!(expected, op.matches("test*", "test*").unwrap());
+
+            assert_ne!(expected, op.matches("TEST", "test").unwrap());
+            assert_ne!(expected, op.matches("testa", "test?").unwrap());
+            assert_ne!(expected, op.matches("testa", "test*").unwrap());
         }
     }
 
@@ -240,8 +271,8 @@ mod test {
             (ConditionOperator::StringNotEqualsIgnoreCase, false),
         ];
         for (op, expected) in cases {
-            assert_eq!(expected, op.matches("test", "test"));
-            assert_eq!(expected, op.matches("test", "TEST"));
+            assert_eq!(expected, op.matches("test", "test").unwrap());
+            assert_eq!(expected, op.matches("TEST", "test").unwrap());
         }
     }
 
@@ -252,12 +283,49 @@ mod test {
             (ConditionOperator::StringNotLike, false),
         ];
         for (op, expected) in cases {
-            assert_eq!(expected, !op.matches("t?st", "tst"));
-            assert_eq!(expected, op.matches("t?st", "test"));
-            assert_eq!(expected, !op.matches("t?st", "teest"));
-            assert_eq!(expected, op.matches("t*st", "tst"));
-            assert_eq!(expected, op.matches("t*st", "test"));
-            assert_eq!(expected, op.matches("t*st", "teest"));
+            assert_eq!(expected, op.matches("test", "t?st").unwrap());
+            assert_eq!(expected, op.matches("tst", "t*st").unwrap());
+            assert_eq!(expected, op.matches("test", "t*st").unwrap());
+            assert_eq!(expected, op.matches("teest", "t*st").unwrap());
+
+            assert_ne!(expected, op.matches("tst", "t?st").unwrap());
+            assert_ne!(expected, op.matches("teest", "t?st").unwrap());
+        }
+    }
+
+    #[test]
+    fn op_num_compare() {
+        use ConditionOperator::{
+            NumericEquals,
+            NumericNotEquals,
+            NumericLessThan,
+            NumericLessThanEquals,
+            NumericGreaterThan,
+            NumericGreaterThanEquals,
+        };
+        // lhs, right, less-than, equal
+        let cases = [
+            ("1", "2", true, false),
+            ("2", "2", false, true),
+            ("3", "2", false, false),
+            ("1.0", "2", true, false),
+            ("2.0", "2", false, true),
+            ("3.0", "2", false, false),
+            ("1", "2.0", true, false),
+            ("2", "2.0", false, true),
+            ("3", "2.0", false, false),
+            ("1.0", "2.0", true, false),
+            ("2.0", "2.0", false, true),
+            ("3.0", "2.0", false, false),
+        ];
+        for (lhs, rhs, less_than, equals) in cases {
+            println!("Comparing {} to {}", lhs, rhs);
+            assert_eq!(equals, NumericEquals.matches(lhs, rhs).unwrap());
+            assert_eq!(!equals, NumericNotEquals.matches(lhs, rhs).unwrap());
+            assert_eq!(less_than, NumericLessThan.matches(lhs, rhs).unwrap());
+            assert_eq!(less_than || equals, NumericLessThanEquals.matches(lhs, rhs).unwrap());
+            assert_eq!(!(less_than || equals), NumericGreaterThan.matches(lhs, rhs).unwrap());
+            assert_eq!(!less_than, NumericGreaterThanEquals.matches(lhs, rhs).unwrap());
         }
     }
 
@@ -266,12 +334,12 @@ mod test {
         let mut set = ConditionSet::new();
         set.insert((ConditionOperator::StringEquals, single_value("test:Property", "foo")));
         let values = single_value("test:Property", "foo");
-        assert!(set.matches(&values));
+        assert!(set.matches(&values).unwrap());
 
         let values = single_value("test:Property", "bar");
-        assert!(!set.matches(&values));
+        assert!(!set.matches(&values).unwrap());
 
         let values = HashMap::new();
-        assert!(!set.matches(&values));
+        assert!(set.matches(&values).is_err());
     }
 }

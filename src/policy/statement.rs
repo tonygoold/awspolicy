@@ -47,25 +47,26 @@ pub struct Statement {
 }
 
 impl Statement {
-    fn matches_conditions(&self, resource: &ARN, context: &Context) -> bool {
+    fn matches_conditions(&self, resource: &ARN, context: &Context) -> anyhow::Result<bool> {
         let conditions = match &self.conditions {
             Some(conditions) => conditions,
-            None => return true,
+            None => return Ok(true),
         };
         let mut key_values = context.globals().clone();
         if let Some(rsrc_values) = context.resource(resource) {
             key_values.extend(rsrc_values.clone().into_iter());
         }
-        conditions.matches(&key_values)
+        let matches = conditions.matches(&key_values)?;
+        Ok(matches)
     }
 
-    pub fn check_action(&self, action: &Action, resource: &ARN, context: &Context) -> CheckResult {
+    pub fn check_action(&self, action: &Action, resource: &ARN, context: &Context) -> anyhow::Result<CheckResult> {
         let matches_action = match &self.actions {
             ActionClause::Action(actions) => actions.iter().any(|constraint| constraint.matches(action)),
             ActionClause::NotAction(actions) => !actions.iter().any(|constraint| constraint.matches(action)),
         };
         if !matches_action {
-            return CheckResult::Unspecified;
+            return Ok(CheckResult::Unspecified);
         }
 
         let matches_resource = match &self.resources {
@@ -73,20 +74,20 @@ impl Statement {
             ResourceClause::NotResource(resources) => !resources.iter().any(|constraint| constraint.matches(resource)),
         };
         if !matches_resource {
-            return CheckResult::Unspecified;
+            return Ok(CheckResult::Unspecified);
         }
 
-        if !self.matches_conditions(resource, context) {
-            return CheckResult::Unspecified;
+        if !self.matches_conditions(resource, context)? {
+            return Ok(CheckResult::Unspecified);
         }
 
-        match self.effect {
+        Ok(match self.effect {
             Effect::Allow => CheckResult::Allow,
             Effect::Deny => CheckResult::Deny,
-        }
+        })
     }
 
-    pub fn check(&self, principal: &Principal, action: &Action, resource: &ARN, context: &Context) -> CheckResult {
+    pub fn check(&self, principal: &Principal, action: &Action, resource: &ARN, context: &Context) -> anyhow::Result<CheckResult> {
         let matches_principals = match &self.principals {
             PrincipalClause::None => true,
             PrincipalClause::Principal(principals) => principals.iter().any(|constraint| constraint.matches(principal)),
@@ -95,7 +96,7 @@ impl Statement {
         if matches_principals {
             self.check_action(action, resource, context)
         } else {
-            CheckResult::Unspecified
+            Ok(CheckResult::Unspecified)
         }
     }
 
