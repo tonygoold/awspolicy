@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AmazonRedshiftQueryEditorV2ReadSharing",
+        "PolicyId": "ANPAZKAPJZG4G5PCICHSV",
+        "Arn": "arn:aws:iam::aws:policy/AmazonRedshiftQueryEditorV2ReadSharing",
+        "Path": "/",
+        "DefaultVersionId": "v3",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Grants the ability to work with Amazon Redshift Query Editor V2 with limited sharing of resources. The granted principal can read, write and share its own resources. The granted principal can read the resources shared with its team but cannot update them. This policy also grants access to other required services. This includes permissions to list the Amazon Redshift clusters and manage the Query Editor V2 secrets of the principal in AWS Secrets Manager.",
+        "CreateDate": "2021-09-24T14:22:21+00:00",
+        "UpdateDate": "2022-06-15T10:16:40+00:00",
+        "Tags": []
+    }
+}

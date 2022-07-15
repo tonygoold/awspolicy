@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AWSIoTSiteWiseMonitorPortalAccess",
+        "PolicyId": "ANPAZKAPJZG4E6CZDALWJ",
+        "Arn": "arn:aws:iam::aws:policy/service-role/AWSIoTSiteWiseMonitorPortalAccess",
+        "Path": "/service-role/",
+        "DefaultVersionId": "v1",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "This policy grants permissions to access AWS IoT SiteWise assets and asset data, create AWS IoT SiteWise Monitor resources, and list AWS SSO users.",
+        "CreateDate": "2020-05-19T20:01:21+00:00",
+        "UpdateDate": "2020-05-19T20:01:21+00:00",
+        "Tags": []
+    }
+}

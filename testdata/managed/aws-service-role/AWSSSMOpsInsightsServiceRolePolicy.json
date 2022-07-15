@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AWSSSMOpsInsightsServiceRolePolicy",
+        "PolicyId": "ANPAZKAPJZG4ITJH2GWAW",
+        "Arn": "arn:aws:iam::aws:policy/aws-service-role/AWSSSMOpsInsightsServiceRolePolicy",
+        "Path": "/aws-service-role/",
+        "DefaultVersionId": "v1",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Policy for Service Linked Role AWSServiceRoleForAmazonSSM_OpsInsights",
+        "CreateDate": "2021-06-16T20:12:52+00:00",
+        "UpdateDate": "2021-06-16T20:12:52+00:00",
+        "Tags": []
+    }
+}

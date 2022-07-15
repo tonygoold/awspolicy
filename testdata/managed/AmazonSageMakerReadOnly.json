@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AmazonSageMakerReadOnly",
+        "PolicyId": "ANPAJTZ2FTFCQ6CFLQA2O",
+        "Arn": "arn:aws:iam::aws:policy/AmazonSageMakerReadOnly",
+        "Path": "/",
+        "DefaultVersionId": "v11",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Provides read only access to Amazon SageMaker via the AWS Management Console and SDK.",
+        "CreateDate": "2017-11-29T13:07:09+00:00",
+        "UpdateDate": "2021-12-01T16:29:20+00:00",
+        "Tags": []
+    }
+}

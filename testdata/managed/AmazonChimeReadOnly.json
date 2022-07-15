@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AmazonChimeReadOnly",
+        "PolicyId": "ANPAJLBFZZFABRXVWRTCI",
+        "Arn": "arn:aws:iam::aws:policy/AmazonChimeReadOnly",
+        "Path": "/",
+        "DefaultVersionId": "v10",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Provides read only access to Amazon Chime Admin Console via the AWS Management Console.",
+        "CreateDate": "2017-11-01T22:04:17+00:00",
+        "UpdateDate": "2020-12-14T20:53:57+00:00",
+        "Tags": []
+    }
+}

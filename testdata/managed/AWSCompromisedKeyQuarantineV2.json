@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AWSCompromisedKeyQuarantineV2",
+        "PolicyId": "ANPAZKAPJZG4PFYMROIMI",
+        "Arn": "arn:aws:iam::aws:policy/AWSCompromisedKeyQuarantineV2",
+        "Path": "/",
+        "DefaultVersionId": "v2",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Denies access to certain actions, applied by the AWS team in the event that an IAM user's credentials have been compromised or exposed publicly. Do NOT remove this policy. Instead, please follow the instructions specified in the support case created for you regarding this event.",
+        "CreateDate": "2021-04-21T22:30:59+00:00",
+        "UpdateDate": "2021-11-11T21:32:48+00:00",
+        "Tags": []
+    }
+}

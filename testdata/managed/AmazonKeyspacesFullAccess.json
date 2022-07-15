@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AmazonKeyspacesFullAccess",
+        "PolicyId": "ANPAZKAPJZG4HMS72N6JG",
+        "Arn": "arn:aws:iam::aws:policy/AmazonKeyspacesFullAccess",
+        "Path": "/",
+        "DefaultVersionId": "v2",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Provide full access to Amazon Keyspaces",
+        "CreateDate": "2020-04-23T17:06:37+00:00",
+        "UpdateDate": "2021-06-01T19:31:39+00:00",
+        "Tags": []
+    }
+}

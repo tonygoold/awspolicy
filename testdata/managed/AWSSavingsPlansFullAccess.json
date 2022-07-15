@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AWSSavingsPlansFullAccess",
+        "PolicyId": "ANPAZKAPJZG4NDDOS76AO",
+        "Arn": "arn:aws:iam::aws:policy/AWSSavingsPlansFullAccess",
+        "Path": "/",
+        "DefaultVersionId": "v1",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Provides full access to Savings Plans service",
+        "CreateDate": "2019-11-06T22:45:18+00:00",
+        "UpdateDate": "2019-11-06T22:45:18+00:00",
+        "Tags": []
+    }
+}

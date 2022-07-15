@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AWSDeepLensLambdaFunctionAccessPolicy",
+        "PolicyId": "ANPAIKIEE4PRM54V4G3ZG",
+        "Arn": "arn:aws:iam::aws:policy/AWSDeepLensLambdaFunctionAccessPolicy",
+        "Path": "/",
+        "DefaultVersionId": "v4",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "This policy specifies permissions required by DeepLens Administrative lambda functions that run on a DeepLens device",
+        "CreateDate": "2017-11-29T15:47:18+00:00",
+        "UpdateDate": "2019-06-11T23:11:55+00:00",
+        "Tags": []
+    }
+}

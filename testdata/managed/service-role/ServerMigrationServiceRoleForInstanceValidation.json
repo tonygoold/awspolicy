@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "ServerMigrationServiceRoleForInstanceValidation",
+        "PolicyId": "ANPAZKAPJZG4LJMOLEWUV",
+        "Arn": "arn:aws:iam::aws:policy/service-role/ServerMigrationServiceRoleForInstanceValidation",
+        "Path": "/service-role/",
+        "DefaultVersionId": "v1",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Permissions to allow the AWS SMS to run used data validation script and send script success/failure back to SMS",
+        "CreateDate": "2020-07-20T22:25:07+00:00",
+        "UpdateDate": "2020-07-20T22:25:07+00:00",
+        "Tags": []
+    }
+}

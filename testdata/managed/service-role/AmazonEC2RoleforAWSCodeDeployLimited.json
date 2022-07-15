@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AmazonEC2RoleforAWSCodeDeployLimited",
+        "PolicyId": "ANPAZKAPJZG4NN2A7WC6C",
+        "Arn": "arn:aws:iam::aws:policy/service-role/AmazonEC2RoleforAWSCodeDeployLimited",
+        "Path": "/service-role/",
+        "DefaultVersionId": "v2",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Provides EC2 limited access to S3 bucket to download revision. This role is needed by the CodeDeploy agent on EC2 instances. ",
+        "CreateDate": "2020-08-24T17:55:18+00:00",
+        "UpdateDate": "2022-01-20T21:37:31+00:00",
+        "Tags": []
+    }
+}

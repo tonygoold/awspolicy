@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "ApplicationDiscoveryServiceContinuousExportServiceRolePolicy",
+        "PolicyId": "ANPAJMGMY3P6OEWOELRFE",
+        "Arn": "arn:aws:iam::aws:policy/aws-service-role/ApplicationDiscoveryServiceContinuousExportServiceRolePolicy",
+        "Path": "/aws-service-role/",
+        "DefaultVersionId": "v2",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Enables access to AWS Services and Resources used or managed by Application Discovery Service Continuous Export feature",
+        "CreateDate": "2018-08-09T20:22:01+00:00",
+        "UpdateDate": "2018-08-13T22:31:21+00:00",
+        "Tags": []
+    }
+}

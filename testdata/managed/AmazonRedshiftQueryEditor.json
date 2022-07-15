@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AmazonRedshiftQueryEditor",
+        "PolicyId": "ANPAINVFHHP7CWVHTGBGM",
+        "Arn": "arn:aws:iam::aws:policy/AmazonRedshiftQueryEditor",
+        "Path": "/",
+        "DefaultVersionId": "v4",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Provides full access to the Amazon Redshift Query Editor and to saved queries via the AWS Management Console.",
+        "CreateDate": "2018-10-04T22:50:32+00:00",
+        "UpdateDate": "2021-02-16T19:33:45+00:00",
+        "Tags": []
+    }
+}

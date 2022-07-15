@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AWSControlTowerServiceRolePolicy",
+        "PolicyId": "ANPAZKAPJZG4MW35THVLF",
+        "Arn": "arn:aws:iam::aws:policy/service-role/AWSControlTowerServiceRolePolicy",
+        "Path": "/service-role/",
+        "DefaultVersionId": "v8",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Provides access to AWS Resources managed or used by AWS Control Tower ",
+        "CreateDate": "2019-05-03T18:19:11+00:00",
+        "UpdateDate": "2022-06-20T21:45:54+00:00",
+        "Tags": []
+    }
+}

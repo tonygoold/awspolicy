@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AWSWAFConsoleReadOnlyAccess",
+        "PolicyId": "ANPAZKAPJZG4NCJLTIT64",
+        "Arn": "arn:aws:iam::aws:policy/AWSWAFConsoleReadOnlyAccess",
+        "Path": "/",
+        "DefaultVersionId": "v3",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Provides read-only access to AWS WAF via the AWS Management Console. Note that this policy also grants permissions to list Amazon CloudFront distributions, permissions to view load balancers on AWS Elastic Load Balancing, permissions to view Amazon API Gateway REST APIs and stages, permissions to list and view Amazon CloudWatch metrics, and permissions to view regions enabled within the account.",
+        "CreateDate": "2020-04-06T18:43:24+00:00",
+        "UpdateDate": "2020-10-01T20:13:54+00:00",
+        "Tags": []
+    }
+}

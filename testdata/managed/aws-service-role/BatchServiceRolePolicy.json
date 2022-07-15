@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "BatchServiceRolePolicy",
+        "PolicyId": "ANPAZKAPJZG4COHHXEWBT",
+        "Arn": "arn:aws:iam::aws:policy/aws-service-role/BatchServiceRolePolicy",
+        "Path": "/aws-service-role/",
+        "DefaultVersionId": "v5",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Provides access for the AWS Batch service to manage the required resources, including Amazon EC2 and Amazon ECS resources.",
+        "CreateDate": "2021-03-10T06:55:36+00:00",
+        "UpdateDate": "2022-05-18T20:05:56+00:00",
+        "Tags": []
+    }
+}

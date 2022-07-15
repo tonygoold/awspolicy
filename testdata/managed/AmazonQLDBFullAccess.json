@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AmazonQLDBFullAccess",
+        "PolicyId": "ANPAZKAPJZG4HHBBWGE2J",
+        "Arn": "arn:aws:iam::aws:policy/AmazonQLDBFullAccess",
+        "Path": "/",
+        "DefaultVersionId": "v4",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Provides full access to Amazon QLDB via the service API.",
+        "CreateDate": "2019-09-05T18:23:32+00:00",
+        "UpdateDate": "2021-09-02T23:21:04+00:00",
+        "Tags": []
+    }
+}

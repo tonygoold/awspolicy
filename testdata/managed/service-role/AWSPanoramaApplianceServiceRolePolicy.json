@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AWSPanoramaApplianceServiceRolePolicy",
+        "PolicyId": "ANPAZKAPJZG4O5K6UVMRK",
+        "Arn": "arn:aws:iam::aws:policy/service-role/AWSPanoramaApplianceServiceRolePolicy",
+        "Path": "/service-role/",
+        "DefaultVersionId": "v1",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Allows an AWS Panorama Appliance to upload logs to Amazon CloudWatch, and to get objects from Amazon S3 access points created for use with AWS Panorama.",
+        "CreateDate": "2021-10-20T12:14:03+00:00",
+        "UpdateDate": "2021-10-20T12:14:03+00:00",
+        "Tags": []
+    }
+}

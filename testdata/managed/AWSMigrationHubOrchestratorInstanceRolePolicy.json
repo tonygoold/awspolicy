@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AWSMigrationHubOrchestratorInstanceRolePolicy",
+        "PolicyId": "ANPAZKAPJZG4DZ5VOQQO5",
+        "Arn": "arn:aws:iam::aws:policy/AWSMigrationHubOrchestratorInstanceRolePolicy",
+        "Path": "/",
+        "DefaultVersionId": "v1",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "This policy needs to be attached for SAP and MGN migrated instance for our service to orchestrate instances by downloading scripts from S3 and to fetch secret values inside EC2 instance.",
+        "CreateDate": "2022-04-20T02:43:50+00:00",
+        "UpdateDate": "2022-04-20T02:43:50+00:00",
+        "Tags": []
+    }
+}

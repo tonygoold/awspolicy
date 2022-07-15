@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AWSQuickSightIoTAnalyticsAccess",
+        "PolicyId": "ANPAJIZNDRUTKCN5HLZOE",
+        "Arn": "arn:aws:iam::aws:policy/AWSQuickSightIoTAnalyticsAccess",
+        "Path": "/",
+        "DefaultVersionId": "v1",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Give QuickSight read-only access to IoT Analytics datasets",
+        "CreateDate": "2017-11-29T17:00:54+00:00",
+        "UpdateDate": "2017-11-29T17:00:54+00:00",
+        "Tags": []
+    }
+}

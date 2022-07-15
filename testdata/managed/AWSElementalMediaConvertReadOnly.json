@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AWSElementalMediaConvertReadOnly",
+        "PolicyId": "ANPAJSXYOBSLJN3JEDO42",
+        "Arn": "arn:aws:iam::aws:policy/AWSElementalMediaConvertReadOnly",
+        "Path": "/",
+        "DefaultVersionId": "v2",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Provides read only access to AWS Elemental MediaConvert via the AWS Management Console and SDK.",
+        "CreateDate": "2018-06-25T19:25:14+00:00",
+        "UpdateDate": "2019-06-10T22:52:18+00:00",
+        "Tags": []
+    }
+}

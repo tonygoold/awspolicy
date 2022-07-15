@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AWSGlueServiceRole",
+        "PolicyId": "ANPAIRUJCPEBPMEZFAS32",
+        "Arn": "arn:aws:iam::aws:policy/service-role/AWSGlueServiceRole",
+        "Path": "/service-role/",
+        "DefaultVersionId": "v4",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Policy for AWS Glue service role which allows access to related services including EC2, S3, and Cloudwatch Logs",
+        "CreateDate": "2017-08-14T13:37:21+00:00",
+        "UpdateDate": "2018-06-25T18:23:09+00:00",
+        "Tags": []
+    }
+}

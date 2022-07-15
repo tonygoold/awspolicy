@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AWSLambdaSQSQueueExecutionRole",
+        "PolicyId": "ANPAJFWJZI6JNND4TSELK",
+        "Arn": "arn:aws:iam::aws:policy/service-role/AWSLambdaSQSQueueExecutionRole",
+        "Path": "/service-role/",
+        "DefaultVersionId": "v1",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Provides receive message, delete message, and read attribute access to SQS queues, and write permissions to CloudWatch logs.",
+        "CreateDate": "2018-06-14T21:50:45+00:00",
+        "UpdateDate": "2018-06-14T21:50:45+00:00",
+        "Tags": []
+    }
+}

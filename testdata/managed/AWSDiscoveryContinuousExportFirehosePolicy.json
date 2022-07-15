@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AWSDiscoveryContinuousExportFirehosePolicy",
+        "PolicyId": "ANPAIX6FHUTEUNXYDFZ7C",
+        "Arn": "arn:aws:iam::aws:policy/AWSDiscoveryContinuousExportFirehosePolicy",
+        "Path": "/",
+        "DefaultVersionId": "v2",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Provides write access to AWS resources required for AWS Discovery Continuous Export",
+        "CreateDate": "2018-08-09T18:29:39+00:00",
+        "UpdateDate": "2021-06-08T17:32:46+00:00",
+        "Tags": []
+    }
+}

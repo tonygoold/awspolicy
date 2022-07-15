@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AmazonRedshiftAllCommandsFullAccess",
+        "PolicyId": "ANPAZKAPJZG4FLN3TI7CS",
+        "Arn": "arn:aws:iam::aws:policy/AmazonRedshiftAllCommandsFullAccess",
+        "Path": "/",
+        "DefaultVersionId": "v2",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "This policy includes permissions to run SQL commands to copy, load, unload, query, and analyze data on Amazon Redshift. The policy also grants permissions to run select statements for related services, such as Amazon S3, Amazon CloudWatch logs, Amazon SageMaker, or AWS Glue.",
+        "CreateDate": "2021-11-04T00:48:08+00:00",
+        "UpdateDate": "2021-11-25T02:27:31+00:00",
+        "Tags": []
+    }
+}

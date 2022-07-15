@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AWSProtonFullAccess",
+        "PolicyId": "ANPAZKAPJZG4IOK6P734E",
+        "Arn": "arn:aws:iam::aws:policy/AWSProtonFullAccess",
+        "Path": "/",
+        "DefaultVersionId": "v2",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Provides full access to the AWS Proton APIs and Management Console. In addition to these permissions, access to Amazon S3 is also needed to register template bundles from your S3 buckets, as well as access to Amazon IAM to create and manage the service roles for Proton.",
+        "CreateDate": "2021-02-17T19:07:18+00:00",
+        "UpdateDate": "2022-06-20T12:36:26+00:00",
+        "Tags": []
+    }
+}

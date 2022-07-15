@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AWSNetworkFirewallServiceRolePolicy",
+        "PolicyId": "ANPAZKAPJZG4DF6QQZAL3",
+        "Arn": "arn:aws:iam::aws:policy/aws-service-role/AWSNetworkFirewallServiceRolePolicy",
+        "Path": "/aws-service-role/",
+        "DefaultVersionId": "v1",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Allow AWSNetworkFirewall to create and manage necessary resources for your Firewalls.",
+        "CreateDate": "2020-11-17T17:17:26+00:00",
+        "UpdateDate": "2020-11-17T17:17:26+00:00",
+        "Tags": []
+    }
+}

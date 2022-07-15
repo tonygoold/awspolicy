@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "Ec2ImageBuilderCrossAccountDistributionAccess",
+        "PolicyId": "ANPAZKAPJZG4PHZOLIXKT",
+        "Arn": "arn:aws:iam::aws:policy/Ec2ImageBuilderCrossAccountDistributionAccess",
+        "Path": "/",
+        "DefaultVersionId": "v1",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Permissions need by EC2 Image Builder to perform a cross account distribution.",
+        "CreateDate": "2020-09-30T19:22:54+00:00",
+        "UpdateDate": "2020-09-30T19:22:54+00:00",
+        "Tags": []
+    }
+}

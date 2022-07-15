@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AWSElasticBeanstalkManagedUpdatesServiceRolePolicy",
+        "PolicyId": "ANPAZKAPJZG4HVFNJB4NR",
+        "Arn": "arn:aws:iam::aws:policy/aws-service-role/AWSElasticBeanstalkManagedUpdatesServiceRolePolicy",
+        "Path": "/aws-service-role/",
+        "DefaultVersionId": "v5",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "AWS Elastic Beanstalk Service Role policy that grants limited permissions to managed updates.",
+        "CreateDate": "2019-11-21T22:35:06+00:00",
+        "UpdateDate": "2020-12-11T18:21:32+00:00",
+        "Tags": []
+    }
+}

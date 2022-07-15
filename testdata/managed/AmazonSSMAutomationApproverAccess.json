@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AmazonSSMAutomationApproverAccess",
+        "PolicyId": "ANPAIDSSXIRWBSLWWIORC",
+        "Arn": "arn:aws:iam::aws:policy/AmazonSSMAutomationApproverAccess",
+        "Path": "/",
+        "DefaultVersionId": "v1",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Provides access to view automation executions and send approval decisions to automation waiting for approval",
+        "CreateDate": "2017-08-07T23:07:28+00:00",
+        "UpdateDate": "2017-08-07T23:07:28+00:00",
+        "Tags": []
+    }
+}

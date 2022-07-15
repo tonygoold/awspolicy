@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AWSBudgetsActions_RolePolicyForResourceAdministrationWithSSM",
+        "PolicyId": "ANPAZKAPJZG4ADHFVJLNJ",
+        "Arn": "arn:aws:iam::aws:policy/AWSBudgetsActions_RolePolicyForResourceAdministrationWithSSM",
+        "Path": "/",
+        "DefaultVersionId": "v1",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "This policy gives permissions to control AWS resources. For example, to start and stop EC2 or RDS instances by executing AWS Systems Manager (SSM) scripts.",
+        "CreateDate": "2022-05-25T19:03:30+00:00",
+        "UpdateDate": "2022-05-25T19:03:30+00:00",
+        "Tags": []
+    }
+}

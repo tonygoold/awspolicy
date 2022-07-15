@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AWSCodePipelineApproverAccess",
+        "PolicyId": "ANPAICXNWK42SQ6LMDXM2",
+        "Arn": "arn:aws:iam::aws:policy/AWSCodePipelineApproverAccess",
+        "Path": "/",
+        "DefaultVersionId": "v3",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Provides access to view and approve manual changes for all pipelines",
+        "CreateDate": "2016-07-28T18:59:17+00:00",
+        "UpdateDate": "2017-08-02T17:24:58+00:00",
+        "Tags": []
+    }
+}

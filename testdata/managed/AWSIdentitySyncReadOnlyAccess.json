@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AWSIdentitySyncReadOnlyAccess",
+        "PolicyId": "ANPAZKAPJZG4E7AMNPBT3",
+        "Arn": "arn:aws:iam::aws:policy/AWSIdentitySyncReadOnlyAccess",
+        "Path": "/",
+        "DefaultVersionId": "v1",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Read only access to the Identity Sync service",
+        "CreateDate": "2022-03-23T23:29:52+00:00",
+        "UpdateDate": "2022-03-23T23:29:52+00:00",
+        "Tags": []
+    }
+}

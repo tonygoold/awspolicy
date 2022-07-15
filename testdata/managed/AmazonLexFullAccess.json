@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AmazonLexFullAccess",
+        "PolicyId": "ANPAJVLXDHKVC23HRTKSI",
+        "Arn": "arn:aws:iam::aws:policy/AmazonLexFullAccess",
+        "Path": "/",
+        "DefaultVersionId": "v7",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Provides full access to Amazon Lex via the AWS Management Console.  Also provides access to create Lex Service Linked Roles and grant Lex permissions to invoke a limited set of Lambda functions.",
+        "CreateDate": "2017-04-11T23:20:36+00:00",
+        "UpdateDate": "2021-07-26T21:48:05+00:00",
+        "Tags": []
+    }
+}

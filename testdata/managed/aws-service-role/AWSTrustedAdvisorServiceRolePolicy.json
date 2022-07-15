@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AWSTrustedAdvisorServiceRolePolicy",
+        "PolicyId": "ANPAJH4QJ2WMHBOB47BUE",
+        "Arn": "arn:aws:iam::aws:policy/aws-service-role/AWSTrustedAdvisorServiceRolePolicy",
+        "Path": "/aws-service-role/",
+        "DefaultVersionId": "v9",
+        "AttachmentCount": 1,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Access for the AWS Trusted Advisor Service to help reduce cost, increase performance, and improve security of your AWS environment.",
+        "CreateDate": "2018-02-22T21:24:25+00:00",
+        "UpdateDate": "2021-08-10T22:41:30+00:00",
+        "Tags": []
+    }
+}

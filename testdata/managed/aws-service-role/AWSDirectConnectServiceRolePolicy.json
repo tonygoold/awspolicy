@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AWSDirectConnectServiceRolePolicy",
+        "PolicyId": "ANPAZKAPJZG4O7743JCTQ",
+        "Arn": "arn:aws:iam::aws:policy/aws-service-role/AWSDirectConnectServiceRolePolicy",
+        "Path": "/aws-service-role/",
+        "DefaultVersionId": "v1",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Provides AWS Direct Connect permission to create and manage AWS resources on your behalf.",
+        "CreateDate": "2021-01-14T18:35:27+00:00",
+        "UpdateDate": "2021-01-14T18:35:27+00:00",
+        "Tags": []
+    }
+}

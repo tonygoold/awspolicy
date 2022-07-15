@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AWSBackupServiceRolePolicyForRestores",
+        "PolicyId": "ANPAJZCCL6F2WPVOUXZKI",
+        "Arn": "arn:aws:iam::aws:policy/service-role/AWSBackupServiceRolePolicyForRestores",
+        "Path": "/service-role/",
+        "DefaultVersionId": "v12",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Provides AWS Backup permission to perform restores on your behalf across AWS services. This policy includes permissions to create and delete AWS resources, such as EBS volumes, RDS instances, and EFS file systems, which are part of the restore process.",
+        "CreateDate": "2019-01-12T00:23:54+00:00",
+        "UpdateDate": "2022-05-17T17:36:12+00:00",
+        "Tags": []
+    }
+}

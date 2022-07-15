@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AWSEC2SpotFleetServiceRolePolicy",
+        "PolicyId": "ANPAILWCVTZD57EMYWMBO",
+        "Arn": "arn:aws:iam::aws:policy/aws-service-role/AWSEC2SpotFleetServiceRolePolicy",
+        "Path": "/aws-service-role/",
+        "DefaultVersionId": "v4",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Allows EC2 Spot Fleet to launch and manage spot fleet instances",
+        "CreateDate": "2017-10-23T19:13:06+00:00",
+        "UpdateDate": "2020-03-16T19:16:21+00:00",
+        "Tags": []
+    }
+}

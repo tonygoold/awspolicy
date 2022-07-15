@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AmazonAPIGatewayAdministrator",
+        "PolicyId": "ANPAJ4PT6VY5NLKTNUYSI",
+        "Arn": "arn:aws:iam::aws:policy/AmazonAPIGatewayAdministrator",
+        "Path": "/",
+        "DefaultVersionId": "v1",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Provides full access to create/edit/delete APIs in Amazon API Gateway via the AWS Management Console.",
+        "CreateDate": "2015-07-09T17:34:45+00:00",
+        "UpdateDate": "2015-07-09T17:34:45+00:00",
+        "Tags": []
+    }
+}

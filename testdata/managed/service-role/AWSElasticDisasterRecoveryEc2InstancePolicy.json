@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AWSElasticDisasterRecoveryEc2InstancePolicy",
+        "PolicyId": "ANPAZKAPJZG4DUAC4ANEW",
+        "Arn": "arn:aws:iam::aws:policy/service-role/AWSElasticDisasterRecoveryEc2InstancePolicy",
+        "Path": "/service-role/",
+        "DefaultVersionId": "v1",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "This policy allows installing and using the AWS Replication Agent, which is used by AWS Elastic Disaster Recovery (DRS) to recover source servers that run on EC2 (cross-region or cross-AZ). An IAM role with this policy should be attached (as an EC2 Instance Profile) to the EC2 Instances.",
+        "CreateDate": "2022-05-26T12:30:18+00:00",
+        "UpdateDate": "2022-05-26T12:30:18+00:00",
+        "Tags": []
+    }
+}

@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AmazonEC2RoleforSSM",
+        "PolicyId": "ANPAI6TL3SMY22S4KMMX6",
+        "Arn": "arn:aws:iam::aws:policy/service-role/AmazonEC2RoleforSSM",
+        "Path": "/service-role/",
+        "DefaultVersionId": "v8",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "This policy will soon be deprecated. Please use AmazonSSMManagedInstanceCore policy to enable AWS Systems Manager service core functionality on EC2 instances. For more information see https://docs.aws.amazon.com/systems-manager/latest/userguide/setup-instance-profile.html",
+        "CreateDate": "2015-05-29T17:48:35+00:00",
+        "UpdateDate": "2019-01-24T19:20:51+00:00",
+        "Tags": []
+    }
+}

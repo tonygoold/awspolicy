@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AmazonOpenSearchServiceReadOnlyAccess",
+        "PolicyId": "ANPAZKAPJZG4PQONZTCWT",
+        "Arn": "arn:aws:iam::aws:policy/AmazonOpenSearchServiceReadOnlyAccess",
+        "Path": "/",
+        "DefaultVersionId": "v1",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Provides read-only access to the Amazon OpenSearch Service configuration service.",
+        "CreateDate": "2021-09-08T05:38:13+00:00",
+        "UpdateDate": "2021-09-08T05:38:13+00:00",
+        "Tags": []
+    }
+}

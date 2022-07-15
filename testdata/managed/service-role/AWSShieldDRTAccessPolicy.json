@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AWSShieldDRTAccessPolicy",
+        "PolicyId": "ANPAJWNCSZ4PARLO37VVY",
+        "Arn": "arn:aws:iam::aws:policy/service-role/AWSShieldDRTAccessPolicy",
+        "Path": "/service-role/",
+        "DefaultVersionId": "v6",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Provides the AWS DDoS Response Team with limited access to your AWS account to assist with DDoS attack mitigation during a high-severity event.",
+        "CreateDate": "2018-06-05T22:29:39+00:00",
+        "UpdateDate": "2020-12-15T17:28:15+00:00",
+        "Tags": []
+    }
+}

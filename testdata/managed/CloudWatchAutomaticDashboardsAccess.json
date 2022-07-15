@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "CloudWatchAutomaticDashboardsAccess",
+        "PolicyId": "ANPAZKAPJZG4JFCXGSE2Q",
+        "Arn": "arn:aws:iam::aws:policy/CloudWatchAutomaticDashboardsAccess",
+        "Path": "/",
+        "DefaultVersionId": "v4",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Provides access to the non-CloudWatch APIs used to display CloudWatch Automatic Dashboards, including the contents of objects such as Lambda functions",
+        "CreateDate": "2019-07-23T10:01:08+00:00",
+        "UpdateDate": "2021-04-20T13:05:40+00:00",
+        "Tags": []
+    }
+}

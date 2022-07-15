@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AWSCodeDeployRole",
+        "PolicyId": "ANPAJ2NKMKD73QS5NBFLA",
+        "Arn": "arn:aws:iam::aws:policy/service-role/AWSCodeDeployRole",
+        "Path": "/service-role/",
+        "DefaultVersionId": "v9",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Provides CodeDeploy service access to expand tags and interact with Auto Scaling on your behalf.",
+        "CreateDate": "2015-05-04T18:05:37+00:00",
+        "UpdateDate": "2021-05-19T00:42:51+00:00",
+        "Tags": []
+    }
+}

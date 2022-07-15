@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "ROSAManageSubscription",
+        "PolicyId": "ANPAZKAPJZG4HMYAT5EMA",
+        "Arn": "arn:aws:iam::aws:policy/ROSAManageSubscription",
+        "Path": "/",
+        "DefaultVersionId": "v1",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "This policy provides the permissions required to manage the Red Hat OpenShift Service on AWS (ROSA) subscription.",
+        "CreateDate": "2022-04-11T20:58:08+00:00",
+        "UpdateDate": "2022-04-11T20:58:08+00:00",
+        "Tags": []
+    }
+}

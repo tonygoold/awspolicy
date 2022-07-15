@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AWSResourceAccessManagerResourceShareParticipantAccess",
+        "PolicyId": "ANPAZKAPJZG4LIFEGGUIU",
+        "Arn": "arn:aws:iam::aws:policy/AWSResourceAccessManagerResourceShareParticipantAccess",
+        "Path": "/",
+        "DefaultVersionId": "v1",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Provides access to AWS Resource Access Manager APIs needed by a resource share participant.",
+        "CreateDate": "2019-12-09T20:41:37+00:00",
+        "UpdateDate": "2019-12-09T20:41:37+00:00",
+        "Tags": []
+    }
+}

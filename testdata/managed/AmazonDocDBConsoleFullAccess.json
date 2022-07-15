@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AmazonDocDBConsoleFullAccess",
+        "PolicyId": "ANPAJHV6VMSNDDHJ3ESNI",
+        "Arn": "arn:aws:iam::aws:policy/AmazonDocDBConsoleFullAccess",
+        "Path": "/",
+        "DefaultVersionId": "v3",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Provides full access to manage Amazon DocumentDB with MongoDB compatibility using the AWS Management Console. Note this policy also grants full access to publish on all SNS topics within the account, permissions to create and edit Amazon EC2 instances and VPC configurations, permissions to view and list keys on Amazon KMS, and full access to Amazon RDS and Amazon Neptune.",
+        "CreateDate": "2019-01-09T20:37:28+00:00",
+        "UpdateDate": "2021-04-05T22:42:40+00:00",
+        "Tags": []
+    }
+}

@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AwsGlueSessionUserRestrictedNotebookPolicy",
+        "PolicyId": "ANPAZKAPJZG4BZZRVUUJU",
+        "Arn": "arn:aws:iam::aws:policy/AwsGlueSessionUserRestrictedNotebookPolicy",
+        "Path": "/",
+        "DefaultVersionId": "v1",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Provides permissions that allows users to create and use only the notebook sessions that are associated with the user. This policy also includes permissions to explicitly allow users to pass a restricted Glue session role.",
+        "CreateDate": "2022-04-18T15:24:56+00:00",
+        "UpdateDate": "2022-04-18T15:24:56+00:00",
+        "Tags": []
+    }
+}

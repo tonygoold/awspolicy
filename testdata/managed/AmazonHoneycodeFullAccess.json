@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AmazonHoneycodeFullAccess",
+        "PolicyId": "ANPAZKAPJZG4ECUH6WAX6",
+        "Arn": "arn:aws:iam::aws:policy/AmazonHoneycodeFullAccess",
+        "Path": "/",
+        "DefaultVersionId": "v1",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Provides full access to Honeycode via the AWS Management Console and the SDK.",
+        "CreateDate": "2020-06-24T20:28:11+00:00",
+        "UpdateDate": "2020-06-24T20:28:11+00:00",
+        "Tags": []
+    }
+}

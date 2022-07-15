@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AWSBatchFullAccess",
+        "PolicyId": "ANPAJ7K2KIWB3HZVK3CUO",
+        "Arn": "arn:aws:iam::aws:policy/AWSBatchFullAccess",
+        "Path": "/",
+        "DefaultVersionId": "v6",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Provides full access for AWS Batch resources.",
+        "CreateDate": "2016-12-06T19:35:42+00:00",
+        "UpdateDate": "2021-03-10T07:02:45+00:00",
+        "Tags": []
+    }
+}

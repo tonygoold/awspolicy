@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AmazonDevOpsGuruConsoleFullAccess",
+        "PolicyId": "ANPAZKAPJZG4GSGM7UDO3",
+        "Arn": "arn:aws:iam::aws:policy/AmazonDevOpsGuruConsoleFullAccess",
+        "Path": "/",
+        "DefaultVersionId": "v1",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "The policy grants full-access to the DevOps Guru console.",
+        "CreateDate": "2021-12-17T18:43:09+00:00",
+        "UpdateDate": "2021-12-17T18:43:09+00:00",
+        "Tags": []
+    }
+}

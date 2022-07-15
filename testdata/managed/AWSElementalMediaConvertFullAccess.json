@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AWSElementalMediaConvertFullAccess",
+        "PolicyId": "ANPAIXDREOCL6LV7RBJWC",
+        "Arn": "arn:aws:iam::aws:policy/AWSElementalMediaConvertFullAccess",
+        "Path": "/",
+        "DefaultVersionId": "v2",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Provides full access to AWS Elemental MediaConvert via the AWS Management Console and SDK.",
+        "CreateDate": "2018-06-25T19:25:35+00:00",
+        "UpdateDate": "2019-06-10T22:52:25+00:00",
+        "Tags": []
+    }
+}

@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AmazonChimeFullAccess",
+        "PolicyId": "ANPAIUJFSAKUERNORYRWO",
+        "Arn": "arn:aws:iam::aws:policy/AmazonChimeFullAccess",
+        "Path": "/",
+        "DefaultVersionId": "v3",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Provides full access to Amazon Chime Admin Console via the AWS Management Console.",
+        "CreateDate": "2017-11-01T22:15:43+00:00",
+        "UpdateDate": "2020-12-14T21:00:52+00:00",
+        "Tags": []
+    }
+}

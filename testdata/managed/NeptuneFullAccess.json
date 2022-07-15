@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "NeptuneFullAccess",
+        "PolicyId": "ANPAIXSDEYRCNJRC6ITFK",
+        "Arn": "arn:aws:iam::aws:policy/NeptuneFullAccess",
+        "Path": "/",
+        "DefaultVersionId": "v5",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Provides full access to Amazon Neptune. Note this policy also grants full access to publish on all SNS topics within the account and full access to Amazon RDS. For more information, see https://aws.amazon.com/neptune/faqs/.",
+        "CreateDate": "2018-05-30T19:17:31+00:00",
+        "UpdateDate": "2020-09-02T17:24:56+00:00",
+        "Tags": []
+    }
+}

@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AWSApplicationMigrationReplicationServerPolicy",
+        "PolicyId": "ANPAZKAPJZG4PXFWAA3SE",
+        "Arn": "arn:aws:iam::aws:policy/service-role/AWSApplicationMigrationReplicationServerPolicy",
+        "Path": "/service-role/",
+        "DefaultVersionId": "v1",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "This policy allows the Application Migration Service (MGN) Replication Servers, which are EC2 instances launched by Application Migration Service - to communicate with the MGN service, and to create EBS snapshots in your AWS account. An IAM role with this policy is attached (as an EC2 Instance Profile) by Application Migration Service to the MGN Replication Servers which are automatically launched and terminated by MGN, as needed. MGN Replication Servers are used to facilitate data replication from your external servers to AWS, as part of the migration process managed using MGN. We do not recommend that you attach this policy to your IAM users or roles.",
+        "CreateDate": "2021-04-07T07:21:57+00:00",
+        "UpdateDate": "2021-04-07T07:21:57+00:00",
+        "Tags": []
+    }
+}

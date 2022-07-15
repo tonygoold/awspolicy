@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AWSHealthFullAccess",
+        "PolicyId": "ANPAI3CUMPCPEUPCSXC4Y",
+        "Arn": "arn:aws:iam::aws:policy/AWSHealthFullAccess",
+        "Path": "/",
+        "DefaultVersionId": "v3",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Allows full access to the AWS Health Apis and Notifications and the Personal Health Dashboard",
+        "CreateDate": "2016-12-06T12:30:31+00:00",
+        "UpdateDate": "2020-11-16T18:11:34+00:00",
+        "Tags": []
+    }
+}

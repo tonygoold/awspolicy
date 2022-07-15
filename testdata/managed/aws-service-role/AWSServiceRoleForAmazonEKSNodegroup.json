@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AWSServiceRoleForAmazonEKSNodegroup",
+        "PolicyId": "ANPAZKAPJZG4KH2AAMJJG",
+        "Arn": "arn:aws:iam::aws:policy/aws-service-role/AWSServiceRoleForAmazonEKSNodegroup",
+        "Path": "/aws-service-role/",
+        "DefaultVersionId": "v6",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Permissions required for managing nodegroups in the customer's account. These policies related to management of the following resources: AutoscalingGroups, SecurityGroups, LaunchTemplates and InstanceProfiles.",
+        "CreateDate": "2019-11-07T01:34:26+00:00",
+        "UpdateDate": "2022-01-14T00:33:26+00:00",
+        "Tags": []
+    }
+}

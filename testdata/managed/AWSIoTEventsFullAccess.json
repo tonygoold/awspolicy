@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AWSIoTEventsFullAccess",
+        "PolicyId": "ANPAJGA726P7LVUWJZ2LM",
+        "Arn": "arn:aws:iam::aws:policy/AWSIoTEventsFullAccess",
+        "Path": "/",
+        "DefaultVersionId": "v1",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Provides full access to IoT Events. ",
+        "CreateDate": "2019-01-10T22:51:57+00:00",
+        "UpdateDate": "2019-01-10T22:51:57+00:00",
+        "Tags": []
+    }
+}

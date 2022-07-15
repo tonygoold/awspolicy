@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AmazonS3ObjectLambdaExecutionRolePolicy",
+        "PolicyId": "ANPAZKAPJZG4PG47VBSXA",
+        "Arn": "arn:aws:iam::aws:policy/service-role/AmazonS3ObjectLambdaExecutionRolePolicy",
+        "Path": "/service-role/",
+        "DefaultVersionId": "v1",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Provides AWS Lambda functions permissions to interact with Amazon S3 Object Lambda. Also grants Lambda permissions to write to CloudWatch Logs.",
+        "CreateDate": "2021-08-18T10:07:41+00:00",
+        "UpdateDate": "2021-08-18T10:07:41+00:00",
+        "Tags": []
+    }
+}

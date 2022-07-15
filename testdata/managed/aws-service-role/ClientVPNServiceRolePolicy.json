@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "ClientVPNServiceRolePolicy",
+        "PolicyId": "ANPAI2SV25KUCYQYS5N74",
+        "Arn": "arn:aws:iam::aws:policy/aws-service-role/ClientVPNServiceRolePolicy",
+        "Path": "/aws-service-role/",
+        "DefaultVersionId": "v5",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Policy to enable AWS Client VPN to manage your Client VPN endpoints.",
+        "CreateDate": "2018-12-10T21:20:25+00:00",
+        "UpdateDate": "2020-08-12T19:39:34+00:00",
+        "Tags": []
+    }
+}

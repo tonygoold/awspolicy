@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "RDSCloudHsmAuthorizationRole",
+        "PolicyId": "ANPAIWKFXRLQG2ROKKXLE",
+        "Arn": "arn:aws:iam::aws:policy/service-role/RDSCloudHsmAuthorizationRole",
+        "Path": "/service-role/",
+        "DefaultVersionId": "v2",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Default policy for the Amazon RDS service role.",
+        "CreateDate": "2015-02-06T18:41:29+00:00",
+        "UpdateDate": "2019-09-26T22:14:29+00:00",
+        "Tags": []
+    }
+}

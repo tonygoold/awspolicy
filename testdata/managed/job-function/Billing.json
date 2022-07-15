@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "Billing",
+        "PolicyId": "ANPAIFTHXT6FFMIRT7ZEA",
+        "Arn": "arn:aws:iam::aws:policy/job-function/Billing",
+        "Path": "/job-function/",
+        "DefaultVersionId": "v5",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Grants permissions for billing and cost management. This includes viewing account usage and viewing and modifying budgets and payment methods.",
+        "CreateDate": "2016-11-10T17:33:18+00:00",
+        "UpdateDate": "2020-10-05T20:37:01+00:00",
+        "Tags": []
+    }
+}

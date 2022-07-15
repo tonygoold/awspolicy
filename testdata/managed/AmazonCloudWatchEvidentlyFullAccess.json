@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AmazonCloudWatchEvidentlyFullAccess",
+        "PolicyId": "ANPAZKAPJZG4OBNGJAXBS",
+        "Arn": "arn:aws:iam::aws:policy/AmazonCloudWatchEvidentlyFullAccess",
+        "Path": "/",
+        "DefaultVersionId": "v1",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Provides full only access to Amazon CloudWatch Evidently. Also provides access to related Amazon S3, Amazon SNS, Amazon CloudWatch, and other related services.",
+        "CreateDate": "2021-11-29T15:10:14+00:00",
+        "UpdateDate": "2021-11-29T15:10:14+00:00",
+        "Tags": []
+    }
+}

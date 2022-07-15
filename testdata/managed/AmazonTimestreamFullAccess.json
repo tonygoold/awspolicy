@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AmazonTimestreamFullAccess",
+        "PolicyId": "ANPAZKAPJZG4CGYUJBH4V",
+        "Arn": "arn:aws:iam::aws:policy/AmazonTimestreamFullAccess",
+        "Path": "/",
+        "DefaultVersionId": "v2",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Provides full access to Amazon Timestream. Note that this policy also grants certain KMS operation access. If using Customer managed CMK, please refer to documentation for additional permissions needed.",
+        "CreateDate": "2020-09-30T21:47:14+00:00",
+        "UpdateDate": "2021-11-26T23:42:00+00:00",
+        "Tags": []
+    }
+}

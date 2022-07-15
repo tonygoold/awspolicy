@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AWSBugBustFullAccess",
+        "PolicyId": "ANPAZKAPJZG4MQU5DXLFC",
+        "Arn": "arn:aws:iam::aws:policy/AWSBugBustFullAccess",
+        "Path": "/",
+        "DefaultVersionId": "v2",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "This IAM policy grants users full access to the AWS BugBust console",
+        "CreateDate": "2021-06-24T07:03:26+00:00",
+        "UpdateDate": "2021-07-22T20:04:29+00:00",
+        "Tags": []
+    }
+}

@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AWSThinkboxAWSPortalGatewayPolicy",
+        "PolicyId": "ANPAZKAPJZG4FP27FM4BH",
+        "Arn": "arn:aws:iam::aws:policy/AWSThinkboxAWSPortalGatewayPolicy",
+        "Path": "/",
+        "DefaultVersionId": "v2",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "This policy grants the AWS Portal Gateway machine the necessary permissions required for normal operation.",
+        "CreateDate": "2020-05-27T19:05:00+00:00",
+        "UpdateDate": "2020-06-30T16:02:07+00:00",
+        "Tags": []
+    }
+}

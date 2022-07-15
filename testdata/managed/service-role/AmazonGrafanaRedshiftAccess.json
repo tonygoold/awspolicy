@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AmazonGrafanaRedshiftAccess",
+        "PolicyId": "ANPAZKAPJZG4GQPUO5JGY",
+        "Arn": "arn:aws:iam::aws:policy/service-role/AmazonGrafanaRedshiftAccess",
+        "Path": "/service-role/",
+        "DefaultVersionId": "v1",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "This policy grants scoped access to Amazon Redshift and the dependencies needed to use the Amazon Redshift plugin in Amazon Grafana.",
+        "CreateDate": "2021-11-26T23:15:15+00:00",
+        "UpdateDate": "2021-11-26T23:15:15+00:00",
+        "Tags": []
+    }
+}

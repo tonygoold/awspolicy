@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "WorkLinkServiceRolePolicy",
+        "PolicyId": "ANPAJ6JTE3DI5JOULLNLS",
+        "Arn": "arn:aws:iam::aws:policy/WorkLinkServiceRolePolicy",
+        "Path": "/",
+        "DefaultVersionId": "v1",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Enables access to AWS Services and Resources used or managed by Amazon WorkLink",
+        "CreateDate": "2019-01-23T19:03:45+00:00",
+        "UpdateDate": "2019-01-23T19:03:45+00:00",
+        "Tags": []
+    }
+}

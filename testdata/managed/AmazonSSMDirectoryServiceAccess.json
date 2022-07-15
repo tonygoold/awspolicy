@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AmazonSSMDirectoryServiceAccess",
+        "PolicyId": "ANPAJ7OJQH3CZU674ERII",
+        "Arn": "arn:aws:iam::aws:policy/AmazonSSMDirectoryServiceAccess",
+        "Path": "/",
+        "DefaultVersionId": "v1",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "This policy allows SSM Agent to access Directory Service on behalf of the customer for domain-join the managed instance.",
+        "CreateDate": "2019-03-15T17:44:38+00:00",
+        "UpdateDate": "2019-03-15T17:44:38+00:00",
+        "Tags": []
+    }
+}

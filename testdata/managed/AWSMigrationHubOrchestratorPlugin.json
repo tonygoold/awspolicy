@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AWSMigrationHubOrchestratorPlugin",
+        "PolicyId": "ANPAZKAPJZG4E5FGK2T5X",
+        "Arn": "arn:aws:iam::aws:policy/AWSMigrationHubOrchestratorPlugin",
+        "Path": "/",
+        "DefaultVersionId": "v1",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Provides limited access to Amazon Simple Storage Service, AWS Secrets Manager and Plugin related actions for AWS Migration Hub Orchestrator.",
+        "CreateDate": "2022-04-20T02:25:10+00:00",
+        "UpdateDate": "2022-04-20T02:25:10+00:00",
+        "Tags": []
+    }
+}

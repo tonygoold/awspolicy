@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AWSThinkboxDeadlineResourceTrackerAccessPolicy",
+        "PolicyId": "ANPAZKAPJZG4OUKJ73IOS",
+        "Arn": "arn:aws:iam::aws:policy/AWSThinkboxDeadlineResourceTrackerAccessPolicy",
+        "Path": "/",
+        "DefaultVersionId": "v1",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Grants permissions required for the operation of AWS Thinkbox's Deadline Resource Tracker.  This includes full access to some EC2 actions, including DeleteFleets and CancelSpotFleetRequests.",
+        "CreateDate": "2020-05-27T19:25:05+00:00",
+        "UpdateDate": "2020-05-27T19:25:05+00:00",
+        "Tags": []
+    }
+}

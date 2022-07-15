@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AWSLambdaReplicator",
+        "PolicyId": "ANPAIIQFXZNNLL3E2HKTG",
+        "Arn": "arn:aws:iam::aws:policy/aws-service-role/AWSLambdaReplicator",
+        "Path": "/aws-service-role/",
+        "DefaultVersionId": "v3",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Grants Lambda Replicator necessary permissions to replicate functions across regions",
+        "CreateDate": "2017-05-23T17:53:03+00:00",
+        "UpdateDate": "2017-12-08T00:17:54+00:00",
+        "Tags": []
+    }
+}

@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AmazonBraketFullAccess",
+        "PolicyId": "ANPAZKAPJZG4HUAKO7NZO",
+        "Arn": "arn:aws:iam::aws:policy/AmazonBraketFullAccess",
+        "Path": "/",
+        "DefaultVersionId": "v5",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Provides full access to Amazon Braket via the AWS Management Console and SDK. Also provides access to related services (e.g., S3, logs).",
+        "CreateDate": "2020-08-06T20:12:37+00:00",
+        "UpdateDate": "2022-03-31T19:03:33+00:00",
+        "Tags": []
+    }
+}

@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AWSAppMeshFullAccess",
+        "PolicyId": "ANPAZKAPJZG4ILVZ5BWFU",
+        "Arn": "arn:aws:iam::aws:policy/AWSAppMeshFullAccess",
+        "Path": "/",
+        "DefaultVersionId": "v6",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Provides full access to the AWS App Mesh APIs and Management Console.",
+        "CreateDate": "2019-04-16T17:50:40+00:00",
+        "UpdateDate": "2021-01-07T19:54:08+00:00",
+        "Tags": []
+    }
+}

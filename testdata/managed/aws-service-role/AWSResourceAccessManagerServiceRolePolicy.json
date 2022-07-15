@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AWSResourceAccessManagerServiceRolePolicy",
+        "PolicyId": "ANPAJU667A3V5UAXC4YNE",
+        "Arn": "arn:aws:iam::aws:policy/aws-service-role/AWSResourceAccessManagerServiceRolePolicy",
+        "Path": "/aws-service-role/",
+        "DefaultVersionId": "v1",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Policy containing Read-only AWS Resource Access Manager access to customers' Organizations structure. It also contains IAM permissions to self-delete the role.",
+        "CreateDate": "2018-11-14T19:28:28+00:00",
+        "UpdateDate": "2018-11-14T19:28:28+00:00",
+        "Tags": []
+    }
+}

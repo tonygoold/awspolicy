@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AWSFMAdminReadOnlyAccess",
+        "PolicyId": "ANPAJA3UKVVBN62QFIKLW",
+        "Arn": "arn:aws:iam::aws:policy/AWSFMAdminReadOnlyAccess",
+        "Path": "/",
+        "DefaultVersionId": "v1",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Read only access for AWS FM Administrator that allows monitoring AWS FM operations",
+        "CreateDate": "2018-05-09T20:07:39+00:00",
+        "UpdateDate": "2018-05-09T20:07:39+00:00",
+        "Tags": []
+    }
+}

@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AmazonRekognitionCustomLabelsFullAccess",
+        "PolicyId": "ANPAZKAPJZG4OJEQDEQQQ",
+        "Arn": "arn:aws:iam::aws:policy/AmazonRekognitionCustomLabelsFullAccess",
+        "Path": "/",
+        "DefaultVersionId": "v3",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "This policy specifies rekognition and s3 permissions required by Amazon Rekognition Custom Labels feature.",
+        "CreateDate": "2020-01-08T19:18:34+00:00",
+        "UpdateDate": "2021-11-03T02:53:05+00:00",
+        "Tags": []
+    }
+}

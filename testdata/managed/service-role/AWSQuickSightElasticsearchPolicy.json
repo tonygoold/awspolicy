@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AWSQuickSightElasticsearchPolicy",
+        "PolicyId": "ANPAZKAPJZG4BLUM3JVIN",
+        "Arn": "arn:aws:iam::aws:policy/service-role/AWSQuickSightElasticsearchPolicy",
+        "Path": "/service-role/",
+        "DefaultVersionId": "v3",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Provides access to Amazon Elasticsearch resources from Amazon QuickSight",
+        "CreateDate": "2020-09-09T17:27:19+00:00",
+        "UpdateDate": "2021-09-07T23:25:55+00:00",
+        "Tags": []
+    }
+}

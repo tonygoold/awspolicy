@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AWSOpsWorksCloudWatchLogs",
+        "PolicyId": "ANPAJXFIK7WABAY5CPXM4",
+        "Arn": "arn:aws:iam::aws:policy/AWSOpsWorksCloudWatchLogs",
+        "Path": "/",
+        "DefaultVersionId": "v1",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Enables OpsWorks instances with the CWLogs integration enabled to ship logs and create required log groups",
+        "CreateDate": "2017-03-30T17:47:19+00:00",
+        "UpdateDate": "2017-03-30T17:47:19+00:00",
+        "Tags": []
+    }
+}

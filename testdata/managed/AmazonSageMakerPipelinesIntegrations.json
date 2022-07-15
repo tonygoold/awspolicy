@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AmazonSageMakerPipelinesIntegrations",
+        "PolicyId": "ANPAZKAPJZG4FK53JOAN3",
+        "Arn": "arn:aws:iam::aws:policy/AmazonSageMakerPipelinesIntegrations",
+        "Path": "/",
+        "DefaultVersionId": "v2",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "This Amazon Managed Policy grants permissions commonly needed for use with Callback steps and Lambda steps in SageMaker Model Building Pipelines. It is added to the AmazonSageMaker-ExecutionRole that can be created when setting up SageMaker Studio. It can also be attached to any other role that will be used for authoring or executing pipelines.",
+        "CreateDate": "2021-07-30T16:35:10+00:00",
+        "UpdateDate": "2022-04-20T18:39:06+00:00",
+        "Tags": []
+    }
+}

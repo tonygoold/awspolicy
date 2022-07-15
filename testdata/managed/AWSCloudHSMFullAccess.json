@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AWSCloudHSMFullAccess",
+        "PolicyId": "ANPAIMBQYQZM7F63DA2UU",
+        "Arn": "arn:aws:iam::aws:policy/AWSCloudHSMFullAccess",
+        "Path": "/",
+        "DefaultVersionId": "v1",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Provides full access to all CloudHSM resources.",
+        "CreateDate": "2015-02-06T18:39:51+00:00",
+        "UpdateDate": "2015-02-06T18:39:51+00:00",
+        "Tags": []
+    }
+}

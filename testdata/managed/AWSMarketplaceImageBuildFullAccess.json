@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AWSMarketplaceImageBuildFullAccess",
+        "PolicyId": "ANPAI4QBMJWC3BNHBHN6I",
+        "Arn": "arn:aws:iam::aws:policy/AWSMarketplaceImageBuildFullAccess",
+        "Path": "/",
+        "DefaultVersionId": "v3",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Provides full access to AWS Marketplace Private Image Build Feature. In addition to create private images, it also provides permissions to add tags to images, launch and terminate ec2 instances.",
+        "CreateDate": "2018-07-31T23:29:49+00:00",
+        "UpdateDate": "2022-03-04T17:05:09+00:00",
+        "Tags": []
+    }
+}

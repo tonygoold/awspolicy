@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AmazonKeyspacesReadOnlyAccess",
+        "PolicyId": "ANPAZKAPJZG4LHLFMFIPN",
+        "Arn": "arn:aws:iam::aws:policy/AmazonKeyspacesReadOnlyAccess",
+        "Path": "/",
+        "DefaultVersionId": "v2",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Provide read only access to Amazon Keyspaces",
+        "CreateDate": "2020-04-23T17:07:14+00:00",
+        "UpdateDate": "2021-06-01T19:32:47+00:00",
+        "Tags": []
+    }
+}

@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AmazonAppFlowFullAccess",
+        "PolicyId": "ANPAZKAPJZG4PGBU2ALC4",
+        "Arn": "arn:aws:iam::aws:policy/AmazonAppFlowFullAccess",
+        "Path": "/",
+        "DefaultVersionId": "v3",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Provides full access to Amazon AppFlow and access to AWS services supported as flow source or destination (S3 and Redshift). Also provides access to KMS for encryption",
+        "CreateDate": "2020-06-02T23:30:14+00:00",
+        "UpdateDate": "2022-02-28T23:11:23+00:00",
+        "Tags": []
+    }
+}

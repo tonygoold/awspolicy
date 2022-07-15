@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AWSAutoScalingPlansEC2AutoScalingPolicy",
+        "PolicyId": "ANPAIXWLPZPD4RYBM3JSU",
+        "Arn": "arn:aws:iam::aws:policy/aws-service-role/AWSAutoScalingPlansEC2AutoScalingPolicy",
+        "Path": "/aws-service-role/",
+        "DefaultVersionId": "v1",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Policy granting permissions to AWS Auto Scaling to periodically forecast capacity and generate scheduled scaling actions for Auto Scaling groups in a scaling plan",
+        "CreateDate": "2018-08-23T22:46:59+00:00",
+        "UpdateDate": "2018-08-23T22:46:59+00:00",
+        "Tags": []
+    }
+}

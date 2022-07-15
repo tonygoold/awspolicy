@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AWSThinkboxAssetServerPolicy",
+        "PolicyId": "ANPAZKAPJZG4KDWZE3HCT",
+        "Arn": "arn:aws:iam::aws:policy/AWSThinkboxAssetServerPolicy",
+        "Path": "/",
+        "DefaultVersionId": "v1",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "This policy grants the AWS Portal Asset Server the necessary permissions required for normal operation.",
+        "CreateDate": "2020-05-27T19:18:53+00:00",
+        "UpdateDate": "2020-05-27T19:18:53+00:00",
+        "Tags": []
+    }
+}

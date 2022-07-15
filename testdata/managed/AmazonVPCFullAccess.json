@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AmazonVPCFullAccess",
+        "PolicyId": "ANPAJBWPGNOVKZD3JI2P2",
+        "Arn": "arn:aws:iam::aws:policy/AmazonVPCFullAccess",
+        "Path": "/",
+        "DefaultVersionId": "v9",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Provides full access to Amazon VPC via the AWS Management Console.",
+        "CreateDate": "2015-02-06T18:41:16+00:00",
+        "UpdateDate": "2021-08-02T19:12:14+00:00",
+        "Tags": []
+    }
+}

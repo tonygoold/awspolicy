@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "SecurityAudit",
+        "PolicyId": "ANPAIX2T3QCXHR2OGGCTO",
+        "Arn": "arn:aws:iam::aws:policy/SecurityAudit",
+        "Path": "/",
+        "DefaultVersionId": "v35",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "The security audit template grants access to read security configuration metadata. It is useful for software that audits the configuration of an AWS account.",
+        "CreateDate": "2015-02-06T18:41:01+00:00",
+        "UpdateDate": "2021-04-14T20:28:28+00:00",
+        "Tags": []
+    }
+}

@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AWSBudgetsActionsWithAWSResourceControlAccess",
+        "PolicyId": "ANPAZKAPJZG4AHTKKGHHS",
+        "Arn": "arn:aws:iam::aws:policy/AWSBudgetsActionsWithAWSResourceControlAccess",
+        "Path": "/",
+        "DefaultVersionId": "v1",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Provides full access to AWS Budgets Actions including using Budgets Actions to control states of running AWS resources via AWS Management Console",
+        "CreateDate": "2020-10-15T17:19:12+00:00",
+        "UpdateDate": "2020-10-15T17:19:12+00:00",
+        "Tags": []
+    }
+}

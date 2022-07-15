@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AmazonInspector2FullAccess",
+        "PolicyId": "ANPAZKAPJZG4CK4E7UETF",
+        "Arn": "arn:aws:iam::aws:policy/AmazonInspector2FullAccess",
+        "Path": "/",
+        "DefaultVersionId": "v1",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Provides full access to Amazon Inspector and access to other related services such as organizations.",
+        "CreateDate": "2021-11-29T19:10:15+00:00",
+        "UpdateDate": "2021-11-29T19:10:15+00:00",
+        "Tags": []
+    }
+}

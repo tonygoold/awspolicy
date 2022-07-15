@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AWSGrafanaWorkspacePermissionManagement",
+        "PolicyId": "ANPAZKAPJZG4G37QQNGZW",
+        "Arn": "arn:aws:iam::aws:policy/AWSGrafanaWorkspacePermissionManagement",
+        "Path": "/",
+        "DefaultVersionId": "v2",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Provides only the ability to update user and group permissions for AWS Grafana workspaces.",
+        "CreateDate": "2021-02-23T00:15:54+00:00",
+        "UpdateDate": "2021-09-21T20:30:06+00:00",
+        "Tags": []
+    }
+}

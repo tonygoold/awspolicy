@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AWSLambdaDynamoDBExecutionRole",
+        "PolicyId": "ANPAIP7WNAGMIPYNW4WQG",
+        "Arn": "arn:aws:iam::aws:policy/service-role/AWSLambdaDynamoDBExecutionRole",
+        "Path": "/service-role/",
+        "DefaultVersionId": "v1",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Provides list and read access to DynamoDB streams and write permissions to CloudWatch logs.",
+        "CreateDate": "2015-04-09T15:09:29+00:00",
+        "UpdateDate": "2015-04-09T15:09:29+00:00",
+        "Tags": []
+    }
+}

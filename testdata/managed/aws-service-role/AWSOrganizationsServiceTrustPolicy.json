@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AWSOrganizationsServiceTrustPolicy",
+        "PolicyId": "ANPAIQH6ROMVVECFVRJPK",
+        "Arn": "arn:aws:iam::aws:policy/aws-service-role/AWSOrganizationsServiceTrustPolicy",
+        "Path": "/aws-service-role/",
+        "DefaultVersionId": "v2",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "A policy to allow AWS Organizations to share trust with other approved AWS Services for the purpose of simplifying customer configuration.",
+        "CreateDate": "2017-10-10T23:04:07+00:00",
+        "UpdateDate": "2017-11-01T06:01:18+00:00",
+        "Tags": []
+    }
+}

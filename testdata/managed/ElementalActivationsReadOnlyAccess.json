@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "ElementalActivationsReadOnlyAccess",
+        "PolicyId": "ANPAZKAPJZG4JBRIPMTYG",
+        "Arn": "arn:aws:iam::aws:policy/ElementalActivationsReadOnlyAccess",
+        "Path": "/",
+        "DefaultVersionId": "v1",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Read-only access to the detailed list of purchased assets associated to the AWS account of the user",
+        "CreateDate": "2020-08-28T16:51:01+00:00",
+        "UpdateDate": "2020-08-28T16:51:01+00:00",
+        "Tags": []
+    }
+}

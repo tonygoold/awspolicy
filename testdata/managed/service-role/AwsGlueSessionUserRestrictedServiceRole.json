@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AwsGlueSessionUserRestrictedServiceRole",
+        "PolicyId": "ANPAZKAPJZG4NDGTDBV5G",
+        "Arn": "arn:aws:iam::aws:policy/service-role/AwsGlueSessionUserRestrictedServiceRole",
+        "Path": "/service-role/",
+        "DefaultVersionId": "v1",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Provides full access to all AWS Glue resources except for sessions. Allows users to create and use only the interactive sessions that are associated with the user. This policy also includes other permissions needed by AWS Glue to manage Glue resources in other AWS services",
+        "CreateDate": "2022-04-14T21:30:07+00:00",
+        "UpdateDate": "2022-04-14T21:30:07+00:00",
+        "Tags": []
+    }
+}

@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AWSSSOMasterAccountAdministrator",
+        "PolicyId": "ANPAIHXAQZIS3GOYIETUC",
+        "Arn": "arn:aws:iam::aws:policy/AWSSSOMasterAccountAdministrator",
+        "Path": "/",
+        "DefaultVersionId": "v6",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Provides access within AWS SSO to manage AWS Organizations master and member accounts and cloud application",
+        "CreateDate": "2018-06-27T20:36:51+00:00",
+        "UpdateDate": "2022-04-28T18:38:55+00:00",
+        "Tags": []
+    }
+}

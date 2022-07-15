@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AWSApplicationMigrationAgentPolicy",
+        "PolicyId": "ANPAZKAPJZG4D2GD5QYXR",
+        "Arn": "arn:aws:iam::aws:policy/AWSApplicationMigrationAgentPolicy",
+        "Path": "/",
+        "DefaultVersionId": "v1",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "This policy allows installing and using the AWS Replication Agent, which is used with AWS Application Migration Service (MGN) to migrate external servers to AWS. Attach this policy to your IAM users or roles whose credentials you provide when installing the AWS Replication Agent.",
+        "CreateDate": "2021-04-07T07:00:21+00:00",
+        "UpdateDate": "2021-04-07T07:00:21+00:00",
+        "Tags": []
+    }
+}

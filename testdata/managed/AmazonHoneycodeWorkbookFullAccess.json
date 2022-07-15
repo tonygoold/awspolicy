@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AmazonHoneycodeWorkbookFullAccess",
+        "PolicyId": "ANPAZKAPJZG4OQLA2WKSW",
+        "Arn": "arn:aws:iam::aws:policy/AmazonHoneycodeWorkbookFullAccess",
+        "Path": "/",
+        "DefaultVersionId": "v2",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Provides full access to Honeycode Workbook via the AWS Management Console and the SDK.",
+        "CreateDate": "2020-06-24T20:28:46+00:00",
+        "UpdateDate": "2020-12-01T17:30:06+00:00",
+        "Tags": []
+    }
+}

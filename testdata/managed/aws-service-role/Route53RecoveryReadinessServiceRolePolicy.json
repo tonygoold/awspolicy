@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "Route53RecoveryReadinessServiceRolePolicy",
+        "PolicyId": "ANPAZKAPJZG4J7MSL2FYD",
+        "Arn": "arn:aws:iam::aws:policy/aws-service-role/Route53RecoveryReadinessServiceRolePolicy",
+        "Path": "/aws-service-role/",
+        "DefaultVersionId": "v3",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Service Linked Role Policy for Route 53 Recovery Readiness",
+        "CreateDate": "2021-07-15T16:06:21+00:00",
+        "UpdateDate": "2021-10-29T07:09:46+00:00",
+        "Tags": []
+    }
+}

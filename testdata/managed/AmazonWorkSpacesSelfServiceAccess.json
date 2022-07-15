@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AmazonWorkSpacesSelfServiceAccess",
+        "PolicyId": "ANPAZKAPJZG4MLHUSTJAF",
+        "Arn": "arn:aws:iam::aws:policy/AmazonWorkSpacesSelfServiceAccess",
+        "Path": "/",
+        "DefaultVersionId": "v1",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Provides access to Amazon WorkSpaces backend service to perform Workspace Self Service actions",
+        "CreateDate": "2019-06-27T19:22:52+00:00",
+        "UpdateDate": "2019-06-27T19:22:52+00:00",
+        "Tags": []
+    }
+}

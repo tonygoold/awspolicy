@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AWSServiceRoleForCodeGuru-Profiler",
+        "PolicyId": "ANPAZKAPJZG4GNVXVLNQT",
+        "Arn": "arn:aws:iam::aws:policy/aws-service-role/AWSServiceRoleForCodeGuru-Profiler",
+        "Path": "/aws-service-role/",
+        "DefaultVersionId": "v1",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "A service-linked role required for Amazon CodeGuru Profiler to send notifications on your behalf.",
+        "CreateDate": "2020-06-26T22:04:26+00:00",
+        "UpdateDate": "2020-06-26T22:04:26+00:00",
+        "Tags": []
+    }
+}

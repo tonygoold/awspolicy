@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AmazonChimeUserManagement",
+        "PolicyId": "ANPAJGLHVUHNMQPSDGSOO",
+        "Arn": "arn:aws:iam::aws:policy/AmazonChimeUserManagement",
+        "Path": "/",
+        "DefaultVersionId": "v8",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Provides user management access to Amazon Chime Admin Console via the AWS Management Console.",
+        "CreateDate": "2017-11-01T22:17:26+00:00",
+        "UpdateDate": "2020-02-18T19:26:10+00:00",
+        "Tags": []
+    }
+}

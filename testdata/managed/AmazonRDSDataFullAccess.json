@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AmazonRDSDataFullAccess",
+        "PolicyId": "ANPAJ5HUMNZCSW4IC74T6",
+        "Arn": "arn:aws:iam::aws:policy/AmazonRDSDataFullAccess",
+        "Path": "/",
+        "DefaultVersionId": "v3",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Allows full access to use the RDS data APIs, secret store APIs for RDS database credentials, and DB console query management APIs to execute SQL statements on Aurora Serverless clusters in the AWS account.",
+        "CreateDate": "2018-11-20T21:29:36+00:00",
+        "UpdateDate": "2019-11-20T21:58:46+00:00",
+        "Tags": []
+    }
+}

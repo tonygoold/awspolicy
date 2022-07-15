@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AWSSecurityHubReadOnlyAccess",
+        "PolicyId": "ANPAIEBAQNOFUCLFJ3UHG",
+        "Arn": "arn:aws:iam::aws:policy/AWSSecurityHubReadOnlyAccess",
+        "Path": "/",
+        "DefaultVersionId": "v3",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Provides read only access to AWS Security Hub resources",
+        "CreateDate": "2018-11-28T01:34:29+00:00",
+        "UpdateDate": "2022-04-04T17:46:51+00:00",
+        "Tags": []
+    }
+}

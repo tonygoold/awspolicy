@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AmazonAugmentedAIIntegratedAPIAccess",
+        "PolicyId": "ANPAZKAPJZG4A7KC4RFTV",
+        "Arn": "arn:aws:iam::aws:policy/AmazonAugmentedAIIntegratedAPIAccess",
+        "Path": "/",
+        "DefaultVersionId": "v1",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Provides access to perform all operations Amazon Augmented AI resources, including FlowDefinitions, HumanTaskUis and HumanLoops. Also provides access to those operations of services that are integrated with Amazon Augmented AI. ",
+        "CreateDate": "2020-04-22T20:47:32+00:00",
+        "UpdateDate": "2020-04-22T20:47:32+00:00",
+        "Tags": []
+    }
+}

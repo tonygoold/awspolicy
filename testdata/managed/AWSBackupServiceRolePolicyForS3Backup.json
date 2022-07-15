@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AWSBackupServiceRolePolicyForS3Backup",
+        "PolicyId": "ANPAZKAPJZG4CGZAHUZ2D",
+        "Arn": "arn:aws:iam::aws:policy/AWSBackupServiceRolePolicyForS3Backup",
+        "Path": "/",
+        "DefaultVersionId": "v2",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Policy containing permissions necessary for AWS Backup to backup data in any S3 bucket. This includes read access to all S3 objects and any decrypt access for all KMS keys.",
+        "CreateDate": "2022-02-18T17:40:24+00:00",
+        "UpdateDate": "2022-02-26T00:01:09+00:00",
+        "Tags": []
+    }
+}

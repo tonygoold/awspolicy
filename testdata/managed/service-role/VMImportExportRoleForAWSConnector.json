@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "VMImportExportRoleForAWSConnector",
+        "PolicyId": "ANPAJFLQOOJ6F5XNX4LAW",
+        "Arn": "arn:aws:iam::aws:policy/service-role/VMImportExportRoleForAWSConnector",
+        "Path": "/service-role/",
+        "DefaultVersionId": "v1",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Default policy for the VM Import/Export service role, for customers using the AWS Connector. The VM Import/Export service assumes a role with this policy to fulfill virtual machine migration requests from the AWS Connector virtual appliance. (Note that the AWS Connector uses the \"AWSConnector\" managed policy to issue requests on the customer's behalf to the VM Import/Export service.) Provides the ability to create AMIs and EBS snapshots, modify EBS snapshot attributes, make \"Describe*\" calls on EC2 objects, and read from S3 buckets starting with 'import-to-ec2-'.",
+        "CreateDate": "2015-09-03T20:48:59+00:00",
+        "UpdateDate": "2015-09-03T20:48:59+00:00",
+        "Tags": []
+    }
+}

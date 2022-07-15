@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AmazonDynamoDBReadOnlyAccess",
+        "PolicyId": "ANPAIY2XFNA232XJ6J7X2",
+        "Arn": "arn:aws:iam::aws:policy/AmazonDynamoDBReadOnlyAccess",
+        "Path": "/",
+        "DefaultVersionId": "v13",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Provides read only access to Amazon DynamoDB via the AWS Management Console.",
+        "CreateDate": "2015-02-06T18:40:12+00:00",
+        "UpdateDate": "2021-01-27T01:01:47+00:00",
+        "Tags": []
+    }
+}

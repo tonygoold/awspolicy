@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AWSApplicationAutoscalingLambdaConcurrencyPolicy",
+        "PolicyId": "ANPAZKAPJZG4KIR2KPJCU",
+        "Arn": "arn:aws:iam::aws:policy/aws-service-role/AWSApplicationAutoscalingLambdaConcurrencyPolicy",
+        "Path": "/aws-service-role/",
+        "DefaultVersionId": "v1",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Policy granting permissions to Application Auto Scaling to access Lambda and CloudWatch.",
+        "CreateDate": "2019-10-21T20:04:17+00:00",
+        "UpdateDate": "2019-10-21T20:04:17+00:00",
+        "Tags": []
+    }
+}

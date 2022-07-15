@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AmazonEKSServicePolicy",
+        "PolicyId": "ANPAJFCNXU6HPGCIVXYDI",
+        "Arn": "arn:aws:iam::aws:policy/AmazonEKSServicePolicy",
+        "Path": "/",
+        "DefaultVersionId": "v6",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "This policy allows Amazon Elastic Container Service for Kubernetes to create and manage the necessary resources to operate EKS Clusters.",
+        "CreateDate": "2018-05-27T21:08:21+00:00",
+        "UpdateDate": "2020-05-27T19:27:03+00:00",
+        "Tags": []
+    }
+}

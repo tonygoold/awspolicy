@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AmazonLookoutMetricsReadOnlyAccess",
+        "PolicyId": "ANPAZKAPJZG4MP33SLV3F",
+        "Arn": "arn:aws:iam::aws:policy/AmazonLookoutMetricsReadOnlyAccess",
+        "Path": "/",
+        "DefaultVersionId": "v2",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Gives access to all read-only actions for Amazon Lookout for Metrics",
+        "CreateDate": "2021-05-07T00:43:34+00:00",
+        "UpdateDate": "2022-01-04T18:19:27+00:00",
+        "Tags": []
+    }
+}

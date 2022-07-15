@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AWSOpsWorks_FullAccess",
+        "PolicyId": "ANPAZKAPJZG4D626GOURR",
+        "Arn": "arn:aws:iam::aws:policy/AWSOpsWorks_FullAccess",
+        "Path": "/",
+        "DefaultVersionId": "v1",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Provides full access to AWS OpsWorks.",
+        "CreateDate": "2021-01-22T16:29:08+00:00",
+        "UpdateDate": "2021-01-22T16:29:08+00:00",
+        "Tags": []
+    }
+}

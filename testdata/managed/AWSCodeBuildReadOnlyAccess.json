@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AWSCodeBuildReadOnlyAccess",
+        "PolicyId": "ANPAJIZZWN6557F5HVP2K",
+        "Arn": "arn:aws:iam::aws:policy/AWSCodeBuildReadOnlyAccess",
+        "Path": "/",
+        "DefaultVersionId": "v11",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Provides read only access to AWS CodeBuild via the AWS Management Console. Also attach AmazonS3ReadOnlyAccess to provide access to download build artifacts.",
+        "CreateDate": "2016-12-01T19:03:41+00:00",
+        "UpdateDate": "2020-09-14T16:04:04+00:00",
+        "Tags": []
+    }
+}

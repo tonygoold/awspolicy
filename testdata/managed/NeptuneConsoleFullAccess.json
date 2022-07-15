@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "NeptuneConsoleFullAccess",
+        "PolicyId": "ANPAJWTD4ELX2KRNICUVQ",
+        "Arn": "arn:aws:iam::aws:policy/NeptuneConsoleFullAccess",
+        "Path": "/",
+        "DefaultVersionId": "v4",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Provides full access to manage Amazon Neptune using the AWS Console. Note this policy also grants full access to publish on all SNS topics within the account, permissions to create and edit Amazon EC2 instances and VPC configurations, permissions to view and list keys on Amazon KMS, and full access to Amazon RDS. For more information, see https://aws.amazon.com/neptune/faqs/.",
+        "CreateDate": "2018-06-19T21:35:19+00:00",
+        "UpdateDate": "2020-09-02T17:25:07+00:00",
+        "Tags": []
+    }
+}

@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AWSMobileHub_ReadOnly",
+        "PolicyId": "ANPAIBXVYVL3PWQFBZFGW",
+        "Arn": "arn:aws:iam::aws:policy/AWSMobileHub_ReadOnly",
+        "Path": "/",
+        "DefaultVersionId": "v10",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "This policy may be attached to any User, Role, or Group, in order to grant users permission to list and view projects in AWS Mobile Hub. This also includes permissions to generate and download sample mobile app source code for each Mobile Hub project. It does not allow the user to modify any configuration for any Mobile Hub project.",
+        "CreateDate": "2016-01-05T19:55:48+00:00",
+        "UpdateDate": "2018-07-23T21:59:05+00:00",
+        "Tags": []
+    }
+}

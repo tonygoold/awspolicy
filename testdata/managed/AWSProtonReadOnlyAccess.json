@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AWSProtonReadOnlyAccess",
+        "PolicyId": "ANPAZKAPJZG4DW2EHEZB3",
+        "Arn": "arn:aws:iam::aws:policy/AWSProtonReadOnlyAccess",
+        "Path": "/",
+        "DefaultVersionId": "v2",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Provides read only access to the AWS Proton APIs and Management Console.",
+        "CreateDate": "2021-02-17T19:09:12+00:00",
+        "UpdateDate": "2022-04-21T12:33:42+00:00",
+        "Tags": []
+    }
+}

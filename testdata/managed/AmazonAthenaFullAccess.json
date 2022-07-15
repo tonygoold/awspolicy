@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AmazonAthenaFullAccess",
+        "PolicyId": "ANPAIPJMLMD4C7RYZ6XCK",
+        "Arn": "arn:aws:iam::aws:policy/AmazonAthenaFullAccess",
+        "Path": "/",
+        "DefaultVersionId": "v7",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Provide full access to Amazon Athena and scoped access to the dependencies needed to enable querying, writing results, and data management.",
+        "CreateDate": "2016-11-30T16:46:01+00:00",
+        "UpdateDate": "2021-07-07T20:15:04+00:00",
+        "Tags": []
+    }
+}

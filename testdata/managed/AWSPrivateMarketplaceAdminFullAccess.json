@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AWSPrivateMarketplaceAdminFullAccess",
+        "PolicyId": "ANPAJ6VRZDDCYDOVCOCEI",
+        "Arn": "arn:aws:iam::aws:policy/AWSPrivateMarketplaceAdminFullAccess",
+        "Path": "/",
+        "DefaultVersionId": "v4",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Provides full access to all administrative actions for an AWS Private Marketplace.",
+        "CreateDate": "2018-11-27T16:32:32+00:00",
+        "UpdateDate": "2021-08-27T15:34:07+00:00",
+        "Tags": []
+    }
+}

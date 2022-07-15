@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AWSQuickSightSageMakerPolicy",
+        "PolicyId": "ANPAZKAPJZG4MCLBVDT2I",
+        "Arn": "arn:aws:iam::aws:policy/service-role/AWSQuickSightSageMakerPolicy",
+        "Path": "/service-role/",
+        "DefaultVersionId": "v1",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Provides access to Amazon SageMaker resources from Amazon QuickSight",
+        "CreateDate": "2020-01-17T17:18:13+00:00",
+        "UpdateDate": "2020-01-17T17:18:13+00:00",
+        "Tags": []
+    }
+}

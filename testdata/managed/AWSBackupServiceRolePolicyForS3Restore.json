@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AWSBackupServiceRolePolicyForS3Restore",
+        "PolicyId": "ANPAZKAPJZG4KPHGRYXGS",
+        "Arn": "arn:aws:iam::aws:policy/AWSBackupServiceRolePolicyForS3Restore",
+        "Path": "/",
+        "DefaultVersionId": "v1",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Policy containing permissions necessary for AWS Backup to restore a S3 backup to a bucket. This includes read/write permissions to all S3 buckets, and permissions to GenerateDataKey and DescribeKey for all KMS keys.",
+        "CreateDate": "2022-02-18T17:39:37+00:00",
+        "UpdateDate": "2022-02-18T17:39:37+00:00",
+        "Tags": []
+    }
+}

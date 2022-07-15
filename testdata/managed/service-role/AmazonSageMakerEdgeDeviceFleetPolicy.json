@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AmazonSageMakerEdgeDeviceFleetPolicy",
+        "PolicyId": "ANPAZKAPJZG4CPENAJLBT",
+        "Arn": "arn:aws:iam::aws:policy/service-role/AmazonSageMakerEdgeDeviceFleetPolicy",
+        "Path": "/service-role/",
+        "DefaultVersionId": "v1",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Provides permissions necessary for SageMaker Edge to create and manage a device fleet for the customer using the default cloud connection.",
+        "CreateDate": "2020-12-08T16:17:22+00:00",
+        "UpdateDate": "2020-12-08T16:17:22+00:00",
+        "Tags": []
+    }
+}

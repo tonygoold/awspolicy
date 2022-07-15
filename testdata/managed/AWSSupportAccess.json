@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AWSSupportAccess",
+        "PolicyId": "ANPAJSNKQX2OW67GF4S7E",
+        "Arn": "arn:aws:iam::aws:policy/AWSSupportAccess",
+        "Path": "/",
+        "DefaultVersionId": "v1",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Allows users to access the AWS Support Center.",
+        "CreateDate": "2015-02-06T18:41:11+00:00",
+        "UpdateDate": "2015-02-06T18:41:11+00:00",
+        "Tags": []
+    }
+}

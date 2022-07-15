@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AWSAppSyncAdministrator",
+        "PolicyId": "ANPAJBYY36AJPXTTWIXCY",
+        "Arn": "arn:aws:iam::aws:policy/AWSAppSyncAdministrator",
+        "Path": "/",
+        "DefaultVersionId": "v2",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Provides administrative access to the AppSync service, though not enough to access via the console.",
+        "CreateDate": "2018-03-20T21:20:28+00:00",
+        "UpdateDate": "2019-11-04T19:23:49+00:00",
+        "Tags": []
+    }
+}

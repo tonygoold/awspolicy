@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AmazonCloudWatchRUMReadOnlyAccess",
+        "PolicyId": "ANPAZKAPJZG4MNS2SANVJ",
+        "Arn": "arn:aws:iam::aws:policy/AmazonCloudWatchRUMReadOnlyAccess",
+        "Path": "/",
+        "DefaultVersionId": "v1",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Grants read only permissions for the Amazon CloudWatch RUM service",
+        "CreateDate": "2021-11-29T15:43:47+00:00",
+        "UpdateDate": "2021-11-29T15:43:47+00:00",
+        "Tags": []
+    }
+}

@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AmazonOpenSearchServiceRolePolicy",
+        "PolicyId": "ANPAZKAPJZG4NHHCOTRP6",
+        "Arn": "arn:aws:iam::aws:policy/aws-service-role/AmazonOpenSearchServiceRolePolicy",
+        "Path": "/aws-service-role/",
+        "DefaultVersionId": "v3",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Allow Amazon OpenSearch Service to access other AWS services such as EC2 Networking APIs on your behalf.",
+        "CreateDate": "2021-08-26T09:27:09+00:00",
+        "UpdateDate": "2021-09-09T10:43:21+00:00",
+        "Tags": []
+    }
+}

@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AWSQuickSightTimestreamPolicy",
+        "PolicyId": "ANPAZKAPJZG4CFKVDHQJH",
+        "Arn": "arn:aws:iam::aws:policy/service-role/AWSQuickSightTimestreamPolicy",
+        "Path": "/service-role/",
+        "DefaultVersionId": "v1",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "AWS QuickSight access to AWS Timestream APIs. Customers can attach this policy to AWS QuickSight role to allow retrieval of data and metadata.",
+        "CreateDate": "2020-09-30T21:47:03+00:00",
+        "UpdateDate": "2020-09-30T21:47:03+00:00",
+        "Tags": []
+    }
+}

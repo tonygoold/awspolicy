@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AmazonEC2ContainerServiceAutoscaleRole",
+        "PolicyId": "ANPAIUAP3EGGGXXCPDQKK",
+        "Arn": "arn:aws:iam::aws:policy/service-role/AmazonEC2ContainerServiceAutoscaleRole",
+        "Path": "/service-role/",
+        "DefaultVersionId": "v2",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "  Policy to enable Task Autoscaling for Amazon EC2 Container Service",
+        "CreateDate": "2016-05-12T23:25:44+00:00",
+        "UpdateDate": "2018-02-05T19:15:15+00:00",
+        "Tags": []
+    }
+}

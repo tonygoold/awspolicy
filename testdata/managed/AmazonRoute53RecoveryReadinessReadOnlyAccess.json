@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AmazonRoute53RecoveryReadinessReadOnlyAccess",
+        "PolicyId": "ANPAZKAPJZG4M6P5L3S4F",
+        "Arn": "arn:aws:iam::aws:policy/AmazonRoute53RecoveryReadinessReadOnlyAccess",
+        "Path": "/",
+        "DefaultVersionId": "v2",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Provides read only access to Amazon Route 53 Recovery Readiness",
+        "CreateDate": "2021-08-18T18:11:33+00:00",
+        "UpdateDate": "2021-11-09T20:14:51+00:00",
+        "Tags": []
+    }
+}

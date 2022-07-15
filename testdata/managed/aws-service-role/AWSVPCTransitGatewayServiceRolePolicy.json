@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AWSVPCTransitGatewayServiceRolePolicy",
+        "PolicyId": "ANPAJS2PBJSYV2EZW3MIQ",
+        "Arn": "arn:aws:iam::aws:policy/aws-service-role/AWSVPCTransitGatewayServiceRolePolicy",
+        "Path": "/aws-service-role/",
+        "DefaultVersionId": "v2",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Allow VPC Transit Gateway to create and manage necessary resources for your Transit Gateway VPC Attachments.",
+        "CreateDate": "2018-11-26T16:21:17+00:00",
+        "UpdateDate": "2021-04-15T16:31:44+00:00",
+        "Tags": []
+    }
+}

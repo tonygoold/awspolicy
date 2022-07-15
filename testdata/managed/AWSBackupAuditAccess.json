@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AWSBackupAuditAccess",
+        "PolicyId": "ANPAZKAPJZG4C7QUTQXCL",
+        "Arn": "arn:aws:iam::aws:policy/AWSBackupAuditAccess",
+        "Path": "/",
+        "DefaultVersionId": "v1",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "This policy grants permissions for users to create controls and frameworks that define their expectations for AWS Backup resources and activities, and to audit AWS Backup resources and activities against their defined controls and frameworks. This policy grants permissions to AWS Config and similar services to describe user expectations perform the audits. This policy also grants permissions to deliver audit reports to S3 and similar services, and enables users to find and open their audit reports.",
+        "CreateDate": "2021-08-24T01:02:23+00:00",
+        "UpdateDate": "2021-08-24T01:02:23+00:00",
+        "Tags": []
+    }
+}

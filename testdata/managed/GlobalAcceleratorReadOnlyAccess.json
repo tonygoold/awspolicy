@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "GlobalAcceleratorReadOnlyAccess",
+        "PolicyId": "ANPAJYXHGCVENJKQZRNGU",
+        "Arn": "arn:aws:iam::aws:policy/GlobalAcceleratorReadOnlyAccess",
+        "Path": "/",
+        "DefaultVersionId": "v1",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Allow GlobalAccelerator Users Access to Read Only APIs",
+        "CreateDate": "2018-11-27T02:41:00+00:00",
+        "UpdateDate": "2018-11-27T02:41:00+00:00",
+        "Tags": []
+    }
+}

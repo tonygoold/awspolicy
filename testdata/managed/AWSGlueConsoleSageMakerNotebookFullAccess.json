@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AWSGlueConsoleSageMakerNotebookFullAccess",
+        "PolicyId": "ANPAJELFOHJC42QS3ZSYY",
+        "Arn": "arn:aws:iam::aws:policy/AWSGlueConsoleSageMakerNotebookFullAccess",
+        "Path": "/",
+        "DefaultVersionId": "v3",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Provides full access to AWS Glue via the AWS Management Console and access to sagemaker notebook instances.",
+        "CreateDate": "2018-10-05T17:52:35+00:00",
+        "UpdateDate": "2021-07-15T15:24:19+00:00",
+        "Tags": []
+    }
+}

@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AmazonEKSClusterPolicy",
+        "PolicyId": "ANPAIBTLDQMIC6UOIGFWA",
+        "Arn": "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy",
+        "Path": "/",
+        "DefaultVersionId": "v5",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "This policy provides Kubernetes the permissions it requires to manage resources on your behalf. Kubernetes requires Ec2:CreateTags permissions to place identifying information on EC2 resources including but not limited to Instances, Security Groups, and Elastic Network Interfaces. ",
+        "CreateDate": "2018-05-27T21:06:14+00:00",
+        "UpdateDate": "2021-06-15T20:57:05+00:00",
+        "Tags": []
+    }
+}

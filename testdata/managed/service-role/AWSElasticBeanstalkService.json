@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AWSElasticBeanstalkService",
+        "PolicyId": "ANPAJKQ5SN74ZQ4WASXBM",
+        "Arn": "arn:aws:iam::aws:policy/service-role/AWSElasticBeanstalkService",
+        "Path": "/service-role/",
+        "DefaultVersionId": "v16",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "This policy is on a deprecation path. See documentation for guidance: https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/iam-servicerole.html. AWS Elastic Beanstalk Service role policy which grants permissions to create & manage resources (i.e.: AutoScaling, EC2, S3, CloudFormation, ELB, etc.) on your behalf.",
+        "CreateDate": "2016-04-11T20:27:23+00:00",
+        "UpdateDate": "2019-06-14T23:18:46+00:00",
+        "Tags": []
+    }
+}

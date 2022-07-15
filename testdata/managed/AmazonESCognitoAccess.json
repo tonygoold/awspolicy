@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AmazonESCognitoAccess",
+        "PolicyId": "ANPAJL2FUMODIGNDPTZHO",
+        "Arn": "arn:aws:iam::aws:policy/AmazonESCognitoAccess",
+        "Path": "/",
+        "DefaultVersionId": "v2",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Provides limited access to the Amazon Cognito configuration service.",
+        "CreateDate": "2018-02-28T22:29:18+00:00",
+        "UpdateDate": "2021-12-20T14:04:44+00:00",
+        "Tags": []
+    }
+}

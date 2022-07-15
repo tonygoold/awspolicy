@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AWSGrafanaConsoleReadOnlyAccess",
+        "PolicyId": "ANPAZKAPJZG4OHSWBMKNF",
+        "Arn": "arn:aws:iam::aws:policy/AWSGrafanaConsoleReadOnlyAccess",
+        "Path": "/",
+        "DefaultVersionId": "v3",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Access to read only operations in Amazon Grafana.",
+        "CreateDate": "2021-02-23T00:10:40+00:00",
+        "UpdateDate": "2022-02-15T22:30:54+00:00",
+        "Tags": []
+    }
+}

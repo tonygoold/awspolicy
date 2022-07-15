@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AmazonCloudWatchRUMServiceRolePolicy",
+        "PolicyId": "ANPAZKAPJZG4GYUK4NU52",
+        "Arn": "arn:aws:iam::aws:policy/aws-service-role/AmazonCloudWatchRUMServiceRolePolicy",
+        "Path": "/aws-service-role/",
+        "DefaultVersionId": "v1",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Grants permission to Amazon CloudWatch RUM Service to publish monitoring data to other relevant AWS services",
+        "CreateDate": "2021-11-17T23:17:23+00:00",
+        "UpdateDate": "2021-11-17T23:17:23+00:00",
+        "Tags": []
+    }
+}

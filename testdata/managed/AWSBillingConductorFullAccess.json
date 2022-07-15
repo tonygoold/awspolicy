@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AWSBillingConductorFullAccess",
+        "PolicyId": "ANPAZKAPJZG4D2AMFVFND",
+        "Arn": "arn:aws:iam::aws:policy/AWSBillingConductorFullAccess",
+        "Path": "/",
+        "DefaultVersionId": "v1",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Use the AWSBillingConductorFullAccess managed policy to allow complete access to AWS Billing Conductor (ABC) console and APIs. This policy allows users to list, create and delete ABC resources.",
+        "CreateDate": "2022-04-13T18:02:29+00:00",
+        "UpdateDate": "2022-04-13T18:02:29+00:00",
+        "Tags": []
+    }
+}

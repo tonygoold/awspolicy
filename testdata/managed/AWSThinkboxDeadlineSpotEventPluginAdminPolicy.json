@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AWSThinkboxDeadlineSpotEventPluginAdminPolicy",
+        "PolicyId": "ANPAZKAPJZG4MNSGMZZZZ",
+        "Arn": "arn:aws:iam::aws:policy/AWSThinkboxDeadlineSpotEventPluginAdminPolicy",
+        "Path": "/",
+        "DefaultVersionId": "v1",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Grants permissions required for AWS Thinkbox's Deadline Spot Event Plugin.  This includes permission to request, modify, and cancel a spot fleet, as well as limited PassRole permission.",
+        "CreateDate": "2020-05-27T19:38:34+00:00",
+        "UpdateDate": "2020-05-27T19:38:34+00:00",
+        "Tags": []
+    }
+}

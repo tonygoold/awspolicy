@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AWSSecurityHubOrganizationsAccess",
+        "PolicyId": "ANPAZKAPJZG4KVIUTRVOZ",
+        "Arn": "arn:aws:iam::aws:policy/AWSSecurityHubOrganizationsAccess",
+        "Path": "/",
+        "DefaultVersionId": "v1",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Grants permission to enable and manage AWS Security Hub within an organization. Includes enabling the service across the organization, and determining the delegated administrator account for the service.",
+        "CreateDate": "2021-03-15T20:53:03+00:00",
+        "UpdateDate": "2021-03-15T20:53:03+00:00",
+        "Tags": []
+    }
+}

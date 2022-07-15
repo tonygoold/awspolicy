@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AWSMediaTailorServiceRolePolicy",
+        "PolicyId": "ANPAZKAPJZG4N46XCSH76",
+        "Arn": "arn:aws:iam::aws:policy/aws-service-role/AWSMediaTailorServiceRolePolicy",
+        "Path": "/aws-service-role/",
+        "DefaultVersionId": "v1",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Enable access to AWS Resources used or managed by MediaTailor",
+        "CreateDate": "2021-09-17T22:27:10+00:00",
+        "UpdateDate": "2021-09-17T22:27:10+00:00",
+        "Tags": []
+    }
+}

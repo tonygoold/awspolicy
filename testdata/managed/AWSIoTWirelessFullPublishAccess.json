@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AWSIoTWirelessFullPublishAccess",
+        "PolicyId": "ANPAZKAPJZG4JSRC2FZ22",
+        "Arn": "arn:aws:iam::aws:policy/AWSIoTWirelessFullPublishAccess",
+        "Path": "/",
+        "DefaultVersionId": "v1",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Provides IoT Wireless full access to publish to IoT Rules Engine on your behalf.",
+        "CreateDate": "2020-12-15T15:29:59+00:00",
+        "UpdateDate": "2020-12-15T15:29:59+00:00",
+        "Tags": []
+    }
+}

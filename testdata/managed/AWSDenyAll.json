@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AWSDenyAll",
+        "PolicyId": "ANPAZKAPJZG4P43IUQ5E5",
+        "Arn": "arn:aws:iam::aws:policy/AWSDenyAll",
+        "Path": "/",
+        "DefaultVersionId": "v1",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Deny all access.",
+        "CreateDate": "2019-05-01T22:36:14+00:00",
+        "UpdateDate": "2019-05-01T22:36:14+00:00",
+        "Tags": []
+    }
+}

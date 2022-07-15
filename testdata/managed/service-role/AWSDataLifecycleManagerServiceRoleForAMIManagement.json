@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AWSDataLifecycleManagerServiceRoleForAMIManagement",
+        "PolicyId": "ANPAZKAPJZG4MG6O7FWSP",
+        "Arn": "arn:aws:iam::aws:policy/service-role/AWSDataLifecycleManagerServiceRoleForAMIManagement",
+        "Path": "/service-role/",
+        "DefaultVersionId": "v2",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Provides appropriate permissions to AWS Data Lifecycle Manager to take actions on AWS resources for AMI Management ",
+        "CreateDate": "2020-10-21T19:39:41+00:00",
+        "UpdateDate": "2021-08-19T17:03:44+00:00",
+        "Tags": []
+    }
+}

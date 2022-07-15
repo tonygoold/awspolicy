@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AmazonHoneycodeWorkbookReadOnlyAccess",
+        "PolicyId": "ANPAZKAPJZG4GUHKYOSNH",
+        "Arn": "arn:aws:iam::aws:policy/AmazonHoneycodeWorkbookReadOnlyAccess",
+        "Path": "/",
+        "DefaultVersionId": "v2",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Provides read only access to Honeycode Workbook via the AWS Management Console and the SDK.",
+        "CreateDate": "2020-06-24T20:28:07+00:00",
+        "UpdateDate": "2020-12-01T17:32:49+00:00",
+        "Tags": []
+    }
+}

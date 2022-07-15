@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AlexaForBusinessDeviceSetup",
+        "PolicyId": "ANPAIUEFZFUTDTY4HGFU2",
+        "Arn": "arn:aws:iam::aws:policy/AlexaForBusinessDeviceSetup",
+        "Path": "/",
+        "DefaultVersionId": "v2",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Provide device setup access to AlexaForBusiness services",
+        "CreateDate": "2017-11-30T16:47:16+00:00",
+        "UpdateDate": "2019-05-20T21:05:39+00:00",
+        "Tags": []
+    }
+}

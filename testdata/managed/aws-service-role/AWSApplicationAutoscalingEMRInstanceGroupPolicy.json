@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AWSApplicationAutoscalingEMRInstanceGroupPolicy",
+        "PolicyId": "ANPAIQ6M5Z7LQY2YSG2JS",
+        "Arn": "arn:aws:iam::aws:policy/aws-service-role/AWSApplicationAutoscalingEMRInstanceGroupPolicy",
+        "Path": "/aws-service-role/",
+        "DefaultVersionId": "v1",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Policy granting permissions to Application Auto Scaling to access Elastic Map Reduce and CloudWatch.",
+        "CreateDate": "2017-10-26T00:57:39+00:00",
+        "UpdateDate": "2017-10-26T00:57:39+00:00",
+        "Tags": []
+    }
+}

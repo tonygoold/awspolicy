@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AmazonAppStreamReadOnlyAccess",
+        "PolicyId": "ANPAJXIFDGB4VBX23DX7K",
+        "Arn": "arn:aws:iam::aws:policy/AmazonAppStreamReadOnlyAccess",
+        "Path": "/",
+        "DefaultVersionId": "v2",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Provides read only access to Amazon AppStream via the AWS Management Console.",
+        "CreateDate": "2015-02-06T18:40:10+00:00",
+        "UpdateDate": "2016-12-07T21:00:06+00:00",
+        "Tags": []
+    }
+}

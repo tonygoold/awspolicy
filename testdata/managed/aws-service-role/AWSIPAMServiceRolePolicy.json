@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AWSIPAMServiceRolePolicy",
+        "PolicyId": "ANPAZKAPJZG4JEQHJ6QN6",
+        "Arn": "arn:aws:iam::aws:policy/aws-service-role/AWSIPAMServiceRolePolicy",
+        "Path": "/aws-service-role/",
+        "DefaultVersionId": "v1",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Allows VPC IP Address Manager to access VPC resources and integrate with AWS Organizations on your behalf.",
+        "CreateDate": "2021-11-30T19:08:11+00:00",
+        "UpdateDate": "2021-11-30T19:08:11+00:00",
+        "Tags": []
+    }
+}

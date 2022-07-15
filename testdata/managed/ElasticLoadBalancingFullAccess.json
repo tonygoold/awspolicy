@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "ElasticLoadBalancingFullAccess",
+        "PolicyId": "ANPAIDPMLA3IUIOQCISJ4",
+        "Arn": "arn:aws:iam::aws:policy/ElasticLoadBalancingFullAccess",
+        "Path": "/",
+        "DefaultVersionId": "v6",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Provides full access to Amazon ElasticLoadBalancing, and limited access to other services necessary to provide ElasticLoadBalancing features.",
+        "CreateDate": "2018-09-20T20:42:07+00:00",
+        "UpdateDate": "2021-08-26T18:32:13+00:00",
+        "Tags": []
+    }
+}

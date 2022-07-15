@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "TranslateFullAccess",
+        "PolicyId": "ANPAIAPOAEI2VFQYUK5RY",
+        "Arn": "arn:aws:iam::aws:policy/TranslateFullAccess",
+        "Path": "/",
+        "DefaultVersionId": "v2",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Provides full access to Amazon Translate.",
+        "CreateDate": "2018-11-27T23:36:20+00:00",
+        "UpdateDate": "2020-01-08T21:22:27+00:00",
+        "Tags": []
+    }
+}

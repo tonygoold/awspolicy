@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AWSCodeBuildDeveloperAccess",
+        "PolicyId": "ANPAIMKTMR34XSBQW45HS",
+        "Arn": "arn:aws:iam::aws:policy/AWSCodeBuildDeveloperAccess",
+        "Path": "/",
+        "DefaultVersionId": "v13",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Provides access to AWS CodeBuild via the AWS Management Console, but does not allow CodeBuild project administration. Also attach AmazonS3ReadOnlyAccess to provide access to download build artifacts.",
+        "CreateDate": "2016-12-01T19:02:32+00:00",
+        "UpdateDate": "2020-09-14T16:03:44+00:00",
+        "Tags": []
+    }
+}

@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AWSApplicationAutoscalingAppStreamFleetPolicy",
+        "PolicyId": "ANPAIRI724OWKP56ZG62M",
+        "Arn": "arn:aws:iam::aws:policy/aws-service-role/AWSApplicationAutoscalingAppStreamFleetPolicy",
+        "Path": "/aws-service-role/",
+        "DefaultVersionId": "v1",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Policy granting permissions to Application Auto Scaling to access AppStream and CloudWatch.",
+        "CreateDate": "2017-10-20T19:04:06+00:00",
+        "UpdateDate": "2017-10-20T19:04:06+00:00",
+        "Tags": []
+    }
+}

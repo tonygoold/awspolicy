@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AmazonSageMakerServiceCatalogProductsCodeBuildServiceRolePolicy",
+        "PolicyId": "ANPAZKAPJZG4ILK6GZTSE",
+        "Arn": "arn:aws:iam::aws:policy/AmazonSageMakerServiceCatalogProductsCodeBuildServiceRolePolicy",
+        "Path": "/",
+        "DefaultVersionId": "v1",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Service role policy used by the AWS CodeBuild within the AWS ServiceCatalog provisioned products from Amazon SageMaker portfolio of products. Grants permissions to a subset of related services including CodePipeline, CodeBuild and others.",
+        "CreateDate": "2022-03-25T04:27:46+00:00",
+        "UpdateDate": "2022-03-25T04:27:46+00:00",
+        "Tags": []
+    }
+}

@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AWSIoTDeviceDefenderUpdateDeviceCertMitigationAction",
+        "PolicyId": "ANPAZKAPJZG4KB4AHFGEB",
+        "Arn": "arn:aws:iam::aws:policy/service-role/AWSIoTDeviceDefenderUpdateDeviceCertMitigationAction",
+        "Path": "/service-role/",
+        "DefaultVersionId": "v1",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Provides write access to IoT certificates for execution of UPDATE_DEVICE_CERTIFICATE mitigation action",
+        "CreateDate": "2019-08-07T17:06:00+00:00",
+        "UpdateDate": "2019-08-07T17:06:00+00:00",
+        "Tags": []
+    }
+}

@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AWSCodeCommitReadOnly",
+        "PolicyId": "ANPAJACNSXR7Z2VLJW3D6",
+        "Arn": "arn:aws:iam::aws:policy/AWSCodeCommitReadOnly",
+        "Path": "/",
+        "DefaultVersionId": "v11",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Provides read only access to AWS CodeCommit via the AWS Management Console.",
+        "CreateDate": "2015-07-09T17:05:06+00:00",
+        "UpdateDate": "2021-08-18T18:18:01+00:00",
+        "Tags": []
+    }
+}

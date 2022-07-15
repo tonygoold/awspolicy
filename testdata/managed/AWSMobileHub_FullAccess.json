@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AWSMobileHub_FullAccess",
+        "PolicyId": "ANPAIJLU43R6AGRBK76DM",
+        "Arn": "arn:aws:iam::aws:policy/AWSMobileHub_FullAccess",
+        "Path": "/",
+        "DefaultVersionId": "v14",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "This policy may be attached to any User, Role, or Group, in order to grant users permission to create, delete, and modify projects (and their associated AWS resources) in AWS Mobile Hub. This also includes permissions to generate and download sample mobile app source code for each Mobile Hub project.",
+        "CreateDate": "2016-01-05T19:56:01+00:00",
+        "UpdateDate": "2019-12-19T23:15:52+00:00",
+        "Tags": []
+    }
+}

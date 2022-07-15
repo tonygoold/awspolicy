@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AWSConfigUserAccess",
+        "PolicyId": "ANPAIWTTSFJ7KKJE3MWGA",
+        "Arn": "arn:aws:iam::aws:policy/AWSConfigUserAccess",
+        "Path": "/",
+        "DefaultVersionId": "v4",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Provides access to use AWS Config, including searching by tags on resources, and reading all tags. This does not provide permission to configure AWS Config, which requires administrative privileges.",
+        "CreateDate": "2015-02-18T19:38:41+00:00",
+        "UpdateDate": "2019-03-18T20:27:47+00:00",
+        "Tags": []
+    }
+}

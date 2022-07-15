@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AmazonQLDBReadOnly",
+        "PolicyId": "ANPAZKAPJZG4IC74JOQJR",
+        "Arn": "arn:aws:iam::aws:policy/AmazonQLDBReadOnly",
+        "Path": "/",
+        "DefaultVersionId": "v3",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Provides read only access to Amazon QLDB.",
+        "CreateDate": "2019-09-05T18:19:24+00:00",
+        "UpdateDate": "2021-07-02T02:17:25+00:00",
+        "Tags": []
+    }
+}

@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AWSGlueSchemaRegistryReadonlyAccess",
+        "PolicyId": "ANPAZKAPJZG4B2SFYL4LZ",
+        "Arn": "arn:aws:iam::aws:policy/AWSGlueSchemaRegistryReadonlyAccess",
+        "Path": "/",
+        "DefaultVersionId": "v1",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Provides readonly access to the AWS Glue Schema Registry Service",
+        "CreateDate": "2020-11-20T00:20:06+00:00",
+        "UpdateDate": "2020-11-20T00:20:06+00:00",
+        "Tags": []
+    }
+}

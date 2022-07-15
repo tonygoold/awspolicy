@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AdministratorAccess-Amplify",
+        "PolicyId": "ANPAZKAPJZG4AML23RALR",
+        "Arn": "arn:aws:iam::aws:policy/AdministratorAccess-Amplify",
+        "Path": "/",
+        "DefaultVersionId": "v8",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Grants account administrative permissions while explicitly allowing direct access to resources needed by Amplify applications.",
+        "CreateDate": "2020-12-01T19:03:08+00:00",
+        "UpdateDate": "2022-04-13T22:42:11+00:00",
+        "Tags": []
+    }
+}

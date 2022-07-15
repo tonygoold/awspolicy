@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AWSBillingConductorReadOnlyAccess",
+        "PolicyId": "ANPAZKAPJZG4CR7OZHOL2",
+        "Arn": "arn:aws:iam::aws:policy/AWSBillingConductorReadOnlyAccess",
+        "Path": "/",
+        "DefaultVersionId": "v1",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Use the AWSBillingConductorReadOnlyAccess managed policy to allow read only access to AWS Billing Conductor (ABC) console and APIs. This policy grants permission to view and list all ABC resources. It does not include the ability to create or delete resources.",
+        "CreateDate": "2022-04-13T18:02:59+00:00",
+        "UpdateDate": "2022-04-13T18:02:59+00:00",
+        "Tags": []
+    }
+}

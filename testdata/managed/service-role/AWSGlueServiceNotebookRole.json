@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AWSGlueServiceNotebookRole",
+        "PolicyId": "ANPAIMRC6VZUHJYCTKWFI",
+        "Arn": "arn:aws:iam::aws:policy/service-role/AWSGlueServiceNotebookRole",
+        "Path": "/service-role/",
+        "DefaultVersionId": "v3",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Policy for AWS Glue service role which allows customer to manage notebook server",
+        "CreateDate": "2017-08-14T13:37:42+00:00",
+        "UpdateDate": "2019-10-07T18:05:54+00:00",
+        "Tags": []
+    }
+}

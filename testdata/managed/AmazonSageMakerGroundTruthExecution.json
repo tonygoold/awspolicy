@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AmazonSageMakerGroundTruthExecution",
+        "PolicyId": "ANPAZKAPJZG4FYNFSJXO3",
+        "Arn": "arn:aws:iam::aws:policy/AmazonSageMakerGroundTruthExecution",
+        "Path": "/",
+        "DefaultVersionId": "v3",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Provides access to AWS services that are required to run SageMaker GroundTruth Labeling job",
+        "CreateDate": "2020-07-09T19:30:20+00:00",
+        "UpdateDate": "2022-04-29T20:49:54+00:00",
+        "Tags": []
+    }
+}

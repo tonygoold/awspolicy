@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AWSDataExchangeFullAccess",
+        "PolicyId": "ANPAZKAPJZG4MPDTDB3FH",
+        "Arn": "arn:aws:iam::aws:policy/AWSDataExchangeFullAccess",
+        "Path": "/",
+        "DefaultVersionId": "v6",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Grants full access to AWS Data Exchange and AWS Marketplace actions using the AWS Management Console and SDK. It also provides select access to related services needed to take full advantage of AWS Data Exchange.",
+        "CreateDate": "2019-11-13T19:27:59+00:00",
+        "UpdateDate": "2021-12-02T16:14:27+00:00",
+        "Tags": []
+    }
+}

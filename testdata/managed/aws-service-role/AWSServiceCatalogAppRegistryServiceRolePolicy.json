@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AWSServiceCatalogAppRegistryServiceRolePolicy",
+        "PolicyId": "ANPAZKAPJZG4H3V4QGJFH",
+        "Arn": "arn:aws:iam::aws:policy/aws-service-role/AWSServiceCatalogAppRegistryServiceRolePolicy",
+        "Path": "/aws-service-role/",
+        "DefaultVersionId": "v3",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Allows Service Catalog AppRegistry to manage Resource Groups on your behalf",
+        "CreateDate": "2021-05-18T22:18:55+00:00",
+        "UpdateDate": "2022-03-04T21:06:44+00:00",
+        "Tags": []
+    }
+}

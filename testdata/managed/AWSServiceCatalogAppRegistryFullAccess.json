@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AWSServiceCatalogAppRegistryFullAccess",
+        "PolicyId": "ANPAZKAPJZG4N2G3EPAYN",
+        "Arn": "arn:aws:iam::aws:policy/AWSServiceCatalogAppRegistryFullAccess",
+        "Path": "/",
+        "DefaultVersionId": "v3",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Provides full access to Service Catalog App Registry capabilities",
+        "CreateDate": "2020-11-12T22:25:58+00:00",
+        "UpdateDate": "2022-06-15T22:01:01+00:00",
+        "Tags": []
+    }
+}

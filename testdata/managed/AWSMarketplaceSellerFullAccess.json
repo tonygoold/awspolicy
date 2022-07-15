@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AWSMarketplaceSellerFullAccess",
+        "PolicyId": "ANPAZKAPJZG4JF7OFUANW",
+        "Arn": "arn:aws:iam::aws:policy/AWSMarketplaceSellerFullAccess",
+        "Path": "/",
+        "DefaultVersionId": "v5",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Provides full access to all seller operations on the AWS Marketplace and other AWS services such as AMI management.",
+        "CreateDate": "2019-07-02T20:40:09+00:00",
+        "UpdateDate": "2021-11-30T19:26:49+00:00",
+        "Tags": []
+    }
+}

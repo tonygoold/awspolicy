@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AmazonFSxFullAccess",
+        "PolicyId": "ANPAIEUV6Z2X4VNZRVB5I",
+        "Arn": "arn:aws:iam::aws:policy/AmazonFSxFullAccess",
+        "Path": "/",
+        "DefaultVersionId": "v3",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Provides full access to Amazon FSx and access to related AWS services.",
+        "CreateDate": "2018-11-28T16:34:43+00:00",
+        "UpdateDate": "2021-08-26T13:17:29+00:00",
+        "Tags": []
+    }
+}

@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AmazonECSServiceRolePolicy",
+        "PolicyId": "ANPAIVUWKCAI7URU4WUEI",
+        "Arn": "arn:aws:iam::aws:policy/aws-service-role/AmazonECSServiceRolePolicy",
+        "Path": "/aws-service-role/",
+        "DefaultVersionId": "v8",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Policy to enable Amazon ECS to manage your cluster.",
+        "CreateDate": "2017-10-14T01:18:58+00:00",
+        "UpdateDate": "2021-01-13T20:04:13+00:00",
+        "Tags": []
+    }
+}

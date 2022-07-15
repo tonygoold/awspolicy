@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AWSMarketplaceLicenseManagementServiceRolePolicy",
+        "PolicyId": "ANPAZKAPJZG4DTCV6FSO7",
+        "Arn": "arn:aws:iam::aws:policy/aws-service-role/AWSMarketplaceLicenseManagementServiceRolePolicy",
+        "Path": "/aws-service-role/",
+        "DefaultVersionId": "v1",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Enables access to AWS Services and Resources used or managed by AWS Marketplace for license management.",
+        "CreateDate": "2020-12-03T08:33:40+00:00",
+        "UpdateDate": "2020-12-03T08:33:40+00:00",
+        "Tags": []
+    }
+}

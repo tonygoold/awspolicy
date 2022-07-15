@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AmazonMQFullAccess",
+        "PolicyId": "ANPAJLKBROJNQYDDXOOGG",
+        "Arn": "arn:aws:iam::aws:policy/AmazonMQFullAccess",
+        "Path": "/",
+        "DefaultVersionId": "v5",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Provides full access to AmazonMQ via the AWS Management Console.",
+        "CreateDate": "2017-11-28T15:28:29+00:00",
+        "UpdateDate": "2020-11-04T16:34:09+00:00",
+        "Tags": []
+    }
+}

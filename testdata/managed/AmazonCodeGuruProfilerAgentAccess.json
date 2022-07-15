@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AmazonCodeGuruProfilerAgentAccess",
+        "PolicyId": "ANPAZKAPJZG4NJEGTVMFC",
+        "Arn": "arn:aws:iam::aws:policy/AmazonCodeGuruProfilerAgentAccess",
+        "Path": "/",
+        "DefaultVersionId": "v3",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Provides access required by Amazon CodeGuru Profiler agent.",
+        "CreateDate": "2021-02-05T22:11:56+00:00",
+        "UpdateDate": "2022-05-05T18:11:03+00:00",
+        "Tags": []
+    }
+}

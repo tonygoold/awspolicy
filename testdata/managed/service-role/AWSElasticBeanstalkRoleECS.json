@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AWSElasticBeanstalkRoleECS",
+        "PolicyId": "ANPAZKAPJZG4ORP4E3ZEZ",
+        "Arn": "arn:aws:iam::aws:policy/service-role/AWSElasticBeanstalkRoleECS",
+        "Path": "/service-role/",
+        "DefaultVersionId": "v1",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "(Elastic Beanstalk operations role) Allows a multicontainer Docker environment to manage Amazon ECS clusters.",
+        "CreateDate": "2020-06-05T21:47:27+00:00",
+        "UpdateDate": "2020-06-05T21:47:27+00:00",
+        "Tags": []
+    }
+}

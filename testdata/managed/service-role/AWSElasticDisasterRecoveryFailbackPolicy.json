@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AWSElasticDisasterRecoveryFailbackPolicy",
+        "PolicyId": "ANPAZKAPJZG4FSEIUN7KZ",
+        "Arn": "arn:aws:iam::aws:policy/service-role/AWSElasticDisasterRecoveryFailbackPolicy",
+        "Path": "/service-role/",
+        "DefaultVersionId": "v1",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "This policy allows using the Elastic Disaster Recovery Failback Client, which is used to failback Recovery Instances back to your original source infrastructure. We do not recommend that you attach this policy to your IAM users or roles.",
+        "CreateDate": "2021-11-17T10:41:40+00:00",
+        "UpdateDate": "2021-11-17T10:41:40+00:00",
+        "Tags": []
+    }
+}

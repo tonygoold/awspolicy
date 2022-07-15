@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AWSElasticBeanstalkManagedUpdatesCustomerRolePolicy",
+        "PolicyId": "ANPAZKAPJZG4AKB7QD2CZ",
+        "Arn": "arn:aws:iam::aws:policy/AWSElasticBeanstalkManagedUpdatesCustomerRolePolicy",
+        "Path": "/",
+        "DefaultVersionId": "v3",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "This policy is for the AWS Elastic Beanstalk service role used to perform managed updates of Elastic Beanstalk environments. This policy should not be attached to other users or roles. The policy grants broad permissions to create and manage resources across a number of AWS services including AutoScaling, EC2, ECS, Elastic Load Balancing and CloudFormation.  This policy also allows passing of any IAM role usable with those services.",
+        "CreateDate": "2021-03-03T22:18:00+00:00",
+        "UpdateDate": "2021-06-16T22:40:31+00:00",
+        "Tags": []
+    }
+}

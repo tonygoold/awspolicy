@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "GreengrassOTAUpdateArtifactAccess",
+        "PolicyId": "ANPAIFGE66SKIK3GW5UC2",
+        "Arn": "arn:aws:iam::aws:policy/service-role/GreengrassOTAUpdateArtifactAccess",
+        "Path": "/service-role/",
+        "DefaultVersionId": "v2",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Provides read access to the Greengrass OTA Update artifacts in all Greengrass regions",
+        "CreateDate": "2017-11-29T18:11:47+00:00",
+        "UpdateDate": "2018-12-18T00:59:43+00:00",
+        "Tags": []
+    }
+}

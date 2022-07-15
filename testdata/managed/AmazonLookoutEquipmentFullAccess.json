@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AmazonLookoutEquipmentFullAccess",
+        "PolicyId": "ANPAZKAPJZG4KPPCPGNJA",
+        "Arn": "arn:aws:iam::aws:policy/AmazonLookoutEquipmentFullAccess",
+        "Path": "/",
+        "DefaultVersionId": "v3",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Provides full access to Amazon Lookout for Equipment operations",
+        "CreateDate": "2021-04-08T15:52:08+00:00",
+        "UpdateDate": "2021-11-24T21:00:13+00:00",
+        "Tags": []
+    }
+}

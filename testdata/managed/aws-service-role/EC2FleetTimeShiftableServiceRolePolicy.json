@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "EC2FleetTimeShiftableServiceRolePolicy",
+        "PolicyId": "ANPAZKAPJZG4IU3TFNWBH",
+        "Arn": "arn:aws:iam::aws:policy/aws-service-role/EC2FleetTimeShiftableServiceRolePolicy",
+        "Path": "/aws-service-role/",
+        "DefaultVersionId": "v1",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Policy granting permissions to EC2 Fleet to launch instances in the future.",
+        "CreateDate": "2019-12-23T19:47:15+00:00",
+        "UpdateDate": "2019-12-23T19:47:15+00:00",
+        "Tags": []
+    }
+}

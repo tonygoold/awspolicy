@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AWSServiceRoleForIoTSiteWise",
+        "PolicyId": "ANPAJGQU4DZIQP6HLYQPE",
+        "Arn": "arn:aws:iam::aws:policy/aws-service-role/AWSServiceRoleForIoTSiteWise",
+        "Path": "/aws-service-role/",
+        "DefaultVersionId": "v7",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Allows AWS IoT SiteWise to provision and manage gateways as well as query data. The policy includes required AWS Greengrass permissions for deploying to groups, AWS Lambda permissions for creating and updating service-prefixed functions, and AWS IoT Analytics permissions for querying data from datastores.",
+        "CreateDate": "2018-11-14T19:19:17+00:00",
+        "UpdateDate": "2020-04-25T02:15:01+00:00",
+        "Tags": []
+    }
+}

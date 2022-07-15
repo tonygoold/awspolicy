@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AmazonGrafanaAthenaAccess",
+        "PolicyId": "ANPAZKAPJZG4GXSPM7QQ7",
+        "Arn": "arn:aws:iam::aws:policy/service-role/AmazonGrafanaAthenaAccess",
+        "Path": "/service-role/",
+        "DefaultVersionId": "v1",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "This policy grants access to Amazon Athena and the dependencies needed to enable querying and writing results to s3 from the Amazon Athena plugin in Amazon Grafana.",
+        "CreateDate": "2021-11-22T17:11:11+00:00",
+        "UpdateDate": "2021-11-22T17:11:11+00:00",
+        "Tags": []
+    }
+}

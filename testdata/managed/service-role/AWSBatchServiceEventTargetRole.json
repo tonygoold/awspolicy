@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AWSBatchServiceEventTargetRole",
+        "PolicyId": "ANPAICVHHZ6XHNMA6VE3Q",
+        "Arn": "arn:aws:iam::aws:policy/service-role/AWSBatchServiceEventTargetRole",
+        "Path": "/service-role/",
+        "DefaultVersionId": "v1",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Policy to enable CloudWatch Event Target for AWS Batch Job Submission",
+        "CreateDate": "2018-02-28T22:31:13+00:00",
+        "UpdateDate": "2018-02-28T22:31:13+00:00",
+        "Tags": []
+    }
+}

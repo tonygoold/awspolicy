@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AmazonTimestreamReadOnlyAccess",
+        "PolicyId": "ANPAZKAPJZG4I7VUQXAEJ",
+        "Arn": "arn:aws:iam::aws:policy/AmazonTimestreamReadOnlyAccess",
+        "Path": "/",
+        "DefaultVersionId": "v2",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Provides read only access to Amazon Timestream. Policy also provides permission to cancel any running query. If using Customer managed CMK, please refer to documentation for additional permissions needed.",
+        "CreateDate": "2020-09-30T21:47:08+00:00",
+        "UpdateDate": "2021-11-26T23:39:30+00:00",
+        "Tags": []
+    }
+}

@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AmazonRedshiftDataFullAccess",
+        "PolicyId": "ANPAZKAPJZG4PX5LA5SG6",
+        "Arn": "arn:aws:iam::aws:policy/AmazonRedshiftDataFullAccess",
+        "Path": "/",
+        "DefaultVersionId": "v2",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "This policy provides full access to Amazon Redshift Data APIs. This policy also grants scoped access to other required services.",
+        "CreateDate": "2020-09-09T19:23:55+00:00",
+        "UpdateDate": "2021-07-27T20:05:33+00:00",
+        "Tags": []
+    }
+}

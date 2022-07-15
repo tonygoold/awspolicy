@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AWSServiceCatalogEndUserReadOnlyAccess",
+        "PolicyId": "ANPAZKAPJZG4IWYKXJJED",
+        "Arn": "arn:aws:iam::aws:policy/AWSServiceCatalogEndUserReadOnlyAccess",
+        "Path": "/",
+        "DefaultVersionId": "v1",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Provides read-only access to Service Catalog end-user capabilities ",
+        "CreateDate": "2019-10-25T18:49:34+00:00",
+        "UpdateDate": "2019-10-25T18:49:34+00:00",
+        "Tags": []
+    }
+}

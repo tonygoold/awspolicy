@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AWSIoTFleetHubFederationAccess",
+        "PolicyId": "ANPAZKAPJZG4H4EGQA254",
+        "Arn": "arn:aws:iam::aws:policy/service-role/AWSIoTFleetHubFederationAccess",
+        "Path": "/service-role/",
+        "DefaultVersionId": "v5",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Federation access for IoT Fleet Hub applications",
+        "CreateDate": "2020-12-15T08:08:05+00:00",
+        "UpdateDate": "2022-04-04T18:03:01+00:00",
+        "Tags": []
+    }
+}

@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AmazonLookoutVisionReadOnlyAccess",
+        "PolicyId": "ANPAZKAPJZG4OJEEMR6Q3",
+        "Arn": "arn:aws:iam::aws:policy/AmazonLookoutVisionReadOnlyAccess",
+        "Path": "/",
+        "DefaultVersionId": "v2",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Provides read only access to Amazon Lookout for Vision and scoped access to required dependencies.",
+        "CreateDate": "2021-05-11T19:11:07+00:00",
+        "UpdateDate": "2021-12-09T03:01:51+00:00",
+        "Tags": []
+    }
+}

@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AWSDataExchangeSubscriberFullAccess",
+        "PolicyId": "ANPAZKAPJZG4MAWRW4GF7",
+        "Arn": "arn:aws:iam::aws:policy/AWSDataExchangeSubscriberFullAccess",
+        "Path": "/",
+        "DefaultVersionId": "v6",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Grants data subscriber access to AWS Data Exchange and AWS Marketplace actions using the AWS Management Console and SDK. It also provides select access to related services needed to take full advantage of AWS Data Exchange.",
+        "CreateDate": "2019-11-13T19:27:52+00:00",
+        "UpdateDate": "2021-11-29T23:00:06+00:00",
+        "Tags": []
+    }
+}

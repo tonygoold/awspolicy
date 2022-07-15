@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AWSMigrationHubStrategyCollector",
+        "PolicyId": "ANPAZKAPJZG4LHUI3MFF6",
+        "Arn": "arn:aws:iam::aws:policy/AWSMigrationHubStrategyCollector",
+        "Path": "/",
+        "DefaultVersionId": "v1",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Grants permissions to allow communication with the AWS Migration Hub Strategy Recommendations service, read/write access to S3 buckets related to the service, Amazon API Gateway access to upload logs and metrics to AWS, AWS Secrets Manager access to fetch credentials, and any related services.",
+        "CreateDate": "2021-10-19T20:15:15+00:00",
+        "UpdateDate": "2021-10-19T20:15:15+00:00",
+        "Tags": []
+    }
+}

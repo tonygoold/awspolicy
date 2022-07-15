@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AWSOrganizationsReadOnlyAccess",
+        "PolicyId": "ANPAJY5RQATUV77PEPVOM",
+        "Arn": "arn:aws:iam::aws:policy/AWSOrganizationsReadOnlyAccess",
+        "Path": "/",
+        "DefaultVersionId": "v2",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Provides read-only access to AWS Organizations.",
+        "CreateDate": "2018-11-06T20:32:38+00:00",
+        "UpdateDate": "2022-02-07T18:17:19+00:00",
+        "Tags": []
+    }
+}

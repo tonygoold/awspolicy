@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AWSElasticBeanstalkWebTier",
+        "PolicyId": "ANPAIUF4325SJYOREKW3A",
+        "Arn": "arn:aws:iam::aws:policy/AWSElasticBeanstalkWebTier",
+        "Path": "/",
+        "DefaultVersionId": "v7",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Provide the instances in your web server environment access to upload log files to Amazon S3. ",
+        "CreateDate": "2016-02-08T23:08:54+00:00",
+        "UpdateDate": "2020-09-09T19:38:36+00:00",
+        "Tags": []
+    }
+}

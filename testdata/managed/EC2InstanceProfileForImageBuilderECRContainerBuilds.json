@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "EC2InstanceProfileForImageBuilderECRContainerBuilds",
+        "PolicyId": "ANPAZKAPJZG4C32QNC6KD",
+        "Arn": "arn:aws:iam::aws:policy/EC2InstanceProfileForImageBuilderECRContainerBuilds",
+        "Path": "/",
+        "DefaultVersionId": "v1",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "EC2 Instance profile for building container images with EC2 Image Builder. This policy grants the user broad permissions to upload ECR images.",
+        "CreateDate": "2020-12-11T19:48:15+00:00",
+        "UpdateDate": "2020-12-11T19:48:15+00:00",
+        "Tags": []
+    }
+}

@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AmazonKendraReadOnlyAccess",
+        "PolicyId": "ANPAZKAPJZG4POKTT2LDN",
+        "Arn": "arn:aws:iam::aws:policy/AmazonKendraReadOnlyAccess",
+        "Path": "/",
+        "DefaultVersionId": "v2",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Provides read only access to Amazon Kendra via the AWS Management Console.",
+        "CreateDate": "2019-12-03T16:13:45+00:00",
+        "UpdateDate": "2021-05-27T17:01:20+00:00",
+        "Tags": []
+    }
+}

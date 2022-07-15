@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AmazonElasticMapReduceFullAccess",
+        "PolicyId": "ANPAIZP5JFP3AMSGINBB2",
+        "Arn": "arn:aws:iam::aws:policy/AmazonElasticMapReduceFullAccess",
+        "Path": "/",
+        "DefaultVersionId": "v7",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "This policy is on a deprecation path. See documentation for guidance: https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-managed-iam-policies.html. Provides full access to Amazon Elastic MapReduce and underlying services that it requires such as EC2 and S3",
+        "CreateDate": "2015-02-06T18:40:22+00:00",
+        "UpdateDate": "2019-10-11T15:19:30+00:00",
+        "Tags": []
+    }
+}

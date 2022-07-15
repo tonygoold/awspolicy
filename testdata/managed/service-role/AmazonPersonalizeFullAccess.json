@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AmazonPersonalizeFullAccess",
+        "PolicyId": "ANPAJ45XBPPZNI3MMVAUK",
+        "Arn": "arn:aws:iam::aws:policy/service-role/AmazonPersonalizeFullAccess",
+        "Path": "/service-role/",
+        "DefaultVersionId": "v2",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Provides full access to Amazon Personalize via the AWS Management Console and SDK. Also provides select access to related services (e.g., S3, CloudWatch).",
+        "CreateDate": "2018-12-04T22:24:33+00:00",
+        "UpdateDate": "2019-05-30T23:46:59+00:00",
+        "Tags": []
+    }
+}

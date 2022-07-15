@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AmazonRekognitionFullAccess",
+        "PolicyId": "ANPAIWDAOK6AIFDVX6TT6",
+        "Arn": "arn:aws:iam::aws:policy/AmazonRekognitionFullAccess",
+        "Path": "/",
+        "DefaultVersionId": "v1",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Access to all Amazon Rekognition APIs",
+        "CreateDate": "2016-11-30T14:40:44+00:00",
+        "UpdateDate": "2016-11-30T14:40:44+00:00",
+        "Tags": []
+    }
+}

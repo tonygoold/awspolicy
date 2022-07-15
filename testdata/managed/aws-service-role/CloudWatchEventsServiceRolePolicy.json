@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "CloudWatchEventsServiceRolePolicy",
+        "PolicyId": "ANPAJNVASSNSIDZIP4X7I",
+        "Arn": "arn:aws:iam::aws:policy/aws-service-role/CloudWatchEventsServiceRolePolicy",
+        "Path": "/aws-service-role/",
+        "DefaultVersionId": "v1",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Allow AWS CloudWatch to execute actions on your behalf configured through alarms and events.",
+        "CreateDate": "2017-11-17T00:42:04+00:00",
+        "UpdateDate": "2017-11-17T00:42:04+00:00",
+        "Tags": []
+    }
+}

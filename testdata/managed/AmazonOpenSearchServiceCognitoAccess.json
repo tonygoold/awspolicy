@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AmazonOpenSearchServiceCognitoAccess",
+        "PolicyId": "ANPAZKAPJZG4I2NKQTDYL",
+        "Arn": "arn:aws:iam::aws:policy/AmazonOpenSearchServiceCognitoAccess",
+        "Path": "/",
+        "DefaultVersionId": "v2",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Provides access to the Amazon Cognito configuration service.",
+        "CreateDate": "2021-09-02T06:31:49+00:00",
+        "UpdateDate": "2021-12-20T14:04:18+00:00",
+        "Tags": []
+    }
+}

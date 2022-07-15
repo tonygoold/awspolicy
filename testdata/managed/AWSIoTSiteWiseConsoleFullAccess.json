@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AWSIoTSiteWiseConsoleFullAccess",
+        "PolicyId": "ANPAZKAPJZG4K7KP5VA7F",
+        "Arn": "arn:aws:iam::aws:policy/AWSIoTSiteWiseConsoleFullAccess",
+        "Path": "/",
+        "DefaultVersionId": "v1",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Provides full access to manage AWS IoT SiteWise using the AWS Management Console. Note this policy also grants access to create and list data stores used with AWS IoT SiteWise (e.g. AWS IoT Analytics), access to list and view AWS IoT Greengrass resources, list and modify AWS Secrets Manager secrets, retrieve AWS IoT thing shadows, list resources with specific tags, and create and use a service-linked role for AWS IoT SiteWise.",
+        "CreateDate": "2019-05-31T21:37:49+00:00",
+        "UpdateDate": "2019-05-31T21:37:49+00:00",
+        "Tags": []
+    }
+}

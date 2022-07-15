@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AmazonGlacierFullAccess",
+        "PolicyId": "ANPAJQSTZJWB2AXXAKHVQ",
+        "Arn": "arn:aws:iam::aws:policy/AmazonGlacierFullAccess",
+        "Path": "/",
+        "DefaultVersionId": "v1",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Provides full access to Amazon Glacier via the AWS Management Console.",
+        "CreateDate": "2015-02-06T18:40:28+00:00",
+        "UpdateDate": "2015-02-06T18:40:28+00:00",
+        "Tags": []
+    }
+}

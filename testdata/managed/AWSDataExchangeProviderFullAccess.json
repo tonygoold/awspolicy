@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AWSDataExchangeProviderFullAccess",
+        "PolicyId": "ANPAZKAPJZG4MQSUGZZPZ",
+        "Arn": "arn:aws:iam::aws:policy/AWSDataExchangeProviderFullAccess",
+        "Path": "/",
+        "DefaultVersionId": "v11",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Grants data provider access to AWS Data Exchange and AWS Marketplace actions using the AWS Management Console and SDK. It also provides select access to related services needed to take full advantage of AWS Data Exchange. ",
+        "CreateDate": "2019-11-13T19:27:55+00:00",
+        "UpdateDate": "2022-03-15T16:16:20+00:00",
+        "Tags": []
+    }
+}

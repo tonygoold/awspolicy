@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AWSOpsWorksCMInstanceProfileRole",
+        "PolicyId": "ANPAICSU3OSHCURP2WIZW",
+        "Arn": "arn:aws:iam::aws:policy/AWSOpsWorksCMInstanceProfileRole",
+        "Path": "/",
+        "DefaultVersionId": "v5",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Provides S3 access for instances launched by OpsWorks CM.",
+        "CreateDate": "2016-11-24T09:48:22+00:00",
+        "UpdateDate": "2021-04-23T17:34:03+00:00",
+        "Tags": []
+    }
+}

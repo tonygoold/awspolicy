@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AWSGlueDataBrewServiceRole",
+        "PolicyId": "ANPAZKAPJZG4HSXDEANHC",
+        "Arn": "arn:aws:iam::aws:policy/service-role/AWSGlueDataBrewServiceRole",
+        "Path": "/service-role/",
+        "DefaultVersionId": "v3",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "This policy grants permission to glue to perform action on user's glue data catalog, this policy also provides permission to ec2 actions to allow glue to create ENI to connect to resources in the VPC, also allow glue to access registered data in lakeformation and permission to access user's cloudwatch ",
+        "CreateDate": "2020-12-04T21:26:50+00:00",
+        "UpdateDate": "2022-05-09T23:06:36+00:00",
+        "Tags": []
+    }
+}

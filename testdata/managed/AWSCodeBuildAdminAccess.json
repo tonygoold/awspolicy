@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AWSCodeBuildAdminAccess",
+        "PolicyId": "ANPAJQJGIOIE3CD2TQXDS",
+        "Arn": "arn:aws:iam::aws:policy/AWSCodeBuildAdminAccess",
+        "Path": "/",
+        "DefaultVersionId": "v12",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Provides full access to AWS CodeBuild via the AWS Management Console. Also attach AmazonS3ReadOnlyAccess to provide access to download build artifacts, and attach IAMFullAccess to create and manage the service role for CodeBuild.",
+        "CreateDate": "2016-12-01T19:04:44+00:00",
+        "UpdateDate": "2020-09-14T16:03:39+00:00",
+        "Tags": []
+    }
+}

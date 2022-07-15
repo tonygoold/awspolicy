@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AWSMigrationHubStrategyServiceRolePolicy",
+        "PolicyId": "ANPAZKAPJZG4EZOM3LHDI",
+        "Arn": "arn:aws:iam::aws:policy/aws-service-role/AWSMigrationHubStrategyServiceRolePolicy",
+        "Path": "/aws-service-role/",
+        "DefaultVersionId": "v1",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Enable access to AWS Resources used or managed by AWS Migration Hub Strategy Recommendations service.",
+        "CreateDate": "2021-10-19T20:02:37+00:00",
+        "UpdateDate": "2021-10-19T20:02:37+00:00",
+        "Tags": []
+    }
+}

@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "ServerMigrationConnector",
+        "PolicyId": "ANPAJKZRWXIPK5HSG3QDQ",
+        "Arn": "arn:aws:iam::aws:policy/ServerMigrationConnector",
+        "Path": "/",
+        "DefaultVersionId": "v1",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Permissions to allow the AWS Server Migration Connector to migrate VMs to EC2. Allows communication with the AWS Server Migration Service, read/write access to S3 buckets starting with 'sms-b-' and 'import-to-ec2-' as well as the buckets used for AWS Server Migration Connector upgrade, AWS Server Migration Connector registration with AWS, and metrics upload to AWS.",
+        "CreateDate": "2016-10-24T21:45:56+00:00",
+        "UpdateDate": "2016-10-24T21:45:56+00:00",
+        "Tags": []
+    }
+}

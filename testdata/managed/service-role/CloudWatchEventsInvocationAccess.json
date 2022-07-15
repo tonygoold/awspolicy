@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "CloudWatchEventsInvocationAccess",
+        "PolicyId": "ANPAJJXD6JKJLK2WDLZNO",
+        "Arn": "arn:aws:iam::aws:policy/service-role/CloudWatchEventsInvocationAccess",
+        "Path": "/service-role/",
+        "DefaultVersionId": "v1",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Allows Amazon CloudWatch Events to relay events to the streams in AWS Kinesis Streams in your account.",
+        "CreateDate": "2016-01-14T18:36:33+00:00",
+        "UpdateDate": "2016-01-14T18:36:33+00:00",
+        "Tags": []
+    }
+}

@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AmazonManagedBlockchainServiceRolePolicy",
+        "PolicyId": "ANPAZKAPJZG4MMO7477QN",
+        "Arn": "arn:aws:iam::aws:policy/aws-service-role/AmazonManagedBlockchainServiceRolePolicy",
+        "Path": "/aws-service-role/",
+        "DefaultVersionId": "v1",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Enables access to AWS Services and Resources used or managed by Amazon Managed Blockchain",
+        "CreateDate": "2020-01-17T19:51:28+00:00",
+        "UpdateDate": "2020-01-17T19:51:28+00:00",
+        "Tags": []
+    }
+}

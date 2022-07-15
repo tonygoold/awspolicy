@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "ElementalActivationsGenerateLicenses",
+        "PolicyId": "ANPAZKAPJZG4LVMPXPYYJ",
+        "Arn": "arn:aws:iam::aws:policy/ElementalActivationsGenerateLicenses",
+        "Path": "/",
+        "DefaultVersionId": "v1",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Access to view purchased assets and generate software licenses for pending activations",
+        "CreateDate": "2020-08-28T18:28:58+00:00",
+        "UpdateDate": "2020-08-28T18:28:58+00:00",
+        "Tags": []
+    }
+}

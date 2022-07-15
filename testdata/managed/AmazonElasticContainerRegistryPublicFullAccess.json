@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AmazonElasticContainerRegistryPublicFullAccess",
+        "PolicyId": "ANPAZKAPJZG4F2SFMTI3G",
+        "Arn": "arn:aws:iam::aws:policy/AmazonElasticContainerRegistryPublicFullAccess",
+        "Path": "/",
+        "DefaultVersionId": "v1",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Provides administrative access to Amazon ECR Public resources",
+        "CreateDate": "2020-12-01T17:25:52+00:00",
+        "UpdateDate": "2020-12-01T17:25:52+00:00",
+        "Tags": []
+    }
+}

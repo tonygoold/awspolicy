@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AmazonCognitoPowerUser",
+        "PolicyId": "ANPAJKW5H2HNCPGCYGR6Y",
+        "Arn": "arn:aws:iam::aws:policy/AmazonCognitoPowerUser",
+        "Path": "/",
+        "DefaultVersionId": "v6",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Provides administrative access to existing Amazon Cognito resources. You will need AWS account admin privileges to create new Cognito resources.",
+        "CreateDate": "2015-03-24T17:14:56+00:00",
+        "UpdateDate": "2021-06-01T17:33:32+00:00",
+        "Tags": []
+    }
+}

@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "MemoryDBServiceRolePolicy",
+        "PolicyId": "ANPAZKAPJZG4KWEJCOJNF",
+        "Arn": "arn:aws:iam::aws:policy/aws-service-role/MemoryDBServiceRolePolicy",
+        "Path": "/aws-service-role/",
+        "DefaultVersionId": "v2",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "This policy allows MemoryDB to manage AWS resources on your behalf as necessary for managing your resources.",
+        "CreateDate": "2021-08-17T22:34:59+00:00",
+        "UpdateDate": "2021-08-18T23:48:16+00:00",
+        "Tags": []
+    }
+}

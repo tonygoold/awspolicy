@@ -1,0 +1,16 @@
+{
+    "Policy": {
+        "PolicyName": "AWSIoTWirelessLogging",
+        "PolicyId": "ANPAZKAPJZG4L3X44AIHR",
+        "Arn": "arn:aws:iam::aws:policy/AWSIoTWirelessLogging",
+        "Path": "/",
+        "DefaultVersionId": "v1",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "Description": "Allows the associated identity to create Amazon CloudWatch Logs groups and stream logs to the groups.",
+        "CreateDate": "2020-12-15T15:32:40+00:00",
+        "UpdateDate": "2020-12-15T15:32:40+00:00",
+        "Tags": []
+    }
+}
