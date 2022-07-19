@@ -3,21 +3,14 @@ use crate::aws::glob_matches;
 use std::cmp::Ordering;
 use std::collections::HashMap;
 use std::str::FromStr;
-use json;
+
+use chrono::DateTime;
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum ConditionError {
     TypeMismatch,
     TooManyValues,
     NotImplemented
-}
-
-fn cmp_numbers(lhs: &str, rhs: &str) -> anyhow::Result<Ordering> {
-    let lhs = f64::from_str(lhs).map_err(|_| ConditionError::TypeMismatch)?;
-    let rhs = f64::from_str(rhs).map_err(|_| ConditionError::TypeMismatch)?;
-    let result = lhs.partial_cmp(&rhs).ok_or(ConditionError::TypeMismatch)?;
-    println!("cmp_numbers({}, {}) -> {:?}", &lhs, &rhs, &result);
-    Ok(result)
 }
 
 impl std::fmt::Display for ConditionError {
@@ -27,6 +20,20 @@ impl std::fmt::Display for ConditionError {
 }
 
 impl std::error::Error for ConditionError {}
+
+fn cmp_numbers(lhs: &str, rhs: &str) -> anyhow::Result<Ordering> {
+    let lhs = f64::from_str(lhs).map_err(|_| ConditionError::TypeMismatch)?;
+    let rhs = f64::from_str(rhs).map_err(|_| ConditionError::TypeMismatch)?;
+    let result = lhs.partial_cmp(&rhs).ok_or(ConditionError::TypeMismatch)?;
+    println!("cmp_numbers({}, {}) -> {:?}", &lhs, &rhs, &result);
+    Ok(result)
+}
+
+fn cmp_dates(lhs: &str, rhs: &str) -> anyhow::Result<Ordering> {
+    let lhs = DateTime::parse_from_rfc3339(lhs).map_err(|_| ConditionError::TypeMismatch)?;
+    let rhs = DateTime::parse_from_rfc3339(rhs).map_err(|_| ConditionError::TypeMismatch)?;
+    Ok(lhs.cmp(&rhs))
+}
 
 pub type ConditionValues = HashMap<String, Vec<String>>;
 
@@ -88,12 +95,12 @@ impl ConditionOperator {
             Self::NumericGreaterThan => Ok(cmp_numbers(value, target)? == Ordering::Greater),
             Self::NumericGreaterThanEquals => Ok(cmp_numbers(value, target)? != Ordering::Less),
 
-            Self::DateEquals => Err(ConditionError::NotImplemented),
-            Self::DateNotEquals => Err(ConditionError::NotImplemented),
-            Self::DateLessThan => Err(ConditionError::NotImplemented),
-            Self::DateLessThanEquals => Err(ConditionError::NotImplemented),
-            Self::DateGreaterThan => Err(ConditionError::NotImplemented),
-            Self::DateGreaterThanEquals => Err(ConditionError::NotImplemented),
+            Self::DateEquals => Ok(cmp_dates(value, target)? == Ordering::Equal),
+            Self::DateNotEquals => Ok(cmp_dates(value, target)? != Ordering::Equal),
+            Self::DateLessThan => Ok(cmp_dates(value, target)? == Ordering::Less),
+            Self::DateLessThanEquals => Ok(cmp_dates(value, target)? != Ordering::Greater),
+            Self::DateGreaterThan => Ok(cmp_dates(value, target)? == Ordering::Greater),
+            Self::DateGreaterThanEquals => Ok(cmp_dates(value, target)? != Ordering::Less),
 
             Self::Bool => Err(ConditionError::NotImplemented),
 
@@ -319,13 +326,37 @@ mod test {
             ("3.0", "2.0", false, false),
         ];
         for (lhs, rhs, less_than, equals) in cases {
-            println!("Comparing {} to {}", lhs, rhs);
             assert_eq!(equals, NumericEquals.matches(lhs, rhs).unwrap());
             assert_eq!(!equals, NumericNotEquals.matches(lhs, rhs).unwrap());
             assert_eq!(less_than, NumericLessThan.matches(lhs, rhs).unwrap());
             assert_eq!(less_than || equals, NumericLessThanEquals.matches(lhs, rhs).unwrap());
             assert_eq!(!(less_than || equals), NumericGreaterThan.matches(lhs, rhs).unwrap());
             assert_eq!(!less_than, NumericGreaterThanEquals.matches(lhs, rhs).unwrap());
+        }
+    }
+
+    #[test]
+    fn op_date_compare() {
+        use ConditionOperator::{
+            DateEquals,
+            DateNotEquals,
+            DateLessThan,
+            DateLessThanEquals,
+            DateGreaterThan,
+            DateGreaterThanEquals,
+        };
+        let cases = [
+            ("2020-04-01T00:00:01Z", "2020-04-01T00:00:02Z", true, false),
+            ("2020-04-01T00:00:02Z", "2020-04-01T00:00:02Z", false, true),
+            ("2020-04-01T00:00:03Z", "2020-04-01T00:00:02Z", false, false),
+        ];
+        for (lhs, rhs, less_than, equals) in cases {
+            assert_eq!(equals, DateEquals.matches(lhs, rhs).unwrap());
+            assert_eq!(!equals, DateNotEquals.matches(lhs, rhs).unwrap());
+            assert_eq!(less_than, DateLessThan.matches(lhs, rhs).unwrap());
+            assert_eq!(less_than || equals, DateLessThanEquals.matches(lhs, rhs).unwrap());
+            assert_eq!(!(less_than || equals), DateGreaterThan.matches(lhs, rhs).unwrap());
+            assert_eq!(!less_than, DateGreaterThanEquals.matches(lhs, rhs).unwrap());
         }
     }
 
