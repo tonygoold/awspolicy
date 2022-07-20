@@ -2,9 +2,11 @@ use crate::aws::glob_matches;
 
 use std::cmp::Ordering;
 use std::collections::HashMap;
+use std::net::IpAddr;
 use std::str::FromStr;
 
 use chrono::DateTime;
+use ipnetwork::IpNetwork;
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum ConditionError {
@@ -25,7 +27,6 @@ fn cmp_numbers(lhs: &str, rhs: &str) -> anyhow::Result<Ordering> {
     let lhs = f64::from_str(lhs).map_err(|_| ConditionError::TypeMismatch)?;
     let rhs = f64::from_str(rhs).map_err(|_| ConditionError::TypeMismatch)?;
     let result = lhs.partial_cmp(&rhs).ok_or(ConditionError::TypeMismatch)?;
-    println!("cmp_numbers({}, {}) -> {:?}", &lhs, &rhs, &result);
     Ok(result)
 }
 
@@ -33,6 +34,24 @@ fn cmp_dates(lhs: &str, rhs: &str) -> anyhow::Result<Ordering> {
     let lhs = DateTime::parse_from_rfc3339(lhs).map_err(|_| ConditionError::TypeMismatch)?;
     let rhs = DateTime::parse_from_rfc3339(rhs).map_err(|_| ConditionError::TypeMismatch)?;
     Ok(lhs.cmp(&rhs))
+}
+
+fn bools_eq(lhs: &str, rhs: &str) -> anyhow::Result<bool> {
+    let lhs = bool::from_str(lhs).map_err(|_| ConditionError::TypeMismatch)?;
+    let rhs = bool::from_str(rhs).map_err(|_| ConditionError::TypeMismatch)?;
+    Ok(lhs == rhs)
+}
+
+fn base64s_eq(lhs: &str, rhs: &str) -> anyhow::Result<bool> {
+    let lhs = base64::decode(lhs).map_err(|_| ConditionError::TypeMismatch)?;
+    let rhs = base64::decode(rhs).map_err(|_| ConditionError::TypeMismatch)?;
+    Ok(lhs == rhs)
+}
+
+fn ip_in_cidr(lhs: &str, rhs: &str) -> anyhow::Result<bool> {
+    let lhs = IpAddr::from_str(lhs).map_err(|_| ConditionError::TypeMismatch)?;
+    let rhs = IpNetwork::from_str(rhs).map_err(|_| ConditionError::TypeMismatch)?;
+    Ok(rhs.contains(lhs))
 }
 
 pub type ConditionValues = HashMap<String, Vec<String>>;
@@ -102,12 +121,14 @@ impl ConditionOperator {
             Self::DateGreaterThan => Ok(cmp_dates(value, target)? == Ordering::Greater),
             Self::DateGreaterThanEquals => Ok(cmp_dates(value, target)? != Ordering::Less),
 
-            Self::Bool => Err(ConditionError::NotImplemented),
+            // Ok(_?) needed because of ConditionError vs. anyhow::Error result type mismatch
+            Self::Bool => Ok(bools_eq(value, target)?),
 
-            Self::BinaryEquals => Err(ConditionError::NotImplemented),
+            // Ok(_?) needed because of ConditionError vs. anyhow::Error result type mismatch
+            Self::BinaryEquals => Ok(base64s_eq(value, target)?),
 
-            Self::IpAddress => Err(ConditionError::NotImplemented),
-            Self::NotIpAddress => Err(ConditionError::NotImplemented),
+            Self::IpAddress => Ok(ip_in_cidr(value, target)?),
+            Self::NotIpAddress => Ok(!ip_in_cidr(value, target)?),
 
             Self::ArnEquals => Err(ConditionError::NotImplemented),
             Self::ArnLike => Err(ConditionError::NotImplemented),
@@ -115,6 +136,8 @@ impl ConditionOperator {
             Self::ArnNotLike => Err(ConditionError::NotImplemented),
 
             // Condition value must be "true" or "false"
+            // This case should be handled outside this function, because we
+            // assume non-null by this point
             Self::Null => Err(ConditionError::NotImplemented),
         }.map_err(anyhow::Error::from)
     }
@@ -336,6 +359,31 @@ mod test {
     }
 
     #[test]
+    fn op_num_invalid() {
+        use ConditionOperator::{
+            NumericEquals,
+            NumericNotEquals,
+            NumericLessThan,
+            NumericLessThanEquals,
+            NumericGreaterThan,
+            NumericGreaterThanEquals,
+        };
+        let cases = [
+            ("1", "1.1.1"),
+            ("1.1.1", "1"),
+            ("1.1.1", "1.1.1"),
+        ];
+        for (lhs, rhs) in cases {
+            assert!(NumericEquals.matches(lhs, rhs).is_err());
+            assert!(NumericNotEquals.matches(lhs, rhs).is_err());
+            assert!(NumericLessThan.matches(lhs, rhs).is_err());
+            assert!(NumericLessThanEquals.matches(lhs, rhs).is_err());
+            assert!(NumericGreaterThan.matches(lhs, rhs).is_err());
+            assert!(NumericGreaterThanEquals.matches(lhs, rhs).is_err());
+        }
+    }
+
+    #[test]
     fn op_date_compare() {
         use ConditionOperator::{
             DateEquals,
@@ -349,6 +397,9 @@ mod test {
             ("2020-04-01T00:00:01Z", "2020-04-01T00:00:02Z", true, false),
             ("2020-04-01T00:00:02Z", "2020-04-01T00:00:02Z", false, true),
             ("2020-04-01T00:00:03Z", "2020-04-01T00:00:02Z", false, false),
+            ("2020-04-01T00:00:02+01:00", "2020-04-01T00:00:02Z", true, false),
+            ("2020-04-01T00:00:02+00:00", "2020-04-01T00:00:02Z", false, true),
+            ("2020-04-01T00:00:02-01:00", "2020-04-01T00:00:02Z", false, false),
         ];
         for (lhs, rhs, less_than, equals) in cases {
             assert_eq!(equals, DateEquals.matches(lhs, rhs).unwrap());
@@ -357,6 +408,137 @@ mod test {
             assert_eq!(less_than || equals, DateLessThanEquals.matches(lhs, rhs).unwrap());
             assert_eq!(!(less_than || equals), DateGreaterThan.matches(lhs, rhs).unwrap());
             assert_eq!(!less_than, DateGreaterThanEquals.matches(lhs, rhs).unwrap());
+        }
+    }
+
+    #[test]
+    fn op_date_invalid() {
+        use ConditionOperator::{
+            DateEquals,
+            DateNotEquals,
+            DateLessThan,
+            DateLessThanEquals,
+            DateGreaterThan,
+            DateGreaterThanEquals,
+        };
+        // Values missing timezones are invalid
+        let cases = [
+            ("2020-04-01T00:00:02", "2020-04-01T00:00:02Z"),
+            ("2020-04-01T00:00:02Z", "2020-04-01T00:00:02"),
+            ("2020-04-01T00:00:02", "2020-04-01T00:00:02"),
+        ];
+        for (lhs, rhs) in cases {
+            assert!(DateEquals.matches(lhs, rhs).is_err());
+            assert!(DateNotEquals.matches(lhs, rhs).is_err());
+            assert!(DateLessThan.matches(lhs, rhs).is_err());
+            assert!(DateLessThanEquals.matches(lhs, rhs).is_err());
+            assert!(DateGreaterThan.matches(lhs, rhs).is_err());
+            assert!(DateGreaterThanEquals.matches(lhs, rhs).is_err());
+        }
+    }
+
+    #[test]
+    fn op_bool_equals() {
+        use ConditionOperator::Bool;
+        let cases = [
+            ("true", "true", true),
+            ("true", "false", false),
+            ("false", "true", false),
+            ("false", "false", true),
+        ];
+        for (lhs, rhs, equals) in cases {
+            assert_eq!(equals, Bool.matches(lhs, rhs).unwrap());
+        }
+    }
+
+    #[test]
+    fn op_bool_invalid() {
+        use ConditionOperator::Bool;
+        let cases = [
+            ("true", "tree"),
+            ("tree", "true"),
+            ("tree", "tree"),
+        ];
+        for (lhs, rhs) in cases {
+            assert!(Bool.matches(lhs, rhs).is_err());
+        }
+    }
+
+    #[test]
+    fn op_binary_equals() {
+        use ConditionOperator::BinaryEquals;
+        // TODO: Verify AWS allows padding to be omitted.
+        let cases = [
+            ("dGVzdA==", "dGVzdA==", true),
+            ("dGVzdA==", "dGVzdA=", true),
+            ("dGVzdA==", "dGVzdA", true),
+            ("dGVzdA=", "dGVzdA==", true),
+            ("dGVzdA", "dGVzdA==", true),
+            ("dGVzdA=", "dGVzdA=", true),
+            ("dGVzdA=", "dGVzdA", true),
+            ("dGVzdA", "dGVzdA=", true),
+            ("dGVzdA", "dGVzdA", true),
+            ("dGVzdA==", "dGVzdC4=", false),
+            ("dGVzdC4=", "dGVzdA==", false),
+        ];
+        for (lhs, rhs, equals) in cases {
+            assert_eq!(equals, BinaryEquals.matches(lhs, rhs).unwrap());
+        }
+    }
+
+    #[test]
+    fn op_binary_invalid() {
+        use ConditionOperator::BinaryEquals;
+        let cases = [
+            ("dGVzdA==", "dGVzdAB"),
+            ("dGVzdAB", "dGVzdA=="),
+            ("dGVzdAB", "dGVzdAB"),
+        ];
+        for (lhs, rhs) in cases {
+            assert!(BinaryEquals.matches(lhs, rhs).is_err());
+        }
+    }
+
+    #[test]
+    fn op_ipaddress() {
+        use ConditionOperator::{IpAddress, NotIpAddress};
+        let cases = [
+            ("203.0.113.64", "203.0.113.0/24", true),
+            ("203.0.112.1", "203.0.113.0/24", false),
+            ("203.0.114.1", "203.0.113.0/24", false),
+            ("2001:DB8:1234:5678::1", "2001:DB8:1234:5678::/64", true),
+            ("2001:DB8:1234:5678:FFFF:FFFF:FFFF:1", "2001:DB8:1234:5678::/64", true),
+            ("2001:DB8:1234:5677::1", "2001:DB8:1234:5678::/64", false),
+            ("2001:DB8:1234:5679::1", "2001:DB8:1234:5678::/64", false),
+        ];
+        for (lhs, rhs, contains) in cases {
+            assert_eq!(contains, IpAddress.matches(lhs, rhs).unwrap());
+            assert_ne!(contains, NotIpAddress.matches(lhs, rhs).unwrap());
+        }
+    }
+
+    #[test]
+    fn op_ipaddress_invalid() {
+        use ConditionOperator::{IpAddress, NotIpAddress};
+        let cases = [
+            // 256 out of range
+            ("256.0.113.64", "203.0.113.0/24"),
+            ("203.0.113.64", "256.0.113.0/24"),
+            // 33 not a valid netmask
+            ("203.0.113.64", "203.0.113.0/33"),
+            // Value can't be a CIDR
+            ("203.0.113.64/31", "203.0.113.0/24"),
+            // Can't have multiple :: in an address
+            ("2001:DB8::1234:5678::1", "2001:DB8:1234:5678::/64"),
+            ("2001:DB8:1234:5678::1", "2001:DB8::1234:5678::/64"),
+            // 129 not a valid netmask
+            ("2001:DB8:1234:5678::1", "2001:DB8:1234:5678::/129"),
+            // Value can't be a CIDR
+            ("2001:DB8:1234:5678::1/126", "2001:DB8:1234:5678::/64"),
+        ];
+        for (lhs, rhs) in cases {
+            assert!(IpAddress.matches(lhs, rhs).is_err());
+            assert!(NotIpAddress.matches(lhs, rhs).is_err());
         }
     }
 
