@@ -25,8 +25,8 @@ If you do not provide any principal argument, the policy is assumed to be an ide
 
 An incomplete list of remaining work for the first version.
 
-* Implement Condition operators.
-* Add a mechanism for providing evaluation context, for use with Condition operators.
+* Implement `...IfExists` condition operators.
+* Implement `ForAllValues:...` and `ForAnyValues:...` condition operators.
 * Simulate request context values (e.g., `aws:CurrentTime`).
 * Implement policy variables.
 * Add a mechanism for specifying policy variables (e.g., `arn:aws:iam::123456789012:user/${aws:username}`) in the evaluation context.

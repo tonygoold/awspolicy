@@ -1,10 +1,13 @@
-use crate::aws::glob_matches;
+use crate::aws::{glob_matches, ARN};
+use super::constraint::ResourceConstraint;
 
 use std::cmp::Ordering;
 use std::collections::HashMap;
 use std::net::IpAddr;
+use std::ops::Not;
 use std::str::FromStr;
 
+use anyhow::anyhow;
 use chrono::DateTime;
 use ipnetwork::IpNetwork;
 
@@ -52,6 +55,22 @@ fn ip_in_cidr(lhs: &str, rhs: &str) -> anyhow::Result<bool> {
     let lhs = IpAddr::from_str(lhs).map_err(|_| ConditionError::TypeMismatch)?;
     let rhs = IpNetwork::from_str(rhs).map_err(|_| ConditionError::TypeMismatch)?;
     Ok(rhs.contains(lhs))
+}
+
+fn arn_eq(lhs: &str, rhs: &str) -> anyhow::Result<bool> {
+    let lhs = ARN::try_from(lhs).map_err(|_| ConditionError::TypeMismatch)?;
+    let rhs = ARN::try_from(rhs).map_err(|_| ConditionError::TypeMismatch)?;
+    Ok(lhs == rhs)
+}
+
+fn arn_like(value: &str, pattern: &str) -> anyhow::Result<bool> {
+    let value = ARN::try_from(value).map_err(|_| ConditionError::TypeMismatch)?;
+    if pattern == "*" {
+        return Ok(true);
+    }
+    let pattern = ARN::try_from(pattern).map(ResourceConstraint::Pattern)
+        .map_err(|_| ConditionError::TypeMismatch)?;
+    Ok(pattern.matches(&value))
 }
 
 pub type ConditionValues = HashMap<String, Vec<String>>;
@@ -121,25 +140,26 @@ impl ConditionOperator {
             Self::DateGreaterThan => Ok(cmp_dates(value, target)? == Ordering::Greater),
             Self::DateGreaterThanEquals => Ok(cmp_dates(value, target)? != Ordering::Less),
 
-            // Ok(_?) needed because of ConditionError vs. anyhow::Error result type mismatch
-            Self::Bool => Ok(bools_eq(value, target)?),
+            Self::Bool => bools_eq(value, target),
 
-            // Ok(_?) needed because of ConditionError vs. anyhow::Error result type mismatch
-            Self::BinaryEquals => Ok(base64s_eq(value, target)?),
+            Self::BinaryEquals => base64s_eq(value, target),
 
-            Self::IpAddress => Ok(ip_in_cidr(value, target)?),
-            Self::NotIpAddress => Ok(!ip_in_cidr(value, target)?),
+            Self::IpAddress => ip_in_cidr(value, target),
+            Self::NotIpAddress => ip_in_cidr(value, target).map(bool::not),
 
-            Self::ArnEquals => Err(ConditionError::NotImplemented),
-            Self::ArnLike => Err(ConditionError::NotImplemented),
-            Self::ArnNotEquals => Err(ConditionError::NotImplemented),
-            Self::ArnNotLike => Err(ConditionError::NotImplemented),
+            Self::ArnEquals => arn_eq(value, target),
+            Self::ArnLike => arn_like(value, target),
+            Self::ArnNotEquals => arn_eq(value, target).map(bool::not),
+            Self::ArnNotLike => arn_like(value, target).map(bool::not),
 
             // Condition value must be "true" or "false"
-            // This case should be handled outside this function, because we
-            // assume non-null by this point
-            Self::Null => Err(ConditionError::NotImplemented),
-        }.map_err(anyhow::Error::from)
+            // This case is already handled outside this function, and we
+            // assume non-null by this point.
+            // TODO: Possibly refactor into a wrapping condition, similar to
+            // how the IfExists conditions might be implemented, so null
+            // checks are performed in a consistent place.
+            Self::Null => Err(anyhow!("the Null condition should be unreachable")),
+        }
     }
 }
 
@@ -539,6 +559,26 @@ mod test {
         for (lhs, rhs) in cases {
             assert!(IpAddress.matches(lhs, rhs).is_err());
             assert!(NotIpAddress.matches(lhs, rhs).is_err());
+        }
+    }
+
+    #[test]
+    fn op_arn() {
+        use ConditionOperator::{ArnEquals, ArnNotEquals, ArnLike, ArnNotLike};
+        let cases = [
+            ("arn:aws:iam::123456789012:user/Alice", "arn:aws:iam::123456789012:user/Alice", true, true),
+            ("arn:aws:iam::123456789012:user/Alice", "arn:aws:iam::123456789012:user/Bob", false, false),
+            ("arn:aws:iam::123456789012:user/Alice", "arn:aws:iam::123456789012:user/*", false, true),
+            ("arn:aws:iam::123456789012:user/Alice", "arn:aws:iam::*:user/Bob", false, false),
+            ("arn:aws:iam::123456789012:user/Alice", "arn:aws:iam::*:user/Alice", false, true),
+            // Not sure this counts as valid. It should never happen in practice.
+            ("arn:aws:iam::*:user/Alice", "arn:aws:iam::*:user/Alice", true, true),
+        ];
+        for (lhs, rhs, equals, like) in cases {
+            assert_eq!(equals, ArnEquals.matches(lhs, rhs).unwrap());
+            assert_ne!(equals, ArnNotEquals.matches(lhs, rhs).unwrap());
+            assert_eq!(like, ArnLike.matches(lhs, rhs).unwrap());
+            assert_ne!(like, ArnNotLike.matches(lhs, rhs).unwrap());
         }
     }
 
