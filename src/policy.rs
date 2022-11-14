@@ -10,6 +10,8 @@ use crate::iam::{Action, Principal};
 use context::Context;
 use statement::{Effect, Statement};
 
+use std::str::FromStr;
+
 use anyhow::anyhow;
 use json;
 
@@ -122,10 +124,10 @@ impl TryFrom<&json::JsonValue> for Policy {
     }
 }
 
-impl TryFrom<&str> for Policy {
-    type Error = anyhow::Error;
+impl FromStr for Policy {
+    type Err = anyhow::Error;
 
-    fn try_from(value: &str) -> anyhow::Result<Self> {
+    fn from_str(value: &str) -> anyhow::Result<Self> {
         let value = json::parse(value)?;
         Self::try_from(&value)
     }

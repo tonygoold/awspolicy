@@ -1,6 +1,7 @@
-use std::collections::HashMap;
-
 use crate::aws::ARN;
+
+use std::collections::HashMap;
+use std::str::FromStr;
 
 use anyhow::anyhow;
 
@@ -49,7 +50,7 @@ impl Context {
         }
 
         value.entries().map(|(key, value)| {
-            let arn = ARN::try_from(key)
+            let arn: ARN = key.parse()
                 .map_err(|_| anyhow!("expected an ARN"))?;
             let context = Self::try_context_from(value)?;
             Ok((arn, context))
@@ -76,10 +77,10 @@ impl TryFrom<&json::JsonValue> for Context {
     }
 }
 
-impl TryFrom<&str> for Context {
-    type Error = anyhow::Error;
+impl FromStr for Context {
+    type Err = anyhow::Error;
 
-    fn try_from(value: &str) -> anyhow::Result<Self> {
+    fn from_str(value: &str) -> anyhow::Result<Self> {
         let value = json::parse(value)?;
         Self::try_from(&value)
     }

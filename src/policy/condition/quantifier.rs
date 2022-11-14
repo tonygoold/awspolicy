@@ -22,7 +22,7 @@ pub enum Quantifier {
 }
 
 impl Quantifier {
-	pub fn matches(&self, values: Option<&Vec<String>>, targets: &Vec<String>) -> anyhow::Result<bool> {
+	pub fn matches(&self, values: Option<&Vec<String>>, targets: &[String]) -> anyhow::Result<bool> {
 		match self {
 			Self::ForAllValues(op) => matches_all(op, values, targets),
 			Self::ForAnyValue(op) => matches_any(op, values, targets),
@@ -32,7 +32,7 @@ impl Quantifier {
 
 }
 
-fn matches_all(op: &Operator, values: Option<&Vec<String>>, targets: &Vec<String>) -> anyhow::Result<bool> {
+fn matches_all(op: &Operator, values: Option<&Vec<String>>, targets: &[String]) -> anyhow::Result<bool> {
 	let values = match values {
 		Some(v) => v,
 		None => return Ok(true),
@@ -51,7 +51,7 @@ fn matches_all(op: &Operator, values: Option<&Vec<String>>, targets: &Vec<String
 	})
 }
 
-fn matches_any(op: &Operator, values: Option<&Vec<String>>, targets: &Vec<String>) -> anyhow::Result<bool> {
+fn matches_any(op: &Operator, values: Option<&Vec<String>>, targets: &[String]) -> anyhow::Result<bool> {
 	let values = match values {
 		Some(v) => v,
 		None => return Ok(false),
@@ -70,7 +70,7 @@ fn matches_any(op: &Operator, values: Option<&Vec<String>>, targets: &Vec<String
 	})
 }
 
-fn matches_null(values: Option<&Vec<String>>, targets: &Vec<String>) -> anyhow::Result<bool> {
+fn matches_null(values: Option<&Vec<String>>, targets: &[String]) -> anyhow::Result<bool> {
 	if targets.len() == 1 {
 		Ok(values.is_none() == (&targets[0] == "true"))
 	} else {

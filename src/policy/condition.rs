@@ -64,17 +64,17 @@ fn ip_in_cidr(lhs: &str, rhs: &str) -> anyhow::Result<bool> {
 }
 
 fn arn_eq(lhs: &str, rhs: &str) -> anyhow::Result<bool> {
-    let lhs = ARN::try_from(lhs).map_err(|_| ConditionError::TypeMismatch)?;
-    let rhs = ARN::try_from(rhs).map_err(|_| ConditionError::TypeMismatch)?;
+    let lhs: ARN = lhs.parse().map_err(|_| ConditionError::TypeMismatch)?;
+    let rhs: ARN = rhs.parse().map_err(|_| ConditionError::TypeMismatch)?;
     Ok(lhs == rhs)
 }
 
 fn arn_like(value: &str, pattern: &str) -> anyhow::Result<bool> {
-    let value = ARN::try_from(value).map_err(|_| ConditionError::TypeMismatch)?;
+    let value: ARN = value.parse().map_err(|_| ConditionError::TypeMismatch)?;
     if pattern == "*" {
         return Ok(true);
     }
-    let pattern = ARN::try_from(pattern).map(ResourceConstraint::Pattern)
+    let pattern = pattern.parse().map(ResourceConstraint::Pattern)
         .map_err(|_| ConditionError::TypeMismatch)?;
     Ok(pattern.matches(&value))
 }

@@ -133,7 +133,8 @@ impl Statement {
         } else {
             None
         };
-        ARN::try_from(account.as_deref().unwrap_or(value)).map_err(|_| anyhow!("expected AWS principal to be an ARN or '*'"))
+        account.as_deref().unwrap_or(value).parse()
+            .map_err(|_| anyhow!("expected AWS principal to be an ARN or '*'"))
             .map(Principal::AWS)
             .map(PrincipalConstraint::Pattern)
     }

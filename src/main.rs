@@ -70,10 +70,10 @@ impl TryFrom<&Args> for RunConfig {
         }
 
         let action = args.action.as_ref().ok_or(ArgsError::NoActionSpecified).and_then(
-            |action| Action::try_from(action.as_str()).map_err(|_| ArgsError::InvalidAction)
+            |action| action.parse().map_err(|_| ArgsError::InvalidAction)
         )?;
         let resource = args.resource.as_ref().ok_or(ArgsError::NoResourceSpecified).and_then(
-            |resource| ARN::try_from(resource.as_str()).map_err(|_| ArgsError::InvalidResource)
+            |resource| resource.parse().map_err(|_| ArgsError::InvalidResource)
         )?;
         let context = args.context.as_ref()
             .map(|path| load_context(path.as_str()))
@@ -81,7 +81,7 @@ impl TryFrom<&Args> for RunConfig {
             .map_err(|_| ArgsError::InvalidContext)?;
 
         match (&args.principal_aws, &args.principal_service, &args.principal_federated, &args.principal_canonical_user) {
-            (Some(aws), None, None, None) => if let Ok(arn) = ARN::try_from(aws.as_str()) {
+            (Some(aws), None, None, None) => if let Ok(arn) = aws.parse() {
                 Ok(RunConfig::Resource(Principal::AWS(arn), action, resource, context))
             } else {
                 Err(ArgsError::InvalidPrincipal)
@@ -98,12 +98,12 @@ impl TryFrom<&Args> for RunConfig {
 
 fn load_policy(path: &str) -> anyhow::Result<Policy> {
     let data = std::fs::read_to_string(path).map_err(|_| anyhow!("unable to read policy file"))?;
-    Policy::try_from(data.as_str())
+    data.parse()
 }
 
 fn load_context(path: &str) -> anyhow::Result<Context> {
     let data = std::fs::read_to_string(path).map_err(|_| anyhow!("unable to read context file"))?;
-    Context::try_from(data.as_str())
+    data.parse()
 }
 
 fn main() {

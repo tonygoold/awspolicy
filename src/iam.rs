@@ -1,5 +1,7 @@
 use crate::aws::ARN;
 
+use std::str::FromStr;
+
 // Do these distinctions matter for evaluating policies?
 // Would simple string matching be sufficient?
 #[derive(Debug, Clone, PartialEq, Eq)]
@@ -64,10 +66,10 @@ impl std::fmt::Display for Action {
     }
 }
 
-impl TryFrom<&str> for Action {
-    type Error = ActionParseError;
+impl FromStr for Action {
+    type Err = ActionParseError;
 
-    fn try_from(value: &str) -> Result<Self, Self::Error> {
+    fn from_str(value: &str) -> Result<Self, Self::Err> {
         let separator = value.find(':').ok_or(ActionParseError::InvalidFormat)?;
         Ok(Action{value: value.into(), separator})
     }

@@ -1,3 +1,5 @@
+use std::str::FromStr;
+
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum ARNParseError {
     InvalidFormat,
@@ -77,13 +79,13 @@ impl std::fmt::Display for ARN {
     }
 }
 
-impl TryFrom<&str> for ARN {
-    type Error = ARNParseError;
+impl FromStr for ARN {
+    type Err = ARNParseError;
 
     // If variable substitution is allowed in parts other than the resource,
     // this will need to be updated to parse more intelligently, otherwise it
     // will misidentify where the ARN separators are.
-    fn try_from(value: &str) -> Result<Self, Self::Error> {
+    fn from_str(value: &str) -> Result<Self, Self::Err> {
         if !value.starts_with("arn:") {
             return Err(ARNParseError::MissingPrefix);
         }
@@ -108,8 +110,8 @@ mod test {
 
     #[test]
     fn parse_fully_specified() {
-        let result = ARN::try_from("arn:aws:iam:us-east-1:123456789012:user/Username")
-            .expect("The input should have parsed successfully");
+        let result: ARN = "arn:aws:iam:us-east-1:123456789012:user/Username"
+            .parse().expect("The input should have parsed successfully");
         assert_eq!(result.service(), "iam");
         assert_eq!(result.region(), "us-east-1");
         assert_eq!(result.account(), "123456789012");
@@ -118,8 +120,8 @@ mod test {
 
     #[test]
     fn parse_empty_portions() {
-        let result = ARN::try_from("arn:aws:s3:::BUCKET-NAME")
-            .expect("The input should have parsed successfully");
+        let result: ARN = "arn:aws:s3:::BUCKET-NAME"
+            .parse().expect("The input should have parsed successfully");
         assert_eq!(result.service(), "s3");
         assert!(result.region().is_empty());
         assert!(result.account().is_empty());
@@ -128,8 +130,8 @@ mod test {
 
     #[test]
     fn parse_with_globs() {
-        let result = ARN::try_from("arn:aws:iam:*:123456789012:user/Username")
-            .expect("The input should have parsed successfully");
+        let result: ARN = "arn:aws:iam:*:123456789012:user/Username"
+            .parse().expect("The input should have parsed successfully");
         assert_eq!(result.service(), "iam");
         assert_eq!(result.region(), "*");
         assert_eq!(result.account(), "123456789012");
@@ -138,11 +140,11 @@ mod test {
 
     #[test]
     fn parse_with_resource_colons() {
-        let result = ARN::try_from("arn:aws:s3:::BUCKET-NAME/home/${aws:username}")
-            .expect("The input should have parsed successfully");
-            assert_eq!(result.service(), "s3");
-            assert!(result.region().is_empty());
-            assert!(result.account().is_empty());
-            assert_eq!(result.resource(), "BUCKET-NAME/home/${aws:username}");
+        let result: ARN = "arn:aws:s3:::BUCKET-NAME/home/${aws:username}"
+            .parse().expect("The input should have parsed successfully");
+        assert_eq!(result.service(), "s3");
+        assert!(result.region().is_empty());
+        assert!(result.account().is_empty());
+        assert_eq!(result.resource(), "BUCKET-NAME/home/${aws:username}");
     }
 }

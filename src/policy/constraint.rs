@@ -27,7 +27,7 @@ impl TryFrom<&json::JsonValue> for ActionConstraint {
         if value == "*" {
             return Ok(Self::Any);
         }
-        Action::try_from(value).map(Self::Pattern)
+        value.parse().map(Self::Pattern)
             .map_err(|_| anyhow!("expected Action to be an action pattern"))
     }
 }
@@ -111,7 +111,7 @@ impl TryFrom<&json::JsonValue> for ResourceConstraint {
         if value == "*" {
             return Ok(Self::Any);
         }
-        ARN::try_from(value).map(Self::Pattern)
+        value.parse().map(Self::Pattern)
             .map_err(|_| anyhow!("expected Resource to be an ARN pattern, found {}", value))
     }
 }
