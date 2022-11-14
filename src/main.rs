@@ -3,8 +3,8 @@ use awspolicy::iam::{Action, Principal};
 use awspolicy::policy::context::Context;
 use awspolicy::policy::{CheckResult, Policy};
 
+use anyhow::anyhow;
 use clap::Parser;
-use json;
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 enum ArgsError {
@@ -96,13 +96,13 @@ impl TryFrom<&Args> for RunConfig {
 
 }
 
-fn load_policy(path: &str) -> json::Result<Policy> {
-    let data = std::fs::read_to_string(path).map_err(|_| json::Error::wrong_type("unable to read policy file"))?;
+fn load_policy(path: &str) -> anyhow::Result<Policy> {
+    let data = std::fs::read_to_string(path).map_err(|_| anyhow!("unable to read policy file"))?;
     Policy::try_from(data.as_str())
 }
 
-fn load_context(path: &str) -> json::Result<Context> {
-    let data = std::fs::read_to_string(path).map_err(|_| json::Error::wrong_type("unable to read context file"))?;
+fn load_context(path: &str) -> anyhow::Result<Context> {
+    let data = std::fs::read_to_string(path).map_err(|_| anyhow!("unable to read context file"))?;
     Context::try_from(data.as_str())
 }
 

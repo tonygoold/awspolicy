@@ -1,6 +1,8 @@
 use crate::aws::{glob_matches, ARN};
 use crate::iam::{Action, Principal};
 
+use anyhow::anyhow;
+
 #[derive(Debug, Clone)]
 pub enum ActionConstraint {
     Any,
@@ -17,16 +19,16 @@ impl ActionConstraint {
 }
 
 impl TryFrom<&json::JsonValue> for ActionConstraint {
-    type Error = json::Error;
+    type Error = anyhow::Error;
 
-    fn try_from(value: &json::JsonValue) -> Result<Self, Self::Error> {
+    fn try_from(value: &json::JsonValue) -> anyhow::Result<Self> {
         let value = value.as_str()
-            .ok_or_else(|| json::Error::wrong_type("expected Action to be a string"))?;
+            .ok_or_else(|| anyhow!("expected Action to be a string"))?;
         if value == "*" {
             return Ok(Self::Any);
         }
         Action::try_from(value).map(Self::Pattern)
-            .map_err(|_| json::Error::wrong_type("expected Action to be an action pattern"))
+            .map_err(|_| anyhow!("expected Action to be an action pattern"))
     }
 }
 
@@ -74,10 +76,7 @@ impl PrincipalConstraint {
     pub fn matches(&self, other: &Principal) -> bool {
         match self {
             Self::Any => true,
-            Self::AWSAny => match other {
-                Principal::AWS(_) => true,
-                _ => false,
-            }
+            Self::AWSAny => matches![other, Principal::AWS(_)],
             Self::Pattern(principal) => match principal {
                 Principal::AWS(arn) => Self::matches_aws(arn, other),
                 Principal::Federated(s) => Self::matches_federated(s, other),
@@ -104,15 +103,15 @@ impl ResourceConstraint {
 }
 
 impl TryFrom<&json::JsonValue> for ResourceConstraint {
-    type Error = json::Error;
+    type Error = anyhow::Error;
 
-    fn try_from(value: &json::JsonValue) -> Result<Self, Self::Error> {
+    fn try_from(value: &json::JsonValue) -> anyhow::Result<Self> {
         let value = value.as_str()
-            .ok_or_else(|| json::Error::wrong_type("expected Resource to be a string"))?;
+            .ok_or_else(|| anyhow!("expected Resource to be a string"))?;
         if value == "*" {
             return Ok(Self::Any);
         }
         ARN::try_from(value).map(Self::Pattern)
-            .map_err(|_| json::Error::wrong_type("expected Resource to be an ARN pattern"))
+            .map_err(|_| anyhow!("expected Resource to be an ARN pattern, found {}", value))
     }
 }

@@ -2,6 +2,8 @@ use std::collections::HashMap;
 
 use crate::aws::ARN;
 
+use anyhow::anyhow;
+
 pub type ResourceContext = HashMap<String, Vec<String>>;
 
 pub struct Context {
@@ -25,42 +27,48 @@ impl Context {
         self.resources.get(arn)
     }
 
-    fn try_context_from(value: &json::JsonValue) -> json::Result<ResourceContext> {
+    fn try_context_from(value: &json::JsonValue) -> anyhow::Result<ResourceContext> {
         value.entries().map(|(key, value)| {
             let values = if let Some(value) = value.as_str() {
                 Ok(vec![value.to_string()])
             } else if value.is_array() {
-                value.members().map(|value| value.as_str().map(String::from).ok_or_else(|| json::Error::wrong_type("expected array of string values")))
-                    .collect::<json::Result<Vec<_>>>()
+                value.members().map(|value| value.as_str().map(String::from).ok_or_else(|| anyhow!("expected array of string values")))
+                    .collect::<anyhow::Result<Vec<_>>>()
             } else {
-                Err(json::Error::wrong_type("expected resource property to be a string or array of strings"))
+                Err(anyhow!("expected resource property to be a string or array of strings"))
             }?;
             Ok((key.to_string(), values))
-        }).collect::<json::Result<HashMap<_, _>>>()
+        }).collect::<anyhow::Result<HashMap<_, _>>>()
     }
 
-    fn try_resources_from(value: &json::JsonValue) -> json::Result<HashMap<ARN, ResourceContext>> {
+    fn try_resources_from(value: &json::JsonValue) -> anyhow::Result<HashMap<ARN, ResourceContext>> {
         if value.is_null() {
             return Ok(HashMap::new());
         } else if !value.is_object() {
-            return Err(json::Error::wrong_type("expected resources to be an object"));
+            return Err(anyhow!("expected resources to be an object"));
         }
 
         value.entries().map(|(key, value)| {
             let arn = ARN::try_from(key)
-                .map_err(|_| json::Error::wrong_type("expected an ARN"))?;
+                .map_err(|_| anyhow!("expected an ARN"))?;
             let context = Self::try_context_from(value)?;
             Ok((arn, context))
-        }).collect::<json::Result<HashMap<_, _>>>()
+        }).collect::<anyhow::Result<HashMap<_, _>>>()
+    }
+}
+
+impl Default for Context {
+    fn default() -> Self {
+        Self::new()
     }
 }
 
 impl TryFrom<&json::JsonValue> for Context {
-    type Error = json::Error;
+    type Error = anyhow::Error;
 
-    fn try_from(value: &json::JsonValue) -> json::Result<Self> {
+    fn try_from(value: &json::JsonValue) -> anyhow::Result<Self> {
         if !value.is_object() {
-            return Err(json::Error::wrong_type("expected object at root of context"));
+            return Err(anyhow!("expected object at root of context"));
         }
         let global = Self::try_context_from(&value["global"])?;
         let resources = Self::try_resources_from(&value["resources"])?;
@@ -69,9 +77,9 @@ impl TryFrom<&json::JsonValue> for Context {
 }
 
 impl TryFrom<&str> for Context {
-    type Error = json::Error;
+    type Error = anyhow::Error;
 
-    fn try_from(value: &str) -> json::Result<Self> {
+    fn try_from(value: &str) -> anyhow::Result<Self> {
         let value = json::parse(value)?;
         Self::try_from(&value)
     }

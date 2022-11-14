@@ -1,10 +1,16 @@
-use crate::aws::{glob_matches, ARN};
+pub mod global;
+pub mod nullable;
+pub mod operator;
+pub mod quantifier;
+
+use crate::aws::ARN;
+use quantifier::Quantifier;
+
 use super::constraint::ResourceConstraint;
 
 use std::cmp::Ordering;
 use std::collections::HashMap;
 use std::net::IpAddr;
-use std::ops::Not;
 use std::str::FromStr;
 
 use anyhow::anyhow;
@@ -75,215 +81,90 @@ fn arn_like(value: &str, pattern: &str) -> anyhow::Result<bool> {
 
 pub type ConditionValues = HashMap<String, Vec<String>>;
 
-// TODO: Implement "IfExists" suffix for everything but Null
-// TODO: Implement "ForAllValues" and "ForAnyValue" set operators
-#[derive(Debug, Clone, Copy, Hash, PartialEq, Eq)]
-pub enum ConditionOperator {
-    StringEquals,
-    StringNotEquals,
-    StringEqualsIgnoreCase,
-    StringNotEqualsIgnoreCase,
-    StringLike,
-    StringNotLike,
-
-    NumericEquals,
-    NumericNotEquals,
-    NumericLessThan,
-    NumericLessThanEquals,
-    NumericGreaterThan,
-    NumericGreaterThanEquals,
-
-    DateEquals,
-    DateNotEquals,
-    DateLessThan,
-    DateLessThanEquals,
-    DateGreaterThan,
-    DateGreaterThanEquals,
-
-    Bool,
-
-    BinaryEquals,
-
-    IpAddress,
-    NotIpAddress,
-
-    ArnEquals,
-    ArnLike,
-    ArnNotEquals,
-    ArnNotLike,
-
-    // Condition value must be "true" or "false"
-    Null,
-}
-
-impl ConditionOperator {
-    pub fn matches(&self, value: &str, target: &str) -> anyhow::Result<bool> {
-        match *self {
-            Self::StringEquals => Ok(target == value),
-            Self::StringNotEquals => Ok(target != value),
-            Self::StringEqualsIgnoreCase => Ok(target.to_lowercase() == value.to_lowercase()),
-            Self::StringNotEqualsIgnoreCase => Ok(target.to_lowercase() != value.to_lowercase()),
-            Self::StringLike => Ok(glob_matches(target, value)),
-            Self::StringNotLike => Ok(!glob_matches(target, value)),
-
-            Self::NumericEquals => Ok(cmp_numbers(value, target)? == Ordering::Equal),
-            Self::NumericNotEquals => Ok(cmp_numbers(value, target)? != Ordering::Equal),
-            Self::NumericLessThan => Ok(cmp_numbers(value, target)? == Ordering::Less),
-            Self::NumericLessThanEquals => Ok(cmp_numbers(value, target)? != Ordering::Greater),
-            Self::NumericGreaterThan => Ok(cmp_numbers(value, target)? == Ordering::Greater),
-            Self::NumericGreaterThanEquals => Ok(cmp_numbers(value, target)? != Ordering::Less),
-
-            Self::DateEquals => Ok(cmp_dates(value, target)? == Ordering::Equal),
-            Self::DateNotEquals => Ok(cmp_dates(value, target)? != Ordering::Equal),
-            Self::DateLessThan => Ok(cmp_dates(value, target)? == Ordering::Less),
-            Self::DateLessThanEquals => Ok(cmp_dates(value, target)? != Ordering::Greater),
-            Self::DateGreaterThan => Ok(cmp_dates(value, target)? == Ordering::Greater),
-            Self::DateGreaterThanEquals => Ok(cmp_dates(value, target)? != Ordering::Less),
-
-            Self::Bool => bools_eq(value, target),
-
-            Self::BinaryEquals => base64s_eq(value, target),
-
-            Self::IpAddress => ip_in_cidr(value, target),
-            Self::NotIpAddress => ip_in_cidr(value, target).map(bool::not),
-
-            Self::ArnEquals => arn_eq(value, target),
-            Self::ArnLike => arn_like(value, target),
-            Self::ArnNotEquals => arn_eq(value, target).map(bool::not),
-            Self::ArnNotLike => arn_like(value, target).map(bool::not),
-
-            // Condition value must be "true" or "false"
-            // This case is already handled outside this function, and we
-            // assume non-null by this point.
-            // TODO: Possibly refactor into a wrapping condition, similar to
-            // how the IfExists conditions might be implemented, so null
-            // checks are performed in a consistent place.
-            Self::Null => Err(anyhow!("the Null condition should be unreachable")),
-        }
-    }
-}
-
-impl TryFrom<&str> for ConditionOperator {
-    type Error = json::Error;
-
-    fn try_from(value: &str) -> Result<Self, Self::Error> {
-        let op = match value {
-            "StringEquals" => Self::StringEquals,
-            "StringNotEquals" => Self::StringNotEquals,
-            "StringEqualsIgnoreCase" => Self::StringEqualsIgnoreCase,
-            "StringNotEqualsIgnoreCase" => Self::StringNotEqualsIgnoreCase,
-            "StringLike" => Self::StringLike,
-            "StringNotLike" => Self::StringNotLike,
-            "NumericEquals" => Self::NumericEquals,
-            "NumericNotEquals" => Self::NumericNotEquals,
-            "NumericLessThan" => Self::NumericLessThan,
-            "NumericLessThanEquals" => Self::NumericLessThanEquals,
-            "NumericGreaterThan" => Self::NumericGreaterThan,
-            "NumericGreaterThanEquals" => Self::NumericGreaterThanEquals,
-            "DateEquals" => Self::DateEquals,
-            "DateNotEquals" => Self::DateNotEquals,
-            "DateLessThan" => Self::DateLessThan,
-            "DateLessThanEquals" => Self::DateLessThanEquals,
-            "DateGreaterThan" => Self::DateGreaterThan,
-            "DateGreaterThanEquals" => Self::DateGreaterThanEquals,
-            "Bool" => Self::Bool,
-            "BinaryEquals" => Self::BinaryEquals,
-            "IpAddress" => Self::IpAddress,
-            "NotIpAddress" => Self::NotIpAddress,
-            "ArnEquals" => Self::ArnEquals,
-            "ArnLike" => Self::ArnLike,
-            "ArnNotEquals" => Self::ArnNotEquals,
-            "ArnNotLike" => Self::ArnNotLike,
-            "Null" => Self::Null,
-            _ => return Err(json::Error::wrong_type("unrecognized condition operator")),
-        };
-        Ok(op)
-    }
-}
-
 #[derive(Debug, Clone)]
-pub struct ConditionSet {
-    conditions: HashMap<ConditionOperator, ConditionValues>,
+pub struct ConditionList {
+    conditions: HashMap<Quantifier, ConditionValues>,
 }
 
-impl ConditionSet {
+impl ConditionList {
     pub fn new() -> Self {
-        ConditionSet{ conditions: HashMap::new() }
+        ConditionList{ conditions: HashMap::new() }
     }
 
-    pub fn insert(&mut self, entry: (ConditionOperator, ConditionValues)) -> Option<ConditionValues> {
+    pub fn insert(&mut self, entry: (Quantifier, ConditionValues)) -> Option<ConditionValues> {
         let (op, values) = entry;
         self.conditions.insert(op, values)
     }
 
-    // TODO: Genericize value_map parameter
     pub fn matches(&self, value_map: &HashMap<String, Vec<String>>) -> anyhow::Result<bool> {
-        self.conditions.iter().fold(Ok(true), |result, (op, target_map)| {
-            // Use !result.contains(true) when stable
-            match result {
-                Err(_) | Ok(false) => return result,
-                _ => (),
-            };
-            target_map.iter().fold(Ok(true), |result, (key, targets)| {
-                // Use !result.contains(true) when stable
-                match result {
-                    Err(_) | Ok(false) => return result,
-                    _ => (),
-                };
-                let values = match value_map.get(key) {
-                    Some(values) => if *op == ConditionOperator::Null {
-                        return Ok(&targets[0] == "false");
-                    } else {
-                        values
-                    }
-                    None => if *op == ConditionOperator::Null {
-                        return Ok(&targets[0] == "true");
-                    } else {
-                        // TODO: Handle ...IfExists suffix
-                        return Err(ConditionError::NotImplemented).map_err(anyhow::Error::from);
-                    }
-                };
-                // TODO: Handle ForAllValues:/ForAnyValues: prefixes
-                if values.len() != 1 {
-                    return Err(ConditionError::TooManyValues).map_err(anyhow::Error::from);
+        self.conditions.iter().try_fold(true, |result, (op, target_map)| {
+            // Short-circuit on the first failure to match
+            if !result {
+                return Ok(result);
+            }
+
+            target_map.iter().try_fold(true, |result, (key, targets)| {
+                // Short-circuit on the first failure to match
+                if !result {
+                    return Ok(result);
                 }
-                let value = &values[0];
-                targets.iter().fold(Ok(false), |result, target| {
-                    if let Ok(false) = result {
-                        op.matches(value, target)
-                    } else {
-                        result
-                    }
-                })
+
+                let values = value_map.get(key);
+                op.matches(values, targets)
             })
         })
     }
-
-    fn try_from_values(values: &json::JsonValue) -> Result<ConditionValues, json::Error> {
+    fn try_from_values(values: &json::JsonValue) -> anyhow::Result<ConditionValues> {
         values.entries().map(|(key, values)| {
             if let Some(s) = values.as_str() {
                 return Ok((key.to_string(), vec![s.to_string()]));
             }
             values.members().map(|value| {
                 value.as_str()
-                    .ok_or_else(|| json::Error::wrong_type("expected condition values to be strings"))
+                    .ok_or_else(|| anyhow!("expected condition values to be strings"))
                     .map(String::from)
 
-            }).collect::<Result<Vec<_>, _>>().map(|values| (key.to_string(), values))
+            }).collect::<anyhow::Result<Vec<_>>>().map(|values| (key.to_string(), values))
         }).collect()
     }
 }
 
-impl TryFrom<&json::JsonValue> for ConditionSet {
-    type Error = json::Error;
+impl Default for ConditionList {
+    fn default() -> Self { ConditionList::new() }
+}
 
-    fn try_from(value: &json::JsonValue) -> Result<Self, Self::Error> {
+impl TryFrom<&json::JsonValue> for ConditionList {
+    type Error = anyhow::Error;
+
+    fn try_from(value: &json::JsonValue) -> anyhow::Result<Self> {
         value.entries().map(|(key, value)| {
-            let operator = ConditionOperator::try_from(key)?;
+            let mut op_str = key;
+            // The default for single-valued is to assume ForAny
+            let mut for_any = true;
+            if let Some(op) = key.strip_suffix("IfExists") {
+                op_str = op;
+                for_any = false;
+            }
+
+            if let Some(op) = key.strip_prefix("ForAny:") {
+                op_str = op;
+                for_any = true;
+            } else if let Some(op) = key.strip_prefix("ForAll:") {
+                op_str = op;
+                for_any = false;
+            }
+
+            let operator = op_str.parse()?;
+            let is_null = op_str == "Null";
             let values = Self::try_from_values(value)?;
-            Ok((operator, values))
+            let quant = match (for_any, is_null) {
+                (_, true) => Quantifier::Null,
+                (true, _) => Quantifier::ForAnyValue(operator),
+                (false, _) => Quantifier::ForAllValues(operator),
+            };
+            Ok((quant, values))
         }).collect::<Result<HashMap<_, _>, _>>()
-            .map(|conditions| ConditionSet { conditions })
+            .map(|conditions| ConditionList { conditions })
     }
 }
 
@@ -291,7 +172,9 @@ impl TryFrom<&json::JsonValue> for ConditionSet {
 mod test {
     use std::collections::HashMap;
 
-    use super::{ConditionOperator, ConditionSet, ConditionValues};
+    use super::{ConditionList, ConditionValues};
+    use super::operator::Operator;
+    use super::quantifier::Quantifier;
 
     fn single_value(key: &str, value: &str) -> ConditionValues {
         ConditionValues::from([(key.to_string(), vec![value.to_string()])])
@@ -300,8 +183,8 @@ mod test {
     #[test]
     fn op_string_equals() {
         let cases = [
-            (ConditionOperator::StringEquals, true),
-            (ConditionOperator::StringNotEquals, false),
+            (Operator::StringEquals, true),
+            (Operator::StringNotEquals, false),
         ];
         for (op, expected) in cases {
             assert_eq!(expected, op.matches("test", "test").unwrap());
@@ -317,8 +200,8 @@ mod test {
     #[test]
     fn op_string_equals_ignore_case() {
         let cases = [
-            (ConditionOperator::StringEqualsIgnoreCase, true),
-            (ConditionOperator::StringNotEqualsIgnoreCase, false),
+            (Operator::StringEqualsIgnoreCase, true),
+            (Operator::StringNotEqualsIgnoreCase, false),
         ];
         for (op, expected) in cases {
             assert_eq!(expected, op.matches("test", "test").unwrap());
@@ -329,8 +212,8 @@ mod test {
     #[test]
     fn op_string_like() {
         let cases = [
-            (ConditionOperator::StringLike, true),
-            (ConditionOperator::StringNotLike, false),
+            (Operator::StringLike, true),
+            (Operator::StringNotLike, false),
         ];
         for (op, expected) in cases {
             assert_eq!(expected, op.matches("test", "t?st").unwrap());
@@ -345,7 +228,7 @@ mod test {
 
     #[test]
     fn op_num_compare() {
-        use ConditionOperator::{
+        use Operator::{
             NumericEquals,
             NumericNotEquals,
             NumericLessThan,
@@ -380,7 +263,7 @@ mod test {
 
     #[test]
     fn op_num_invalid() {
-        use ConditionOperator::{
+        use Operator::{
             NumericEquals,
             NumericNotEquals,
             NumericLessThan,
@@ -405,7 +288,7 @@ mod test {
 
     #[test]
     fn op_date_compare() {
-        use ConditionOperator::{
+        use Operator::{
             DateEquals,
             DateNotEquals,
             DateLessThan,
@@ -433,7 +316,7 @@ mod test {
 
     #[test]
     fn op_date_invalid() {
-        use ConditionOperator::{
+        use Operator::{
             DateEquals,
             DateNotEquals,
             DateLessThan,
@@ -459,7 +342,7 @@ mod test {
 
     #[test]
     fn op_bool_equals() {
-        use ConditionOperator::Bool;
+        use Operator::Bool;
         let cases = [
             ("true", "true", true),
             ("true", "false", false),
@@ -473,7 +356,7 @@ mod test {
 
     #[test]
     fn op_bool_invalid() {
-        use ConditionOperator::Bool;
+        use Operator::Bool;
         let cases = [
             ("true", "tree"),
             ("tree", "true"),
@@ -486,7 +369,7 @@ mod test {
 
     #[test]
     fn op_binary_equals() {
-        use ConditionOperator::BinaryEquals;
+        use Operator::BinaryEquals;
         // TODO: Verify AWS allows padding to be omitted.
         let cases = [
             ("dGVzdA==", "dGVzdA==", true),
@@ -508,7 +391,7 @@ mod test {
 
     #[test]
     fn op_binary_invalid() {
-        use ConditionOperator::BinaryEquals;
+        use Operator::BinaryEquals;
         let cases = [
             ("dGVzdA==", "dGVzdAB"),
             ("dGVzdAB", "dGVzdA=="),
@@ -521,7 +404,7 @@ mod test {
 
     #[test]
     fn op_ipaddress() {
-        use ConditionOperator::{IpAddress, NotIpAddress};
+        use Operator::{IpAddress, NotIpAddress};
         let cases = [
             ("203.0.113.64", "203.0.113.0/24", true),
             ("203.0.112.1", "203.0.113.0/24", false),
@@ -539,7 +422,7 @@ mod test {
 
     #[test]
     fn op_ipaddress_invalid() {
-        use ConditionOperator::{IpAddress, NotIpAddress};
+        use Operator::{IpAddress, NotIpAddress};
         let cases = [
             // 256 out of range
             ("256.0.113.64", "203.0.113.0/24"),
@@ -564,7 +447,7 @@ mod test {
 
     #[test]
     fn op_arn() {
-        use ConditionOperator::{ArnEquals, ArnNotEquals, ArnLike, ArnNotLike};
+        use Operator::{ArnEquals, ArnNotEquals, ArnLike, ArnNotLike};
         let cases = [
             ("arn:aws:iam::123456789012:user/Alice", "arn:aws:iam::123456789012:user/Alice", true, true),
             ("arn:aws:iam::123456789012:user/Alice", "arn:aws:iam::123456789012:user/Bob", false, false),
@@ -583,9 +466,10 @@ mod test {
     }
 
     #[test]
-    fn condition_set_string_equals() {
-        let mut set = ConditionSet::new();
-        set.insert((ConditionOperator::StringEquals, single_value("test:Property", "foo")));
+    fn condition_list_string_equals() {
+        let mut set = ConditionList::new();
+        let quant = Quantifier::ForAnyValue(Operator::StringEquals);
+        set.insert((quant, single_value("test:Property", "foo")));
         let values = single_value("test:Property", "foo");
         assert!(set.matches(&values).unwrap());
 
@@ -593,6 +477,6 @@ mod test {
         assert!(!set.matches(&values).unwrap());
 
         let values = HashMap::new();
-        assert!(set.matches(&values).is_err());
+        assert!(!set.matches(&values).unwrap());
     }
 }

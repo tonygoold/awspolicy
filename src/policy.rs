@@ -3,13 +3,15 @@ pub mod constraint;
 pub mod context;
 pub mod statement;
 
+pub use statement::CheckResult;
+
 use crate::aws::ARN;
 use crate::iam::{Action, Principal};
 use context::Context;
 use statement::{Effect, Statement};
-use json;
 
-pub use statement::CheckResult;
+use anyhow::anyhow;
+use json;
 
 // This was an earlier version of the policy language. You might see this
 // version on older existing policies. Do not use this version for any new
@@ -92,38 +94,38 @@ impl Policy {
 }
 
 impl TryFrom<&json::JsonValue> for Policy {
-    type Error = json::Error;
+    type Error = anyhow::Error;
 
-    fn try_from(value: &json::JsonValue) -> Result<Self, Self::Error> {
+    fn try_from(value: &json::JsonValue) -> anyhow::Result<Self> {
         let version = &value["Version"];
         let version = if let Some(v) = version.as_str() {
             // TODO: Introduce proper error type (or use a crate like anyhow)
             match v {
                 VERSION_2008_10_17 | VERSION_2012_10_17 => Some(v.to_string()),
-                _ => return Err(json::Error::wrong_type("unsupported Version")),
+                _ => return Err(anyhow!("unsupported Version")),
             }
         } else if version.is_null() {
             None
         } else {
-            return Err(json::Error::wrong_type("expected Version to be a string"));
+            return Err(anyhow!("expected Version to be a string"));
         };
         let id = value["Id"].as_str().map(|s| s.to_string());
         let statements = &value["Statement"];
         let statements = if statements.is_object() {
             Statement::try_from(statements).map(|statement| vec![statement])?
         } else if statements.is_array() {
-            statements.members().map(Statement::try_from).collect::<Result<Vec<_>,_>>()?
+            statements.members().map(Statement::try_from).collect::<anyhow::Result<Vec<_>>>()?
         } else {
-            return Err(json::Error::wrong_type("expected Statements to be an object or array"));
+            return Err(anyhow!("expected Statements to be an object or array"));
         };
         Ok(Policy{version, id, statements})
     }
 }
 
 impl TryFrom<&str> for Policy {
-    type Error = json::Error;
+    type Error = anyhow::Error;
 
-    fn try_from(value: &str) -> Result<Self, Self::Error> {
+    fn try_from(value: &str) -> anyhow::Result<Self> {
         let value = json::parse(value)?;
         Self::try_from(&value)
     }
